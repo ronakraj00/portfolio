@@ -1,28 +1,63 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-html,body{
-    width: 100%;
-    scroll-behavior: smooth;
+@font-face {
+    font-family: wallington;
+    src: url("./assets/WallingtonRegular-PYK7.ttf");
 }
 
-body{
-    background-color: rgba(204, 204, 204, 0.21);
-    font-family:'Courier New', Courier, monospace;
+html,
+body {
+    width: 100%;
+    scroll-behavior: smooth;
+    background: radial-gradient(#6b6b6b, #000000);
+    font-family: wallington;
+}
+
+body {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     gap: 50px;
+    position: relative;
 }
 
-img{
+body::before{
+    content: "";
+    height: 200px;
+    width: 200px;
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    filter: blur(70px);
+    border-radius: 50%;
+    background: white;
+    opacity: 0.7;
+}
+
+#contact::before{
+    content: "";
+    height: 200px;
+    width: 200px;
+    position: absolute;
+    z-index: 0;
+    bottom: -200px;
+    left: calc(50vw - 50%);
+    margin-inline:auto;
+    opacity: 0.7;
+    filter: blur(70px);
+    border-radius: 50%;
+    background: white;
+}
+
+img {
     width: 300px;
 }
 
-.container{
+.container {
     display: flex;
     flex-wrap: wrap;
     gap: 50px;
@@ -30,27 +65,43 @@ img{
     margin: 30px 10px;
 }
 
-.container div{
+.container div {
     text-align: center;
-    /* border-radius: 14px; */
+    /* border-radius: 14px 0px; */
     overflow: hidden;
     width: max-content;
-    box-shadow: 6px 6px red,12px 12px green,18px 18px blue;
+    /* box-shadow: 6px 6px 100px red, 12px 12px 100px green, 18px 18px 100px blue; */
+    /* box-shadow: 6px 6px 0px rgb(255, 255, 255),-6px -6px 0px rgb(255, 255, 255); */
     transition: transform 300ms ease-in-out;
+    position: relative;
 }
 
-.container div:hover{
-    transform: scale(1.1);
+.container div::before{
+    content: "";
+    height: 400px;
+    width: 400px;
+    position: absolute;
+    z-index: 0;
+    bottom: -380px;
+    opacity: 0.7;
+    filter: blur(70px);
+    border-radius: 50%;
+    background: rgb(255, 255, 255);
+    transform: translate(-10%,0);
 }
 
-a{
+.container div:hover {
+    transform: scale(1.02);
+}
+
+a {
     text-decoration: none;
-    color: blueviolet;
+    color: white;
     font-weight: bold;
     font-size: large;
 }
 
-header{
+header {
     text-align: center;
     color: rgb(0, 0, 0);
     font-weight: bolder;
@@ -58,37 +109,38 @@ header{
     letter-spacing: 20px;
 }
 
-footer{
+footer {
     text-align: center;
-    color: blue;
+    color:white;
     font-weight: bold;
     margin-bottom: 20px;
 }
 
-section{
+section {
     text-align: center;
-    color: green;
+    color: white;
 }
 
-header{
-    margin-top:20px;
-    color: red;
+header {
+    margin-top: 20px;
+    color:white;
 }
 
-::selection{
+::selection {
     background-color: transparent;
 }
 
-.navbar{
+.navbar {
     display: flex;
     justify-content: center;
     gap: 30px;
 }
 
-.navbar a{
+.navbar a {
     font-size: 1.3rem;
+    box-shadow: 0px 2px white;
 }
-#contact nav{
+#contact nav {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -96,21 +148,20 @@ header{
     margin: 30px 0;
 }
 
-#contact a img{
+#contact a img {
     width: 30px;
 }
 
-#contact a{
-    padding: 0 6px 6px 6px;
-    border-radius: 12px;
+#contact a {
+    padding:10px;
+    min-width: 100px;
 }
 
-#github-logo{
-    box-shadow: 0 4px 3px black;
+#github-logo,#linkedin-logo,#email-logo {
+    box-shadow: 0 8px 14px black;
+    transition: all 0.5s ease-in-out;
 }
-#linkedin-logo{
-    box-shadow: 0 4px 3px rgb(65, 65, 216);
-}
-#email-logo{
-    box-shadow: 0 4px 3px red;
+
+#github-logo:hover,#linkedin-logo:hover,#email-logo:hover{
+    box-shadow: none;
 }
