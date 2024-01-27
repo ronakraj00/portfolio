@@ -51,7 +51,7 @@ body::before {
     opacity: 0.7;
     filter: blur(70px);
     border-radius: 50%;
-    background: white;
+    background: rgb(255, 255, 255);
 }
 
 .about-skills::before{
@@ -90,8 +90,14 @@ img {
     /* box-shadow: 6px 6px 0px rgb(255, 255, 255),-6px -6px 0px rgb(255, 255, 255); */
     transition: transform 300ms ease-in-out;
     position: relative;
-    clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 10%, 90% 0),
-        polygon(0 0, 100% 0, 100% 100%, 25% 100%, 0 75%);
+    transition: all 0.5s;
+}
+
+.container div:hover {
+    box-shadow: 8px 8px rgb(234, 255, 0);
+}
+.container div:nth-child(2n):hover {
+    box-shadow: 8px 8px rgb(255, 255, 255);
 }
 
 .container div::before {
@@ -121,10 +127,10 @@ a {
 
 header {
     text-align: center;
-    color: rgb(0, 0, 0);
     font-weight: bolder;
     font-size: 2em;
     letter-spacing: 20px;
+    box-shadow: 0px 1px white;
 }
 
 nav a{
@@ -172,8 +178,12 @@ header {
 }
 
 .my-resume{
-    width: 100%;
     box-shadow: 2px 2px 40px black;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
 
 
@@ -224,49 +234,64 @@ header {
     margin: 50px 0;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap:40px;
     padding: 4px 20px;
     position: relative;
 }
 
 .skill {
-    background-color: black;
+    background-color:rgb(131, 248, 48);
     width: max-content;
-    padding: 4px;
-}
-
-.skill {
     position: relative;
     display: block;
     text-align: center;
-    color: white;
-    padding: 4px 10px;
-    /* box-shadow: 10px 10px black; */
+    color:black;
+    font-weight: 600;
+    padding: 8px 10px;
+    --border-length:9px;
+    --upper-color:rgb(255, 251, 0);
+    --down-color:rgb(251, 255, 0);
+    box-shadow: 4px 4px white;
 }
 
-.skill:before,
+.skill:nth-child(3n){
+    background-color: yellow;
+}
+.skill:nth-child(5n){
+    background-color: rgb(0, 255, 255);
+}
+.skill:nth-child(7n){
+    background-color: rgb(255, 0, 230);
+}
+
+.skill:hover{
+    box-shadow: -4px -4px white;
+}
+
+/* .skill:before,
    .skill:after {
     content: "";
     position: absolute;
     left: 0; 
     right: 0;
     bottom: 100%;
-    border-bottom: 15px solid black;
-    border-left: 15px solid transparent;
-    border-right: 15px solid transparent;
+    border-bottom: var(--border-length) solid var(--upper-color);
+    border-left: var(--border-length) solid transparent;
+    border-right: var(--border-length) solid transparent;
    }
    
    .skill:before{
-       border-left: 15px solid black;
+       border-left: var(--border-length) solid var(--upper-color)
    }
    
    .skill:after{
-       border-right: 15px solid black;
+       border-right: var(--border-length) solid var(--down-color);
    }
    
    .skill:after {
     bottom: auto;
     top: 100%;
     border-bottom: none;
-    border-top: 15px solid black;
-   }
+    border-top: var(--border-length) solid var(--down-color);
+   } */
