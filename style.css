@@ -9,6 +9,10 @@
     src: url("./assets/WallingtonRegular-PYK7.ttf");
 }
 
+html{
+    scroll-snap-type: y mandatory;
+}
+
 html,
 body {
     width: 100%;
@@ -69,38 +73,73 @@ body::before {
     background: white;
 }
 
-img {
+
+img{
     width: 300px;
+}
+.container img {
+    height: 50vh;
+    width: 300px;
+    object-fit:cover;
+    border-radius: 14px;
+    filter: brightness(80%);
 }
 
 .container {
     display: flex;
-    flex-wrap: wrap;
-    gap: 50px;
-    justify-content: center;
     margin: 30px 10px;
+    overflow-x:scroll;
+    scroll-snap-type: x mandatory;
+}
+#projects h2{
+    padding-top: 40px;
 }
 
-.container div {
+.container > div {
+    margin: 0px 20px;
+    padding: 80px 0px;
     text-align: center;
-    /* border-radius: 14px 0px; */
-    overflow: hidden;
-    width: max-content;
-    /* box-shadow: 6px 6px 100px red, 12px 12px 100px green, 18px 18px 100px blue; */
-    /* box-shadow: 6px 6px 0px rgb(255, 255, 255),-6px -6px 0px rgb(255, 255, 255); */
     transition: transform 300ms ease-in-out;
     position: relative;
     transition: all 0.5s;
+    scroll-snap-align:start;
+    scroll-snap-stop: always;
+    scroll-margin-inline: 20px;
+    width: 350px;
+    background: rgba(255, 255, 255, 0.205);
+    display: flex;
+    align-items: center;
+    padding: 4px 14px;
+    height: 60vh;
+    border-radius: 14px;
 }
 
-.container div:hover {
+.container {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+.container::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
+.container div .redirect{
+    object-fit:contain;
+    padding: 10px 0px 0px 0px;
+    width: 30px;
+    height: 30px;
+    background:none;
+    border-radius: 0;
+}
+
+/* .container div:hover {
     box-shadow: 8px 8px rgb(234, 255, 0);
+    transform: scale(1.02);
 }
 .container div:nth-child(2n):hover {
     box-shadow: 8px 8px rgb(255, 255, 255);
-}
+} */
 
-.container div::before {
+/* .container div::before {
     content: "";
     height: 400px;
     width: 400px;
@@ -112,11 +151,7 @@ img {
     border-radius: 50%;
     background: rgb(255, 255, 255);
     transform: translate(-10%, 0);
-}
-
-.container div:hover {
-    transform: scale(1.02);
-}
+} */
 
 a {
     text-decoration: none;
@@ -142,11 +177,15 @@ footer {
     color: white;
     font-weight: bold;
     margin-bottom: 20px;
+    height: 20vh;
 }
 
 section {
     text-align: center;
     color: white;
+    min-height: 100vh;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
 }
 
 header {
@@ -168,6 +207,14 @@ header {
     font-size: 1.3rem;
     box-shadow: 0px 2px white;
 }
+
+#contact{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 #contact nav {
     display: flex;
     flex-wrap: wrap;
@@ -211,6 +258,9 @@ header {
 
 #about {
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 .profile-image-wrapper {
@@ -231,16 +281,18 @@ header {
 }
 
 .about-skills {
-    margin: 50px 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap:40px;
+    margin: 50px 20px;
+    display: grid;
+    grid-template-columns: repeat(3,max-content);
+    column-gap: 20px;
+    row-gap: 40px;
+    place-content: center;
     padding: 4px 20px;
     position: relative;
 }
 
 .skill {
+    height: max-content;
     background-color:rgb(131, 248, 48);
     width: max-content;
     position: relative;
@@ -297,3 +349,54 @@ header {
     border-bottom: none;
     border-top: var(--border-length) solid var(--down-color);
    } */
+
+
+   .arrow {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    padding: 8px;
+    cursor: pointer;
+  }
+  
+  .right {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+  }
+  
+  .left {
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+  }
+
+  .down{
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    border:solid white;
+  }
+.empty-section{
+    height: 150px;
+    background-color: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.scroll-down{
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+.top{
+    margin-top: 20px;
+    height: 100px;
+    text-align: center;
+    color: white;
+}

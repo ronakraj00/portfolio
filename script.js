@@ -30,3 +30,19 @@ skills.forEach(skill=>{
     skillDiv.classList.add("skill");
     skillsSection.append(skillDiv);
 })
+
+const buttonRight = document.querySelector('.arrow.right');
+const buttonLeft = document.querySelector('.arrow.left');
+
+buttonRight.addEventListener("click",function () {
+    const container=document.querySelector('.container')
+    container.scrollLeft += 400;
+});
+buttonLeft.addEventListener("click",function () {
+    document.querySelector('.container').scrollLeft -= 400;
+});
+
+const scrollDown=document.querySelector(".scroll-down")
+scrollDown.addEventListener("click",()=>{
+    window.scroll(0,1000)
+})
