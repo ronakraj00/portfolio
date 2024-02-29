@@ -166,9 +166,6 @@ header {
     margin-top: 50px;
 }
 
-nav a {
-    padding: 8px;
-}
 
 footer {
     text-align: center;
@@ -191,14 +188,18 @@ section {
 }
 
 .navbar {
+    z-index: 3;
+    top: 0;
+    right: 0;
     display: flex;
     justify-content: center;
     gap: 30px;
+    background-color:#000000;
+    padding: 13px;
 }
 
 .navbar a {
     font-size: 1.3rem;
-    box-shadow: 0px 2px white;
 }
 
 #contact {
@@ -252,7 +253,7 @@ section {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .text {
@@ -309,26 +310,27 @@ section {
     min-height: 100px;
     min-width: 100px;
     margin: 4px;
-    background-color: rgb(131, 248, 48);
+    background-color: rgba(0, 0, 0, 0.559);
     position: relative;
     display: block;
     text-align: center;
-    color: black;
+    color:white;
     font-weight: 600;
     padding: 8px 10px;
     --border-length: 9px;
     --upper-color: rgb(255, 251, 0);
     --down-color: rgb(251, 255, 0);
-    box-shadow: 4px 4px white;
+    box-shadow: 1px 1px 0px whitesmoke, 2px 2px 0px whitesmoke, 3px 3px 0px whitesmoke,
+        4px 4px 0px whitesmoke, 5px 5px 0px whitesmoke, 6px 6px 0px whitesmoke,7px 7px 0px whitesmoke,8px 8px 0px whitesmoke;
     position: relative;
 }
 
-.skill p{
+.skill p {
     position: absolute;
     text-align: center;
     top: 0;
     min-height: 100%;
-    min-width: 100%;
+    min-width: 90%;
     backdrop-filter: blur(2px);
     font-size: 1.3rem;
     font-weight: 900;
@@ -336,45 +338,52 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
+    animation: breath-text 5s ease-in-out  3 alternate;
 }
 
-
 .skill img {
-    opacity: 0.4;
+    opacity: 0.5;
     width: 80px;
     object-fit: fill;
     filter: grayscale(1);
-    animation: breath 4s ease-in-out infinite alternate;
+    animation: breath 5s ease-in-out infinite alternate;
 }
 
 .skill *:hover {
     filter: grayscale(0);
 }
 
-@keyframes breath {
+@keyframes breath-text {
     0% {
         filter: grayscale(1);
+        opacity: 1;
     }
     100% {
         filter: grayscale(0);
+        opacity: 0;
     }
 }
 
-.skill:nth-child(3n) {
+@keyframes breath {
+    0% {
+        filter: grayscale(1);
+        opacity: 0;
+    }
+    100% {
+        filter: grayscale(0);
+        opacity: 1;
+    }
+}
+
+/* .skill:nth-child(3n) {
     background-color: yellow;
 }
 .skill:nth-child(5n) {
     background-color: rgb(255, 255, 255);
-    box-shadow: 4px 4px greenyellow;
 }
 .skill:nth-child(7n) {
     background-color: rgb(255, 255, 255);
-    box-shadow: 4px 4px yellow;
-}
-
-.skill:hover {
-    box-shadow: -4px -4px white;
-}
+} */
 
 /* .skill:before,
    .skill:after {
@@ -451,4 +460,24 @@ section {
     height: 100px;
     text-align: center;
     color: white;
+}
+
+.email-me{
+    position:fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #000000;
+    color: white;
+    padding: 8px;
+    writing-mode: vertical-lr;
+    letter-spacing: 2px;
+}
+
+.email-me a{
+    font-weight: normal;
+}
+
+.email-me img{
+    width: 30px;
+    margin: 4px;
 }

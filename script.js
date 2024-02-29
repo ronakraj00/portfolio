@@ -1,4 +1,4 @@
-const skillsSection = document.querySelector(".about-skills");
+const skillsSection = document.querySelector(".skills-container");
 
 import { skills } from "./data.js";
 
