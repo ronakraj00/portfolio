@@ -5,7 +5,21 @@ import { skills } from "./data.js";
 (function createSkills() {
     skills.forEach((skill) => {
         const skillDiv = document.createElement("div");
-        skillDiv.innerText = skill;
+        const imgTag = document.createElement("img");
+        imgTag.src =
+            "./assets/images/" +
+            skill
+                .toLowerCase()
+                .split("")
+                .map((letter) => (letter == " " ? "" : letter))
+                .join("") +
+            "-" +
+            "image.png";
+        const nameContainer = document.createElement("p");
+        const name = document.createElement("span");
+        name.innerText = skill;
+        nameContainer.append(name);
+        skillDiv.append(imgTag, nameContainer);
         skillDiv.classList.add("skill");
         skillsSection.append(skillDiv);
     });

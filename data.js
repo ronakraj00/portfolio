@@ -20,7 +20,7 @@ const skills = [
     "webpack",
     "vite",
     "Postman",
-    "Redux-Toolkit",
+    "Redux Toolkit",
 ];
 
 export {skills};

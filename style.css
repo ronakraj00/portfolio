@@ -9,7 +9,7 @@
     src: url("./assets/WallingtonRegular-PYK7.ttf");
 }
 
-html{
+html {
     scroll-snap-type: y mandatory;
 }
 
@@ -58,7 +58,7 @@ body::before {
     background: rgb(255, 255, 255);
 }
 
-.about-skills::before{
+.about-skills::before {
     content: "";
     height: 200px;
     width: 200px;
@@ -73,14 +73,13 @@ body::before {
     background: white;
 }
 
-
-img{
+img {
     width: 300px;
 }
 .container img {
     height: 50vh;
     width: 300px;
-    object-fit:cover;
+    object-fit: cover;
     border-radius: 14px;
     filter: brightness(80%);
 }
@@ -88,10 +87,10 @@ img{
 .container {
     display: flex;
     margin: 30px 10px;
-    overflow-x:scroll;
+    overflow-x: scroll;
     scroll-snap-type: x mandatory;
 }
-#projects h2{
+#projects h2 {
     padding-top: 40px;
 }
 
@@ -102,7 +101,7 @@ img{
     transition: transform 300ms ease-in-out;
     position: relative;
     transition: all 0.5s;
-    scroll-snap-align:start;
+    scroll-snap-align: start;
     scroll-snap-stop: always;
     scroll-margin-inline: 20px;
     width: 350px;
@@ -115,19 +114,19 @@ img{
 }
 
 .container {
-    -ms-overflow-style: none;  /* Internet Explorer 10+ */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    scrollbar-width: none; /* Firefox */
 }
-.container::-webkit-scrollbar { 
-    display: none;  /* Safari and Chrome */
+.container::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
 }
 
-.container div .redirect{
-    object-fit:contain;
+.container div .redirect {
+    object-fit: contain;
     padding: 10px 0px 0px 0px;
     width: 30px;
     height: 30px;
-    background:none;
+    background: none;
     border-radius: 0;
 }
 
@@ -162,13 +161,12 @@ a {
 
 header {
     text-align: center;
-    font-weight: bolder;
-    font-size: 2em;
     letter-spacing: 20px;
-    box-shadow: 0px 1px white;
+    position: relative;
+    margin-top: 50px;
 }
 
-nav a{
+nav a {
     padding: 8px;
 }
 
@@ -188,11 +186,6 @@ section {
     scroll-snap-stop: always;
 }
 
-header {
-    margin-top: 20px;
-    color: white;
-}
-
 ::selection {
     background-color: transparent;
 }
@@ -208,7 +201,7 @@ header {
     box-shadow: 0px 2px white;
 }
 
-#contact{
+#contact {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -224,7 +217,7 @@ header {
     margin: 30px 0;
 }
 
-.my-resume{
+.my-resume {
     box-shadow: 2px 2px 40px black;
     border-radius: 20px;
     display: flex;
@@ -232,7 +225,6 @@ header {
     justify-content: center;
     gap: 10px;
 }
-
 
 #contact a img {
     width: 30px;
@@ -263,6 +255,26 @@ header {
     justify-content: space-around;
 }
 
+.text {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+    text-transform: uppercase;
+    font-family: verdana;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #f5f5f5;
+    text-shadow: 1px 1px 1px #919191, 1px 2px 1px #919191, 1px 3px 1px #919191,
+        1px 4px 1px #919191, 1px 5px 1px #919191, 1px 6px 1px #919191,
+        1px 7px 1px #919191, 1px 8px 1px #919191, 1px 9px 1px #919191,
+        1px 10px 1px #919191, 1px 18px 6px rgba(16, 16, 16, 0.4),
+        1px 22px 10px rgba(16, 16, 16, 0.2), 1px 25px 35px rgba(16, 16, 16, 0.2),
+        1px 30px 60px rgba(16, 16, 16, 0.4);
+}
+
 .profile-image-wrapper {
     display: flex;
     justify-content: center;
@@ -272,6 +284,8 @@ header {
     overflow: hidden;
     border: 2px solid white;
     border-radius: 50%;
+    box-shadow: 1px 1px 100px rgba(0, 128, 81, 0.34),
+        -1px -1px 100px rgba(0, 128, 107, 0.345);
 }
 
 .about-paragraph {
@@ -283,7 +297,7 @@ header {
 .about-skills {
     margin: 50px 20px;
     display: grid;
-    grid-template-columns: repeat(3,max-content);
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
     column-gap: 20px;
     row-gap: 40px;
     place-content: center;
@@ -292,34 +306,73 @@ header {
 }
 
 .skill {
-    height: max-content;
-    background-color:rgb(131, 248, 48);
-    width: max-content;
+    min-height: 100px;
+    min-width: 100px;
+    margin: 4px;
+    background-color: rgb(131, 248, 48);
     position: relative;
     display: block;
     text-align: center;
-    color:black;
+    color: black;
     font-weight: 600;
     padding: 8px 10px;
-    --border-length:9px;
-    --upper-color:rgb(255, 251, 0);
-    --down-color:rgb(251, 255, 0);
+    --border-length: 9px;
+    --upper-color: rgb(255, 251, 0);
+    --down-color: rgb(251, 255, 0);
     box-shadow: 4px 4px white;
+    position: relative;
 }
 
-.skill:nth-child(3n){
+.skill p{
+    position: absolute;
+    text-align: center;
+    top: 0;
+    min-height: 100%;
+    min-width: 100%;
+    backdrop-filter: blur(2px);
+    font-size: 1.3rem;
+    font-weight: 900;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.skill img {
+    opacity: 0.4;
+    width: 80px;
+    object-fit: fill;
+    filter: grayscale(1);
+    animation: breath 4s ease-in-out infinite alternate;
+}
+
+.skill *:hover {
+    filter: grayscale(0);
+}
+
+@keyframes breath {
+    0% {
+        filter: grayscale(1);
+    }
+    100% {
+        filter: grayscale(0);
+    }
+}
+
+.skill:nth-child(3n) {
     background-color: yellow;
 }
-.skill:nth-child(5n){
+.skill:nth-child(5n) {
     background-color: rgb(255, 255, 255);
     box-shadow: 4px 4px greenyellow;
 }
-.skill:nth-child(7n){
+.skill:nth-child(7n) {
     background-color: rgb(255, 255, 255);
     box-shadow: 4px 4px yellow;
 }
 
-.skill:hover{
+.skill:hover {
     box-shadow: -4px -4px white;
 }
 
@@ -350,32 +403,31 @@ header {
     border-top: var(--border-length) solid var(--down-color);
    } */
 
-
-   .arrow {
+.arrow {
     border: solid black;
     border-width: 0 3px 3px 0;
     display: inline-block;
     padding: 3px;
     padding: 8px;
     cursor: pointer;
-  }
-  
-  .right {
+}
+
+.right {
     transform: rotate(-45deg);
     -webkit-transform: rotate(-45deg);
-  }
-  
-  .left {
+}
+
+.left {
     transform: rotate(135deg);
     -webkit-transform: rotate(135deg);
-  }
+}
 
-  .down{
+.down {
     transform: rotate(45deg);
     -webkit-transform: rotate(45deg);
-    border:solid white;
-  }
-.empty-section{
+    border: solid white;
+}
+.empty-section {
     height: 150px;
     background-color: #000000;
     display: flex;
@@ -383,7 +435,7 @@ header {
     align-items: center;
 }
 
-.scroll-down{
+.scroll-down {
     cursor: pointer;
     display: flex;
     justify-content: center;
@@ -394,7 +446,7 @@ header {
     border: 2px solid white;
 }
 
-.top{
+.top {
     margin-top: 20px;
     height: 100px;
     text-align: center;
