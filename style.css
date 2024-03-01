@@ -168,6 +168,7 @@ header {
 
 
 footer {
+    position: relative;
     text-align: center;
     color: white;
     font-weight: bold;
@@ -203,10 +204,11 @@ section {
 }
 
 #contact {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    
 }
 
 #contact nav {
@@ -310,7 +312,7 @@ section {
     min-height: 100px;
     min-width: 100px;
     margin: 4px;
-    background-color: rgba(0, 0, 0, 0.559);
+    /* background-color: rgba(0, 0, 0, 0.559); */
     position: relative;
     display: block;
     text-align: center;
@@ -320,33 +322,32 @@ section {
     --border-length: 9px;
     --upper-color: rgb(255, 251, 0);
     --down-color: rgb(251, 255, 0);
-    box-shadow: 1px 1px 0px whitesmoke, 2px 2px 0px whitesmoke, 3px 3px 0px whitesmoke,
-        4px 4px 0px whitesmoke, 5px 5px 0px whitesmoke, 6px 6px 0px whitesmoke,7px 7px 0px whitesmoke,8px 8px 0px whitesmoke;
-    position: relative;
+    /* box-shadow: 1px 1px 10px rgba(245, 245, 245, 0.363), 2px 2px 10px rgba(245, 245, 245, 0.292), 3px 3px 10px rgba(245, 245, 245, 0.365),
+        4px 4px 10px rgba(245, 245, 245, 0.352); */
 }
 
 .skill p {
-    position: absolute;
+    /* position: absolute;
     text-align: center;
     top: 0;
     min-height: 100%;
-    min-width: 90%;
-    backdrop-filter: blur(2px);
-    font-size: 1.3rem;
+    min-width: 90%; */
+    /* backdrop-filter: blur(2px); */
+    /* font-size: 1.3rem;
     font-weight: 900;
     z-index: 2;
     display: flex;
     align-items: center;
-    justify-content: center;
-    animation: breath-text 5s ease-in-out  3 alternate;
+    justify-content: center; */
+    /* animation: breath-text 5s ease-in-out  3 alternate; */
 }
 
 .skill img {
-    opacity: 0.5;
+    /* opacity: 0.5; */
     width: 80px;
     object-fit: fill;
-    filter: grayscale(1);
-    animation: breath 5s ease-in-out infinite alternate;
+    /* filter: grayscale(1); */
+    /* animation: breath 5s ease-in-out infinite alternate; */
 }
 
 .skill *:hover {
