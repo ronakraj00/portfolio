@@ -278,7 +278,25 @@ section {
         1px 30px 60px rgba(16, 16, 16, 0.4);
 }
 
+.appear{
+    animation: appear 4s ease-in-out 300ms 1;
+}
+.appear2{
+    animation: appear 2s ease-in-out  1;
+}
+
+@keyframes appear {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 100;
+    }
+}
+
+
 .profile-image-wrapper {
+    position: relative;
     display: flex;
     justify-content: center;
     width: max-content;
