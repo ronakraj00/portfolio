@@ -63,8 +63,6 @@ const fetchSitesData = async () => {
     return data.sites;
 };
 
-fetchSitesData();
-
 // {
 //     description: "GIPHY GIF";
 //     id: 1;
