@@ -344,6 +344,18 @@ section {
         4px 4px 10px rgba(245, 245, 245, 0.352); */
 }
 
+.skill{
+    border: 1px solid rgba(255, 255, 255, 0.299);
+    border-radius: 8px;
+    backdrop-filter: blur(2px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color:#c7c7c7
+}
+
 .skill p {
     /* position: absolute;
     text-align: center;
