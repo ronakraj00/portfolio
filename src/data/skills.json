@@ -1,0 +1,455 @@
+[
+    {
+        "name": "React",
+        "description": "A JavaScript library for building user interfaces.",
+        "image": "https://reactjs.org/logo-og.png",
+        "links": {
+            "website": "https://reactjs.org/",
+            "wikipedia": "https://en.wikipedia.org/wiki/React_(JavaScript_library)",
+            "resources": [
+                "https://reactjs.org/docs/getting-started.html",
+                "https://www.udemy.com/course/react-the-complete-guide-incl-redux/",
+                "https://www.freecodecamp.org/news/learn-react-beginners-tutorial/"
+            ]
+        },
+        "interestingFact": "React was developed by Facebook and is maintained by Facebook and a community of developers.",
+        "skillLevel": "Intermediate",
+        "usefulness": "High",
+        "other": "Used extensively in web development for creating dynamic user interfaces.",
+        "history": "React was created by Jordan Walke, a software engineer at Facebook. It was first deployed on Facebook's newsfeed in 2011 and later on Instagram in 2012.",
+        "components": [
+            "JSX: JavaScript XML syntax extension.",
+            "Virtual DOM: Efficiently updates and renders components.",
+            "Components: Building blocks of React applications."
+        ],
+        "stateManagement": [
+            "Context API: Basic state management.",
+            "Redux: Popular state management library."
+        ],
+        "popularity": "React is one of the most popular JavaScript libraries with a large and active community. It is used by companies like Facebook, Instagram, Airbnb, and Netflix.",
+        "widelyUsed": "Building modern web applications with dynamic user interfaces. Example: Facebook's newsfeed and Instagram."
+    },
+    {
+        "name": "NodeJs",
+        "description": "JavaScript runtime built on Chrome's V8 engine.",
+        "image": "https://nodejs.org/static/images/logo.svg",
+        "links": {
+            "website": "https://nodejs.org/",
+            "wikipedia": "https://en.wikipedia.org/wiki/Node.js",
+            "resources": [
+                "https://nodejs.dev/learn",
+                "https://www.udemy.com/course/the-complete-nodejs-developer-course-2/",
+                "https://www.freecodecamp.org/news/learn-node-js-full-course/"
+            ]
+        },
+        "interestingFact": "Node.js is widely used for building server-side applications and APIs.",
+        "skillLevel": "Intermediate",
+        "usefulness": "High",
+        "other": "Enables JavaScript to be used for server-side scripting.",
+        "history": "Node.js was created by Ryan Dahl in 2009. It was initially developed to handle real-time push applications.",
+        "keyFeatures": [
+            "Non-blocking I/O: Efficiently handles multiple requests.",
+            "Single-threaded: Uses an event-driven, single-threaded model.",
+            "NPM: Largest ecosystem of open-source libraries."
+        ],
+        "useCases": [
+            "Web Servers: Powering server-side logic.",
+            "APIs: Creating RESTful services.",
+            "Real-time Applications: Such as chat applications and gaming."
+        ],
+        "community": "Node.js has a vibrant community and is supported by the OpenJS Foundation. It is used by companies like LinkedIn, Netflix, and Uber.",
+        "widelyUsed": "Building scalable network applications and real-time applications. Example: LinkedIn's server-side logic."
+    },
+    {
+        "name": "MongoDB",
+        "description": "A NoSQL database for modern applications.",
+        "image": "https://www.mongodb.com/assets/images/global/leaf.svg",
+        "links": {
+            "website": "https://www.mongodb.com/",
+            "wikipedia": "https://en.wikipedia.org/wiki/MongoDB",
+            "resources": [
+                "https://university.mongodb.com/",
+                "https://www.udemy.com/course/mongodb-the-complete-developers-guide/",
+                "https://www.freecodecamp.org/news/learn-mongodb-a4e117ba7a4b/"
+            ]
+        },
+        "interestingFact": "MongoDB stores data in flexible, JSON-like documents.",
+        "skillLevel": "Intermediate",
+        "usefulness": "High",
+        "other": "Popular in modern web development, especially for handling large volumes of data.",
+        "history": "MongoDB was developed by MongoDB Inc. (formerly 10gen) in 2007. It was designed to address the challenges of traditional relational databases.",
+        "features": [
+            "Schema-less: Flexible data modeling.",
+            "Horizontal Scalability: Easily scale-out with sharding.",
+            "Aggregation Framework: Powerful data processing and transformation."
+        ],
+        "useCases": [
+            "Big Data: Handling large volumes of unstructured data.",
+            "Content Management: Storing and managing content.",
+            "Real-time Analytics: Processing and analyzing data in real-time."
+        ],
+        "community": "MongoDB has a strong community and extensive documentation. It is used by companies like eBay, Adobe, and Google.",
+        "widelyUsed": "Storing and managing large volumes of data in web applications. Example: eBay's data storage."
+    },
+    {
+        "name": "ExpressJs",
+        "description": "Minimal and flexible Node.js web application framework.",
+        "image": "https://expressjs.com/images/express-facebook-share.png",
+        "links": {
+            "website": "https://expressjs.com/",
+            "wikipedia": "https://en.wikipedia.org/wiki/Express.js",
+            "resources": [
+                "https://expressjs.com/en/starter/installing.html",
+                "https://www.udemy.com/course/expressjs/",
+                "https://www.freecodecamp.org/news/learn-expressjs/"
+            ]
+        },
+        "interestingFact": "Express.js is the de facto standard server framework for Node.js.",
+        "skillLevel": "Intermediate",
+        "usefulness": "High",
+        "other": "Used to build web applications and APIs.",
+        "widelyUsed": "Creating robust APIs and web servers. Example: MEAN stack (MongoDB, Express.js, Angular, Node.js) applications."
+    },
+    {
+        "name": "Mongoose",
+        "description": "Elegant MongoDB object modeling for Node.js.",
+        "image": "https://mongoosejs.com/docs/images/mongoose5_62x30_transparent.png",
+        "links": {
+            "website": "https://mongoosejs.com/",
+            "wikipedia": "https://en.wikipedia.org/wiki/Mongoose_(MongoDB)",
+            "resources": [
+                "https://mongoosejs.com/docs/index.html",
+                "https://www.udemy.com/course/mongodb-mongoosejs/",
+                "https://www.freecodecamp.org/news/introduction-to-mongoose-for-mongodb-d2a7aa593c57/"
+            ]
+        },
+        "interestingFact": "Mongoose provides a straightforward, schema-based solution to model your application data.",
+        "skillLevel": "Intermediate",
+        "usefulness": "High",
+        "other": "Facilitates interaction with MongoDB within Node.js applications.",
+        "widelyUsed": "Schema-based data modeling in Node.js applications. Example: MEAN/MERN stack applications."
+    },
+    {
+        "name": "REST API",
+        "description": "Architectural style for designing networked applications.",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/a/a9/RESTful_API_logo.svg",
+        "links": {
+            "website": "https://restfulapi.net/",
+            "wikipedia": "https://en.wikipedia.org/wiki/Representational_state_transfer",
+            "resources": [
+                "https://www.restapitutorial.com/",
+                "https://www.udemy.com/course/restful-api/",
+                "https://www.freecodecamp.org/news/rest-api-tutorial/"
+            ]
+        },
+        "interestingFact": "RESTful APIs use HTTP requests to perform CRUD operations.",
+        "skillLevel": "Intermediate",
+        "usefulness": "High",
+        "other": "Commonly used for web services and web APIs.",
+        "widelyUsed": "Interfacing between client and server in web applications. Example: Twitter API."
+    },
+    {
+        "name": "Tailwind CSS",
+        "description": "Utility-first CSS framework for rapid UI development.",
+        "image": "https://tailwindcss.com/_next/static/media/social-card-large.a6e7d4e2.jpg",
+        "links": {
+            "website": "https://tailwindcss.com/",
+            "wikipedia": "https://en.wikipedia.org/wiki/Tailwind_CSS",
+            "resources": [
+                "https://tailwindcss.com/docs",
+                "https://www.udemy.com/course/tailwindcss/",
+                "https://www.freecodecamp.org/news/tailwind-css-course/"
+            ]
+        },
+        "interestingFact": "Tailwind CSS allows you to style elements by applying classes directly in your markup.",
+        "skillLevel": "Intermediate",
+        "usefulness": "High",
+        "other": "Speeds up the process of creating custom designs.",
+        "widelyUsed": "Building modern, responsive web designs. Example: GitHub's homepage."
+    },
+    {
+        "name": "Git",
+        "description": "Distributed version control system.",
+        "image": "https://git-scm.com/images/logos/downloads/Git-Icon-1788C.png",
+        "links": {
+            "website": "https://git-scm.com/",
+            "wikipedia": "https://en.wikipedia.org/wiki/Git",
+            "resources": [
+                "https://git-scm.com/doc",
+                "https://www.udemy.com/course/git-and-github-bootcamp/",
+                "https://www.freecodecamp.org/news/learn-git-the-basics-of-git/"
+            ]
+        },
+        "interestingFact": "Git was created by Linus Torvalds, the creator of Linux.",
+        "skillLevel": "Intermediate",
+        "usefulness": "High",
+        "other": "Essential for version control and collaboration in software development.",
+        "widelyUsed": "Tracking changes in source code during software development. Example: GitHub repositories."
+    },
+    {
+        "name": "HTML",
+        "description": "Standard markup language for creating web pages.",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg",
+        "links": {
+            "website": "https://developer.mozilla.org/en-US/docs/Web/HTML",
+            "wikipedia": "https://en.wikipedia.org/wiki/HTML",
+            "resources": [
+                "https://developer.mozilla.org/en-US/docs/Learn/HTML",
+                "https://www.udemy.com/course/html5-fundamentals-for-beginners/",
+                "https://www.freecodecamp.org/news/html-tutorial/"
+            ]
+        },
+        "interestingFact": "HTML was created by Tim Berners-Lee in 1991.",
+        "skillLevel": "Beginner",
+        "usefulness": "High",
+        "other": "Foundation of web development, essential for structuring web content.",
+        "widelyUsed": "Creating and structuring web pages. Example: Any webpage on the internet."
+    },
+    {
+        "name": "CSS",
+        "description": "Style sheet language used for describing the presentation of a document.",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg",
+        "links": {
+            "website": "https://developer.mozilla.org/en-US/docs/Web/CSS",
+            "wikipedia": "https://en.wikipedia.org/wiki/CSS",
+            "resources": [
+                "https://developer.mozilla.org/en-US/docs/Learn/CSS",
+                "https://www.udemy.com/course/css-the-complete-guide-incl-flexbox-grid-sass/",
+                "https://www.freecodecamp.org/news/learn-css-in-this-complete-course/"
+            ]
+        },
+        "interestingFact": "CSS was first proposed by Håkon Wium Lie on October 10, 1994.",
+        "skillLevel": "Beginner",
+        "usefulness": "High",
+        "other": "Essential for designing and laying out web pages.",
+        "widelyUsed": "Styling and designing web pages. Example: Any styled webpage on the internet."
+    },
+    {
+        "name": "JavaScript",
+        "description": "Programming language of the web.",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png",
+        "links": {
+            "website": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+            "wikipedia": "https://en.wikipedia.org/wiki/JavaScript",
+            "resources": [
+                "https://developer.mozilla.org/en-US/docs/Learn/JavaScript",
+                "https://www.udemy.com/course/the-complete-javascript-course/",
+                "https://www.freecodecamp.org/news/learn-javascript-full-course/"
+            ]
+        },
+        "interestingFact": "JavaScript was created in just 10 days by Brendan Eich in 1995.",
+        "skillLevel": "Intermediate",
+        "usefulness": "High",
+        "other": "Used to create interactive effects within web browsers.",
+        "widelyUsed": "Adding interactivity to web pages. Example: Dynamic content updates, form validations."
+    },
+    {
+        "name": "GitHub",
+        "description": "Code hosting platform for version control and collaboration.",
+        "image": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
+        "links": {
+            "website": "https://github.com/",
+            "wikipedia": "https://en.wikipedia.org/wiki/GitHub",
+            "resources": [
+                "https://docs.github.com/en/get-started",
+                "https://www.udemy.com/course/github-ultimate/",
+                "https://www.freecodecamp.org/news/learn-github-basics/"
+            ]
+        },
+        "interestingFact": "GitHub was acquired by Microsoft in 2018.",
+        "skillLevel": "Intermediate",
+        "usefulness": "High",
+        "other": "Facilitates code sharing and collaboration among developers.",
+        "widelyUsed": "Hosting and sharing code repositories. Example: Open-source projects like React."
+    },
+    {
+        "name": "Linux",
+        "description": "Open-source operating system.",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/a/af/Tux.png",
+        "links": {
+            "website": "https://www.kernel.org/",
+            "wikipedia": "https://en.wikipedia.org/wiki/Linux",
+            "resources": [
+                "https://linuxjourney.com/",
+                "https://www.udemy.com/course/complete-linux-training-course-to-get-your-dream-it-job/",
+                "https://www.freecodecamp.org/news/learn-the-linux-command-line-basics/"
+            ]
+        },
+        "interestingFact": "Linux powers the majority of the world's supercomputers.",
+        "skillLevel": "Intermediate",
+        "usefulness": "High",
+        "other": "Widely used in servers, desktops, and embedded systems.",
+        "widelyUsed": "Operating system for servers, desktops, and embedded systems. Example: Android operating system."
+    },
+    {
+        "name": "Python",
+        "description": "High-level programming language.",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg",
+        "links": {
+            "website": "https://www.python.org/",
+            "wikipedia": "https://en.wikipedia.org/wiki/Python_(programming_language)",
+            "resources": [
+                "https://docs.python.org/3/tutorial/",
+                "https://www.udemy.com/course/complete-python-bootcamp/",
+                "https://www.freecodecamp.org/news/learn-python-full-course/"
+            ]
+        },
+        "interestingFact": "Python is named after the British comedy series Monty Python.",
+        "skillLevel": "Intermediate",
+        "usefulness": "High",
+        "other": "Used in web development, data science, artificial intelligence, and more.",
+        "widelyUsed": "Web development, data analysis, AI, and automation. Example: YouTube backend."
+    },
+    {
+        "name": "C",
+        "description": "General-purpose programming language.",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/1/19/C_Logo.png",
+        "links": {
+            "website": "https://en.cppreference.com/w/c/language",
+            "wikipedia": "https://en.wikipedia.org/wiki/C_(programming_language)",
+            "resources": [
+                "https://www.learn-c.org/",
+                "https://www.udemy.com/course/c-programming-for-beginners-/",
+                "https://www.freecodecamp.org/news/learn-c-tutorial/"
+            ]
+        },
+        "interestingFact": "C has influenced many other programming languages, including C++, C#, and Java.",
+        "skillLevel": "Intermediate",
+        "usefulness": "High",
+        "other": "Widely used in system programming and embedded systems.",
+        "widelyUsed": "System programming, embedded systems, and low-level programming. Example: Linux kernel."
+    },
+    {
+        "name": "Arduino",
+        "description": "Open-source electronics platform.",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/8/87/Arduino_Logo.svg",
+        "links": {
+            "website": "https://www.arduino.cc/",
+            "wikipedia": "https://en.wikipedia.org/wiki/Arduino",
+            "resources": [
+                "https://www.arduino.cc/en/Tutorial/HomePage",
+                "https://www.udemy.com/course/arduino-step-by-step-getting-started/",
+                "https://www.freecodecamp.org/news/learn-arduino-the-basics/"
+            ]
+        },
+        "interestingFact": "Arduino is used to build digital devices and interactive objects that can sense and control the physical world.",
+        "skillLevel": "Beginner",
+        "usefulness": "Medium",
+        "other": "Popular in DIY projects and prototyping.",
+        "widelyUsed": "DIY electronics projects and prototyping. Example: Home automation systems."
+    },
+    {
+        "name": "Raspberry Pi",
+        "description": "Small, affordable computer for learning programming.",
+        "image": "https://upload.wikimedia.org/wikipedia/en/c/cb/Raspberry_Pi_Logo.svg",
+        "links": {
+            "website": "https://www.raspberrypi.org/",
+            "wikipedia": "https://en.wikipedia.org/wiki/Raspberry_Pi",
+            "resources": [
+                "https://projects.raspberrypi.org/en/",
+                "https://www.udemy.com/course/raspberry-pi-bootcamp/",
+                "https://www.freecodecamp.org/news/learn-raspberry-pi-tutorial/"
+            ]
+        },
+        "interestingFact": "Raspberry Pi was developed in the UK to promote the teaching of basic computer science in schools.",
+        "skillLevel": "Beginner",
+        "usefulness": "Medium",
+        "other": "Widely used for educational purposes and DIY projects.",
+        "widelyUsed": "Learning programming and building DIY electronics projects. Example: Home media centers."
+    },
+    {
+        "name": "Java",
+        "description": "High-level, class-based programming language.",
+        "image": "https://upload.wikimedia.org/wikipedia/en/3/30/Java_programming_language_logo.svg",
+        "links": {
+            "website": "https://www.java.com/",
+            "wikipedia": "https://en.wikipedia.org/wiki/Java_(programming_language)",
+            "resources": [
+                "https://docs.oracle.com/javase/tutorial/",
+                "https://www.udemy.com/course/java-the-complete-java-developer-course/",
+                "https://www.freecodecamp.org/news/learn-java-full-course/"
+            ]
+        },
+        "interestingFact": "Java is used on more than 3 billion devices worldwide.",
+        "skillLevel": "Intermediate",
+        "usefulness": "High",
+        "other": "Widely used in enterprise environments and Android app development.",
+        "widelyUsed": "Enterprise applications, Android app development. Example: Android operating system."
+    },
+    {
+        "name": "webpack",
+        "description": "Module bundler for JavaScript applications.",
+        "image": "https://webpack.js.org/icon-square-big.svg",
+        "links": {
+            "website": "https://webpack.js.org/",
+            "wikipedia": "https://en.wikipedia.org/wiki/Webpack",
+            "resources": [
+                "https://webpack.js.org/concepts/",
+                "https://www.udemy.com/course/webpack-4-in-depth/",
+                "https://www.freecodecamp.org/news/an-introduction-to-webpack-what-it-is-and-how-to-use-it/"
+            ]
+        },
+        "interestingFact": "Webpack is highly configurable and supports various plugins and loaders.",
+        "skillLevel": "Intermediate",
+        "usefulness": "High",
+        "other": "Used for bundling JavaScript modules and assets.",
+        "widelyUsed": "Bundling and optimizing JavaScript applications. Example: React applications."
+    },
+    {
+        "name": "vite",
+        "description": "Next Generation Frontend Tooling.",
+        "image": "https://vitejs.dev/logo.svg",
+        "links": {
+            "website": "https://vitejs.dev/",
+            "wikipedia": "https://en.wikipedia.org/wiki/Vite",
+            "resources": [
+                "https://vitejs.dev/guide/",
+                "https://www.udemy.com/course/vite-quick-start-guide/",
+                "https://www.freecodecamp.org/news/introduction-to-vite/"
+            ]
+        },
+        "interestingFact": "Vite is known for its fast development server and optimized build process.",
+        "skillLevel": "Intermediate",
+        "usefulness": "High",
+        "other": "Optimizes frontend development workflow.",
+        "widelyUsed": "Modern frontend development. Example: Vue and React applications."
+    },
+    {
+        "name": "Postman",
+        "description": "API development and testing platform.",
+        "image": "https://www.postman.com/assets/logos/postman-logo-stacked.svg",
+        "links": {
+            "website": "https://www.postman.com/",
+            "wikipedia": "https://en.wikipedia.org/wiki/Postman_(software)",
+            "resources": [
+                "https://learning.postman.com/",
+                "https://www.udemy.com/course/api-testing-postman/",
+                "https://www.freecodecamp.org/news/postman-api-client-tutorial/"
+            ]
+        },
+        "interestingFact": "Postman simplifies the process of developing and testing APIs.",
+        "skillLevel": "Intermediate",
+        "usefulness": "High",
+        "other": "Widely used in API development and testing.",
+        "widelyUsed": "API development and testing. Example: Testing RESTful APIs."
+    },
+    {
+        "name": "Redux Toolkit",
+        "description": "Official, opinionated, batteries-included toolset for efficient Redux development.",
+        "image": "https://redux-toolkit.js.org/img/redux-logo-landscape.png",
+        "links": {
+            "website": "https://redux-toolkit.js.org/",
+            "wikipedia": "https://en.wikipedia.org/wiki/Redux_(JavaScript_library)",
+            "resources": [
+                "https://redux-toolkit.js.org/introduction/getting-started",
+                "https://www.udemy.com/course/redux-course/",
+                "https://www.freecodecamp.org/news/redux-toolkit-tutorial/"
+            ]
+        },
+        "interestingFact": "Redux Toolkit reduces the boilerplate code needed to work with Redux.",
+        "skillLevel": "Intermediate",
+        "usefulness": "High",
+        "other": "Enhances the experience of using Redux for state management.",
+        "widelyUsed": "State management in React applications. Example: State management in large-scale React applications."
+    }
+]
