@@ -63,7 +63,7 @@
     {
         "name": "MongoDB",
         "description": "A NoSQL database for modern applications.",
-        "image": "https://www.mongodb.com/assets/images/global/leaf.svg",
+        "image": "https://www.vectorlogo.zone/logos/mongodb/mongodb-ar21.svg",
         "links": {
             "website": "https://www.mongodb.com/",
             "wikipedia": "https://en.wikipedia.org/wiki/MongoDB",
@@ -130,28 +130,9 @@
         "widelyUsed": "Schema-based data modeling in Node.js applications. Example: MEAN/MERN stack applications."
     },
     {
-        "name": "REST API",
-        "description": "Architectural style for designing networked applications.",
-        "image": "https://upload.wikimedia.org/wikipedia/commons/a/a9/RESTful_API_logo.svg",
-        "links": {
-            "website": "https://restfulapi.net/",
-            "wikipedia": "https://en.wikipedia.org/wiki/Representational_state_transfer",
-            "resources": [
-                "https://www.restapitutorial.com/",
-                "https://www.udemy.com/course/restful-api/",
-                "https://www.freecodecamp.org/news/rest-api-tutorial/"
-            ]
-        },
-        "interestingFact": "RESTful APIs use HTTP requests to perform CRUD operations.",
-        "skillLevel": "Intermediate",
-        "usefulness": "High",
-        "other": "Commonly used for web services and web APIs.",
-        "widelyUsed": "Interfacing between client and server in web applications. Example: Twitter API."
-    },
-    {
         "name": "Tailwind CSS",
         "description": "Utility-first CSS framework for rapid UI development.",
-        "image": "https://tailwindcss.com/_next/static/media/social-card-large.a6e7d4e2.jpg",
+        "image": "https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg",
         "links": {
             "website": "https://tailwindcss.com/",
             "wikipedia": "https://en.wikipedia.org/wiki/Tailwind_CSS",
@@ -379,7 +360,7 @@
     {
         "name": "webpack",
         "description": "Module bundler for JavaScript applications.",
-        "image": "https://webpack.js.org/icon-square-big.svg",
+        "image": "https://www.vectorlogo.zone/logos/js_webpack/js_webpack-icon.svg",
         "links": {
             "website": "https://webpack.js.org/",
             "wikipedia": "https://en.wikipedia.org/wiki/Webpack",
@@ -417,7 +398,7 @@
     {
         "name": "Postman",
         "description": "API development and testing platform.",
-        "image": "https://www.postman.com/assets/logos/postman-logo-stacked.svg",
+        "image": "https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg",
         "links": {
             "website": "https://www.postman.com/",
             "wikipedia": "https://en.wikipedia.org/wiki/Postman_(software)",
