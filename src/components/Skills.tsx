@@ -19,17 +19,17 @@ type skill = {
 export const Skills = () => {
     return (
         <>
-            <div className="flex flex-wrap justify-center bg-black text-white gap-3">
+            <div className="flex flex-wrap justify-center bg-slate-950 h-full text-white gap-0 gap-y-6 pt-20">
                 {skills.map((skill: skill) => {
                     return (
                         <Panel skill={skill} key={skill.name}>
                             <div
                                 key={skill.name}
-                                className="border mx-1 my-4 overflow-hidden p-4 flex flex-col gap-2 max-w-64 justify-center items-center hover:shadow-xl transition-all duration-1000 dark:shadow-white rounded-lg"
+                                className="border-none border-blue-900 mx-0 my-0 overflow-hidden p-4 flex flex-col gap-6 max-w-64 justify-between items-center hover:shadow-xl transition-all duration-1000 dark:shadow-white bg-gradient-to-tr to-gray-900 from-slate-950 text-bl rounded-none"
                             >
-                                <div className="aspect-square overflow-hidden rounded-lg flex justify-center items-center">
+                                <div className="aspect-square rounded-lg flex justify-center items-center">
                                     <img
-                                        className="w-full h-full object-contain  rounded-md"
+                                        className="w-full h-full object-contain"
                                         src={skill.image}
                                         alt={skill.name + " logo"}
                                     />
@@ -44,7 +44,7 @@ export const Skills = () => {
                                             {skill.skillLevel}
                                         </div>
                                     </div>
-                                    <div>{skill.description}</div>
+                                    <div className="text-left text-gray-300">{skill.description}</div>
                                 </div>
                             </div>
                         </Panel>

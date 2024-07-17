@@ -9,20 +9,18 @@ import {
     DrawerTrigger,
 } from "@/components/ui/drawer";
 
-import { Button } from "@/components/ui/button";
-
 export const Panel = ({ skill, children }) => {
     return (
         <Drawer>
             <DrawerTrigger className="flex items-stretch">
                 {children}
             </DrawerTrigger>
-            <DrawerContent className="bg-black text-gray-100 flex gap-2">
+            <DrawerContent className="bg-black bg-gradient-to-br from-gray-950  text-gray-100 flex gap-2 ">
                 <DrawerHeader className="flex flex-col gap-4">
                     <DrawerTitle>
-                        <a href={skill.links.website}>
+                        <a href={skill.links.website} className="flex justify-center items-center gap-1">
                             {skill.name}
-                            {" -->"}
+                            <img className="h-4 -rotate-45" src="//icons.veryicon.com/png/o/internet--web/flatten-icon/link-33.png" alt="link Icon"/>
                         </a>
                     </DrawerTitle>
                     <DrawerDescription className="flex flex-col gap-1 p-4 text-gray-400">
