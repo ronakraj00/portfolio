@@ -1,0 +1,74 @@
+{
+    "sites": [
+        {
+            "id": 1,
+            "name": "GIPHY GIF",
+            "description": "GIPHY GIF",
+            "url": "https://ronakraj00.github.io/meme/",
+            "img": "images/giphy_gif.png"
+        },
+        {
+            "id": 2,
+            "name": "WEATHER WEB APP",
+            "description": "weather web app",
+            "url": "https://ronakraj00.github.io/weather/",
+            "img": "images/weather.png"
+        },
+        {
+            "id": 3,
+            "name": "ROCK PAPER SCISSOR",
+            "description": "rock_paper_scissor",
+            "url": "https://ronakraj00.github.io/rock-paper-scissor/",
+            "img": "images/rps.png"
+        },
+        {
+            "id": 4,
+            "name": "CALCULATOR",
+            "description": "calculator",
+            "url": "https://ronakraj00.github.io/calculator",
+            "img": "images/calcultor.png"
+        },
+        {
+            "id": 5,
+            "name": "COIN FLIP",
+            "description": "coin flip simulator",
+            "url": "https://ronakraj00.github.io/coin_flip",
+            "img": "images/coin_flip.png"
+        },
+        {
+            "id": 6,
+            "name": "PIXEL ART",
+            "description": "pixel art",
+            "url": "https://ronakraj00.github.io/Etch-A-Sketch",
+            "img": "images/pixel_art.png"
+        },
+        {
+            "id": 7,
+            "name": "RECIPE",
+            "description": "recipe",
+            "url": "https://ronakraj00.github.io/odin-recipes",
+            "img": "images/recipe.png"
+        },
+        {
+            "id": 8,
+            "name": "POSTCARD",
+            "description": "postcard",
+            "url": "https://ronakraj00.github.io/postcard/",
+            "img": "images/postcard.png"
+        },
+        {
+            "id": 9,
+            "name": "LANDING PAGE",
+            "description": "landing page",
+            "url": "https://ronakraj00.github.io/Landing_Page/",
+            "img": "images/landing_page.png"
+        },
+        {
+            "id": 10,
+            "name": "SIGN UP FORM",
+            "description": "Sign Up Form",
+            "url": "https://ronakraj00.github.io/sign-up/",
+            "img": "images/sign_up.png"
+        }
+    ]
+}

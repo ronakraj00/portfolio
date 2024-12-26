@@ -17,7 +17,7 @@ import { skills } from "./data.js";
             "image.png";
         const nameContainer = document.createElement("p");
         const name = document.createElement("span");
-        name.innerText = skill;
+        // name.innerText = skill;
         nameContainer.append(name);
         skillDiv.append(imgTag, nameContainer);
         skillDiv.classList.add("skill");
@@ -58,7 +58,8 @@ import { skills } from "./data.js";
  */
 
 const fetchSitesData = async () => {
-    const fetchedData = await fetch("https://portfolio-api-1.adaptable.app/");
+    // const apiLink="https://portfolio-api-1.adaptable.app/";
+    const fetchedData = await fetch('./data.json');
     const data = await fetchedData.json();
     return data.sites;
 };
@@ -71,7 +72,7 @@ const fetchSitesData = async () => {
 //     url: "https://ronakraj00.github.io/meme/";
 // }
 
-const apiSite = "https://portfolio-api-1.adaptable.app/";
+const apiSite = "./assets/";
 
 const createSite = ({ id, name, img, url }) => {
     const wrapper = document.createElement("div");
