@@ -8,13 +8,6 @@
             "img": "images/giphy_gif.png"
         },
         {
-            "id": 2,
-            "name": "WEATHER WEB APP",
-            "description": "weather web app",
-            "url": "https://ronakraj00.github.io/weather/",
-            "img": "images/weather.png"
-        },
-        {
             "id": 3,
             "name": "ROCK PAPER SCISSOR",
             "description": "rock_paper_scissor",
@@ -27,6 +20,13 @@
             "description": "pixel art",
             "url": "https://ronakraj00.github.io/Etch-A-Sketch",
             "img": "images/pixel_art.png"
+        },
+        {
+            "id": 2,
+            "name": "WEATHER WEB APP",
+            "description": "weather web app",
+            "url": "https://ronakraj00.github.io/weather/",
+            "img": "images/weather.png"
         }
     ]
 }
