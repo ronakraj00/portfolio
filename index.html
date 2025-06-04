@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ronak Raj - Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- <link rel="icon" type="image/x-icon" href="icon.png"> -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2c3e50">
+    <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+
+
+
     <style>
 
         body{
@@ -776,5 +783,22 @@
         });
 
     </script>
+
+    <script>
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", () => {
+            navigator.serviceWorker.register("/service-worker.js").then(
+                (registration) => {
+                console.log("Service Worker registered with scope:", registration.scope);
+                },
+                (err) => {
+                console.log("Service Worker registration failed:", err);
+                }
+            );
+            });
+        }
+    </script>
+
+
 </body>
 </html>
