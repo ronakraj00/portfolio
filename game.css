@@ -341,3 +341,24 @@
   -webkit-tap-highlight-color: transparent;
   outline: none;
 }
+
+/* Remove blue underline from Hall of Fame section title */
+#hofToggleTitle.section-title::after {
+  display: none;
+}
+
+
+#hofToggleTitle.section-title {
+  border: 1px solid var(--border) !important;
+  width:fit-content;
+  font-size: 1rem !important;
+  font-weight: 300 !important;
+  padding: 0.5rem 1rem !important;
+}
+
+#hallOfFameSection{
+  border: 1px solid var(--border) !important;
+  border-radius: 24px;
+  padding: 14px;
+
+}
