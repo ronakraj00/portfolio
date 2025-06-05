@@ -10,7 +10,7 @@
     />
     <link rel="icon" type="image/x-icon" href="icon.png" />
     <link rel="manifest" href="manifest.json" />
-    <meta name="theme-color" content="#2c3e50" />
+    <meta name="theme-color" content="#000000" />
     <!-- <link rel="icon" type="image/png" href="icon.png" /> -->
 
     <style>
@@ -75,6 +75,66 @@
         --accent: #0891b2;
         --border: #c2d9e8;
         --hover: #ddeeff;
+      }
+
+      [data-theme="japan"] {
+        --bg-primary: #fff1f2;
+        --bg-secondary: #fde2e4;
+        --text-primary: #4b2e2e;
+        --text-secondary: #7a4e4e;
+        --accent: #e11d48;
+        --border: #fbcfe8;
+        --hover: #ffe4e6;
+      }
+
+      [data-theme="retro"] {
+        --bg-primary: #fffcf2;
+        --bg-secondary: #f2eecb;
+        --text-primary: #1e1e1e;
+        --text-secondary: #3f3f3f;
+        --accent: #fca311;
+        --border: #e6ccb2;
+        --hover: #fef9e7;
+      }
+
+      [data-theme="future"] {
+        --bg-primary: #0f0f1f;
+        --bg-secondary: #1a1a2e;
+        --text-primary: #f0f8ff;
+        --text-secondary: #a0aec0;
+        --accent: #00ffe0;
+        --border: #2a2a40;
+        --hover: #202040;
+      }
+
+      [data-theme="cyberpunk"] {
+        --bg-primary: #0d0221;
+        --bg-secondary: #1a103d;
+        --text-primary: #fdfdfd;
+        --text-secondary: #a29bfe;
+        --accent: #ff2e63;
+        --border: #3a0ca3;
+        --hover: #301934;
+      }
+
+      [data-theme="minimal-light"] {
+        --bg-primary: #ffffff;
+        --bg-secondary: #f9f9f9;
+        --text-primary: #000000;
+        --text-secondary: #555555;
+        --accent: #000000;
+        --border: #dddddd;
+        --hover: #eeeeee;
+      }
+
+      [data-theme="minimal-dark"] {
+        --bg-primary: #121212;
+        --bg-secondary: #1e1e1e;
+        --text-primary: #f1f1f1;
+        --text-secondary: #a9a9a9;
+        --accent: #f1f1f1;
+        --border: #333333;
+        --hover: #222222;
       }
 
       * {
@@ -524,6 +584,18 @@
         <div class="theme-option" onclick="setTheme('dark')">Dark</div>
         <div class="theme-option" onclick="setTheme('forest')">Forest</div>
         <div class="theme-option" onclick="setTheme('ocean')">Ocean</div>
+        <div class="theme-option" onclick="setTheme('japan')">Japan</div>
+        <div class="theme-option" onclick="setTheme('retro')">Retro</div>
+        <div class="theme-option" onclick="setTheme('future')">Future</div>
+        <div class="theme-option" onclick="setTheme('cyberpunk')">
+          Cyberpunk
+        </div>
+        <div class="theme-option" onclick="setTheme('minimal-light')">
+          Minimal Light
+        </div>
+        <div class="theme-option" onclick="setTheme('minimal-dark')">
+          Minimal Dark
+        </div>
       </div>
     </div>
 
@@ -867,6 +939,7 @@
 
       function setTheme(theme) {
         document.body.setAttribute("data-theme", theme);
+        // updateA2HSButtonStyle();
         localStorage.setItem("selectedTheme", theme);
         document.getElementById("themeDropdown").classList.remove("show");
       }
@@ -903,19 +976,19 @@
 
     <script>
       if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker.register("/service-worker.js").then(
-            (registration) => {
-              console.log(
-                "Service Worker registered with scope:",
-                registration.scope
-              );
-            },
-            (err) => {
-              console.log("Service Worker registration failed:", err);
-            }
-          );
-        });
+        if (location.hostname !== "localhost") {
+          navigator.serviceWorker.register("service-worker.js");
+        } else {
+          // Optional: Unregister if previously installed
+          console.log("Service Worker not registered in localhost");
+          navigator.serviceWorker
+            .getRegistrations()
+            .then(function (registrations) {
+              for (let registration of registrations) {
+                registration.unregister();
+              }
+            });
+        }
       }
     </script>
     <script>
@@ -932,13 +1005,21 @@
     <script>
       let deferredPrompt;
       const a2hsBtn = document.createElement("button");
-      a2hsBtn.textContent = "📲 Add to Home Screen";
+      a2hsBtn.textContent = "📲 Install this App";
       a2hsBtn.style.position = "fixed";
       a2hsBtn.style.bottom = "20px";
       a2hsBtn.style.right = "20px";
-      a2hsBtn.style.padding = "10px 14px";
-      a2hsBtn.style.background = "#2c3e50";
-      a2hsBtn.style.color = "#fff";
+      a2hsBtn.style.fontWeight = "700";
+      a2hsBtn.style.fontSize = "16px";
+      a2hsBtn.style.padding = "13px 8px";
+      const accentColor = getComputedStyle(
+        document.documentElement
+      ).getPropertyValue("--accent");
+      a2hsBtn.style.background = accentColor.trim();
+      a2hsBtn.style.color = getComputedStyle(document.documentElement)
+        .getPropertyValue("--text-primary")
+        .trim();
+
       a2hsBtn.style.border = "none";
       a2hsBtn.style.borderRadius = "6px";
       a2hsBtn.style.cursor = "pointer";
@@ -965,6 +1046,25 @@
             deferredPrompt = null;
           });
         }
+      });
+
+      function updateA2HSButtonStyle() {
+        const accent = getComputedStyle(document.body)
+          .getPropertyValue("--accent")
+          .trim();
+        a2hsBtn.style.background = accent;
+
+        const text = getComputedStyle(document.body)
+          .getPropertyValue("--text-primary")
+          .trim();
+        a2hsBtn.style.color = text;
+      }
+
+      const observer = new MutationObserver(() => updateA2HSButtonStyle());
+
+      observer.observe(document.body, {
+        attributes: true,
+        attributeFilter: ["data-theme"],
       });
     </script>
   </body>
