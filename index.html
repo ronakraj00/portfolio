@@ -8,6 +8,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
+    <link rel="stylesheet" href="game.css" />
     <link rel="icon" type="image/x-icon" href="icon.png" />
     <link rel="manifest" href="manifest.json" />
     <meta name="theme-color" content="#000000" />
@@ -117,15 +118,6 @@
         --hover: #301934;
       }
 
-      [data-theme="minimal-light"] {
-        --bg-primary: #ffffff;
-        --bg-secondary: #f9f9f9;
-        --text-primary: #000000;
-        --text-secondary: #555555;
-        --accent: #000000;
-        --border: #dddddd;
-        --hover: #eeeeee;
-      }
 
       @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&family=JetBrains+Mono&display=swap");
 
@@ -619,9 +611,6 @@
         <div class="theme-option" onclick="setTheme('cyberpunk')">
           Cyberpunk
         </div>
-        <div class="theme-option" onclick="setTheme('minimal-light')">
-          Minimal Light
-        </div>
         <div class="theme-option" onclick="setTheme('sunrise')">Sunrise</div>
         <div class="theme-option" onclick="setTheme('sunset')">Sunset</div>
         <div class="theme-option" onclick="setTheme('twilight')">Twilight</div>
@@ -958,6 +947,18 @@
           </div>
         </div>
       </section>
+      <section id="gamesSection">
+  <h2>🎮 Mini Games</h2>
+  <div class="game-list">
+      <button class="game-btn" onclick="startGame('memory')">🃏 Memory Match</button>
+      <button class="game-btn" onclick="startGame('whack')">🐹 Whack-a-Mole</button>
+    <button class="game-btn" onclick="startGame('circle')">🎯 Circle Reaction</button>
+    <button class="game-btn" onclick="startGame('clicker')">⚡ Speed Clicker</button>
+    <button class="game-btn" onclick="startGame('guess')">🔢 Guess the Number</button>
+  </div>
+  <div id="gameArea"></div>
+</section>
+
     </div>
 
     <script>
@@ -1096,5 +1097,6 @@
         attributeFilter: ["data-theme"],
       });
     </script>
+    <script src="game.js"></script>
   </body>
 </html>

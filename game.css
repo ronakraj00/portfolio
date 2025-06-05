@@ -1,0 +1,231 @@
+/* Common styling for all games container */
+#gamesSection {
+  max-width: 600px;
+  margin: 2rem auto;
+  font-family: var(--font, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif);
+  color: var(--text-primary, #222);
+  /* pointer-events: none; */
+  border: 1px solid var(--accent);
+  border-radius: 16px;
+  padding: 8px;
+  margin-bottom: 120px;
+}
+
+.game-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.game-btn {
+  background: var(--accent, #4a90e2);
+  color: var(--text-primary, #fff);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  /* box-shadow: 0 3px 6px rgba(0,0,0,0.1); */
+  transition: background 0.3s ease, box-shadow 0.2s ease;
+}
+
+.game-btn:hover {
+  background: var(--accent-hover, #357abd);
+  /* box-shadow: 0 6px 12px rgba(0,0,0,0.15); */
+}
+
+#gameArea {
+  background: var(--bg-secondary, #f5f5f5);
+  padding: 1.5rem;
+  border-radius: 12px;
+  /* box-shadow: 0 4px 16px rgba(0,0,0,0.08); */
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+#gameArea::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url(./css-pattern-by-magicpattern_box.png);
+  background-size: contain;
+  opacity: 0.1;
+  z-index: -1;
+}
+
+/* Circle Reaction */
+#circle {
+  padding: 4px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: var(--accent, #4a90e2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary, #fff);
+  /* font-weight: 700; */
+  font-family: monospace;
+  font-size: 0.9rem;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  position: absolute;
+  transition: top 0.4s ease, left 0.4s ease, background 0.3s ease;
+  /* box-shadow: 0 0 10px var(--accent, #4a90e2); */
+  white-space: pre-line; /* For multiline Avg display */
+  cursor: pointer;
+  animation: rotate 5s linear infinite;
+  user-select: none;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Speed Clicker */
+#clickMeBtn {
+  background: var(--accent, #e67e22);
+  color: var(--text-primary, #fff);
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+  border-radius: 12px;
+  cursor: pointer;
+  font-family: monospace;
+  /* box-shadow: 0 4px 8px rgba(230,126,34,0.5); */
+  transition: background 0.3s ease;
+}
+
+#clickMeBtn:hover:not(:disabled) {
+  background: #d35400;
+}
+
+#clickMeBtn:disabled {
+  background: #aaa;
+  cursor: not-allowed;
+}
+
+/* Memory Cards */
+#memoryGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 75px);
+  gap: 15px;
+  justify-content: center;
+}
+
+.memoryCard {
+  width: 75px;
+  height: 75px;
+  background: var(--accent, #34495e);
+  color: transparent;
+  font-size: 40px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.3s ease, background 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.memoryCard.matched {
+  background: var(--accent, #2ecc71);
+  color: var(--text-primary, #fff);
+  cursor: default;
+  box-shadow: 0 0 15px #27ae60;
+}
+
+.memoryCard.flipped {
+  color: var(--text-primary, #fff);
+  background: var(--bg-primary, #1a1a1a);
+  box-shadow: 0 0 10px var(--accent, #4a90e2);
+}
+
+/* Guess the Number */
+#guessInput {
+  font-size: 1rem;
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  border: 1.5px solid var(--border, #ccc);
+  width: 110px;
+  text-align: center;
+  margin-right: 0.5rem;
+  transition: border-color 0.3s ease;
+}
+
+#guessInput:focus {
+  outline: none;
+  border-color: var(--accent, #4a90e2);
+  box-shadow: 0 0 8px var(--accent, #4a90e2);
+}
+
+#guessBtn {
+  margin-top: 8px;
+  padding: 0.6rem 1.5rem;
+  border-radius: 10px;
+  border: none;
+  background: var(--accent, #2980b9);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#guessBtn:hover {
+  background: #1c5980;
+}
+
+/* Whack-a-Mole */
+#whackGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 80px);
+  grid-gap: 15px;
+  justify-content: center;
+}
+
+#whackGrid div {
+  width: 80px;
+  height: 80px;
+  background: var(--bg-secondary, #ecf0f1);
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 42px;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  user-select: none;
+}
+
+#whackGrid div.active {
+  background-color: var(--accent, #e74c3c);
+  /* box-shadow: 0 0 15px #c0392b; */
+  cursor: pointer;
+  color: white;
+  font-weight: 900;
+  transform: scale(1.1);
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+#message {
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: var(--text-secondary, #555);
+}
