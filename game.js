@@ -1,11 +1,11 @@
 let gameActive = false;
 
 // Utility for delay
-const delay = ms => new Promise(res => setTimeout(res, ms));
+const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
 function startGame(gameType) {
   const gameArea = document.getElementById("gameArea");
-  gameArea.innerHTML = '';
+  gameArea.innerHTML = "";
   clearAllTimers();
   gameActive = true;
 
@@ -42,34 +42,53 @@ function startCircleGame(container) {
   const message = container.querySelector("#message");
 
   function getAverageTime(times) {
-    return times.length ? (times.reduce((a, b) => a + b, 0) / times.length) : 0;
+    const validTimes = times.filter((t) => typeof t === "number" && !isNaN(t));
+    return validTimes.length
+      ? validTimes.reduce((a, b) => a + b, 0) / validTimes.length
+      : 0;
   }
 
   function positionCircle() {
     const size = 80;
     const padding = 20;
     const x = Math.random() * (container.clientWidth - size - padding);
-    const y = Math.random() * (container.clientHeight - size - padding - 30) + 30;
+    const y =
+      Math.random() * (container.clientHeight - size - padding - 30) + 30;
 
     circle.style.top = `${y}px`;
     circle.style.left = `${x}px`;
-
-    const avgTime = getAverageTime(reactionTimes);
     circle.textContent = "click me";
     circle.style.display = "flex";
     circle.style.backgroundColor = "var(--accent)";
     startTime = performance.now();
+    circle.setAttribute("data-ready", "true");
   }
+
+  positionCircle();
 
   circle.onclick = () => {
     if (!gameActive) return;
+    // Only allow click if circle is visible and ready
+    if (
+      circle.style.display !== "flex" ||
+      circle.getAttribute("data-ready") !== "true"
+    )
+      return;
+    if (typeof startTime !== "number") return;
     const reaction = (performance.now() - startTime) / 1000;
     reactionTimes.push(reaction);
-    message.textContent = `Reaction: ${reaction.toFixed(2)}s | Avg: ${getAverageTime(reactionTimes).toFixed(2)}s`;
+    message.textContent = `Reaction: ${reaction.toFixed(
+      2
+    )}s | Avg: ${getAverageTime(reactionTimes).toFixed(2)}s`;
     circle.style.display = "none";
-    window.circleTimeout = setTimeout(positionCircle, Math.random() * 1500 + 1000);
+    circle.setAttribute("data-ready", "false");
+    window.circleTimeout = setTimeout(
+      positionCircle,
+      Math.random() * 1500 + 1000
+    );
   };
 
+  // Ensure the first circle is ready and has text
   window.circleTimeout = setTimeout(positionCircle, 1000);
 }
 
@@ -80,9 +99,9 @@ function startClickerGame(container) {
   let timeLeft = 10;
 
   container.innerHTML = `
-    <h3>Click as many times as you can in 10 seconds!</h3>
+    <h3 class="game_rule">Click as many times as you can</h3>
     <p>Time Left: <span id="timeLeft">10</span>s</p>
-    <p>Score: <span id="clickScore">0</span></p>
+    <p class="score">Score: <span id="clickScore">0</span></p>
     <button id="clickMeBtn">Click Me!</button>
   `;
 
@@ -116,7 +135,7 @@ function startMemoryGame(container) {
   gameCards = shuffleArray(gameCards);
 
   container.innerHTML = `
-    <h3>Match all the pairs!</h3>
+    <h3 class="game_rule">Match all the pairs!</h3>
     <div id="memoryGrid"></div>
     <p id="memoryMessage"></p>
   `;
@@ -135,7 +154,7 @@ function startMemoryGame(container) {
     grid.appendChild(card);
   });
 
-  grid.addEventListener("click", e => {
+  grid.addEventListener("click", (e) => {
     if (!gameActive) return;
     const target = e.target;
     if (!target.classList.contains("memoryCard")) return;
@@ -155,7 +174,7 @@ function startMemoryGame(container) {
         matched.push(...flipped);
         flipped = [];
         message.textContent = "🎉 Matched!";
-        matched.forEach(i => {
+        matched.forEach((i) => {
           grid.children[i].classList.add("matched");
           grid.children[i].classList.remove("flipped");
         });
@@ -166,7 +185,7 @@ function startMemoryGame(container) {
       } else {
         message.textContent = "Try again!";
         setTimeout(() => {
-          flipped.forEach(i => {
+          flipped.forEach((i) => {
             unflipCard(grid.children[i]);
           });
           flipped = [];
@@ -179,13 +198,13 @@ function startMemoryGame(container) {
   function flipCard(card) {
     card.classList.add("flipped");
     card.style.color = "var(--text-primary)";
-    card.style.background = "var(--bg-primary)";
+    // card.style.background = "var(--bg-primary)";
   }
 
   function unflipCard(card) {
     card.classList.remove("flipped");
     card.style.color = "transparent";
-    card.style.background = "var(--accent)";
+    // card.style.background = "var(--accent)";
   }
 }
 
@@ -196,11 +215,11 @@ function startGuessGame(container) {
   let attempts = 0;
 
   container.innerHTML = `
-    <h3>Guess the Number (1-100)</h3>
+    <h3 class="game_rule">Guess the Number (1-100)</h3>
     <input type="number" id="guessInput" min="1" max="100" placeholder="Enter your guess" />
     <button id="guessBtn">Guess</button>
     <p id="guessResult"></p>
-    <p>Attempts: <span id="guessAttempts">0</span></p>
+    <p class="score">Attempts: <span id="guessAttempts">0</span></p>
   `;
 
   const guessInput = container.querySelector("#guessInput");
@@ -212,7 +231,8 @@ function startGuessGame(container) {
     if (!gameActive) return;
     const val = Number(guessInput.value);
     if (val < 1 || val > 100 || isNaN(val)) {
-      guessResult.textContent = "Please enter a valid number between 1 and 100.";
+      guessResult.textContent =
+        "Please enter a valid number between 1 and 100.";
       return;
     }
     attempts++;
@@ -227,18 +247,18 @@ function startGuessGame(container) {
     } else {
       guessResult.textContent = "Too high! Try again.";
     }
-    guessInput.value = '';
+    guessInput.value = "";
     guessInput.focus();
   };
 }
 
-/* ================= Whack-a-Mole Game ================= */
+/* ================= Find Totoro! Game ================= */
 
 function startWhackGame(container) {
   let score = 0;
   container.innerHTML = `
-    <h3>Whack-a-Mole</h3>
-    <p>Score: <span id="whackScore">0</span></p>
+    <h3 class="game_rule">Find Totoro!</h3>
+    <p class="score">Score: <span id="whackScore">0</span></p>
     <div id="whackGrid"></div>
   `;
 
@@ -246,13 +266,19 @@ function startWhackGame(container) {
   for (let i = 0; i < 9; i++) {
     const hole = document.createElement("div");
     hole.dataset.index = i;
+    const mole = document.createElement("img"); // Create img element for mole
+    mole.src = "icon.png"; // Use icon.png as mole
+    mole.style.width = "100%";
+    mole.style.height = "100%";
+    mole.style.display = "none"; // Initially hide the mole
+    hole.appendChild(mole);
     grid.appendChild(hole);
   }
 
   function clearMoles() {
-    [...grid.children].forEach(cell => {
+    [...grid.children].forEach((cell) => {
       cell.classList.remove("active");
-      cell.textContent = "";
+      cell.querySelector("img").style.display = "none";
       cell.onclick = null;
     });
   }
@@ -263,15 +289,16 @@ function startWhackGame(container) {
     const moleIndex = Math.floor(Math.random() * 9);
     const moleHole = grid.children[moleIndex];
     moleHole.classList.add("active");
-    moleHole.textContent = "🐹";
+    moleHole.querySelector("img").style.display = "block"; // Show the mole image
     moleHole.onclick = () => {
       if (!gameActive) return;
       score++;
       document.getElementById("whackScore").textContent = score;
       moleHole.classList.remove("active");
-      moleHole.textContent = "";
+      moleHole.querySelector("img").style.display = "none"; // Hide the mole image
     };
-    window.whackTimeout = setTimeout(showMole, Math.random() * 600 + 700);
+    // Speed up: reduce the timeout range (was 700-1300ms, now 300-700ms)
+    window.whackTimeout = setTimeout(showMole, Math.random() * 400 + 300);
   }
 
   showMole();
@@ -280,11 +307,15 @@ function startWhackGame(container) {
 /* ============== Utility ============== */
 
 function shuffleArray(arr) {
-  let currentIndex = arr.length, randomIndex;
+  let currentIndex = arr.length,
+    randomIndex;
   while (currentIndex !== 0) {
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex--;
-    [arr[currentIndex], arr[randomIndex]] = [arr[randomIndex], arr[currentIndex]];
+    [arr[currentIndex], arr[randomIndex]] = [
+      arr[randomIndex],
+      arr[currentIndex],
+    ];
   }
   return arr;
 }

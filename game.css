@@ -5,10 +5,11 @@
   font-family: var(--font, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif);
   color: var(--text-primary, #222);
   /* pointer-events: none; */
-  border: 1px solid var(--accent);
-  border-radius: 16px;
+  border: 1px solid var(--border);
+  border-radius: 24px;
   padding: 8px;
   margin-bottom: 120px;
+  user-select: none;
 }
 
 .game-list {
@@ -20,9 +21,9 @@
 }
 
 .game-btn {
-  background: var(--accent, #4a90e2);
+  background: var(--hover, #4a90e2);
   color: var(--text-primary, #fff);
-  border: none;
+  border: 2px solid var(--border);
   padding: 0.5rem 1rem;
   border-radius: 6px;
   cursor: pointer;
@@ -32,14 +33,15 @@
 }
 
 .game-btn:hover {
-  background: var(--accent-hover, #357abd);
+  background: var(--bg-primary, #357abd);
   /* box-shadow: 0 6px 12px rgba(0,0,0,0.15); */
 }
 
 #gameArea {
   background: var(--bg-secondary, #f5f5f5);
   padding: 1.5rem;
-  border-radius: 12px;
+  border-radius: 24px;
+  border: 1px solid var(--border, #ddd);
   /* box-shadow: 0 4px 16px rgba(0,0,0,0.08); */
   min-height: 320px;
   display: flex;
@@ -55,7 +57,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: url(./css-pattern-by-magicpattern_box.png);
+  background: url(./css-pattern-by-magicpattern_bw.png);
   background-size: contain;
   opacity: 0.1;
   z-index: -1;
@@ -109,6 +111,11 @@
   font-family: monospace;
   /* box-shadow: 0 4px 8px rgba(230,126,34,0.5); */
   transition: background 0.3s ease;
+  border: 2px solid var(--border);
+  padding: 10px 16px;
+  border-radius: 26px;
+  font-size: medium;
+  margin: 10px 10px;
 }
 
 #clickMeBtn:hover:not(:disabled) {
@@ -131,7 +138,7 @@
 .memoryCard {
   width: 75px;
   height: 75px;
-  background: var(--accent, #34495e);
+  background: var(--hover, #34495e);
   color: transparent;
   font-size: 40px;
   border-radius: 12px;
@@ -141,20 +148,21 @@
   cursor: pointer;
   user-select: none;
   transition: color 0.3s ease, background 0.3s ease;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  /* box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); */
+  border: 2px solid var(--border, #ccc);
 }
 
 .memoryCard.matched {
-  background: var(--accent, #2ecc71);
+  /* background: var(--accent, #2ecc71); */
   color: var(--text-primary, #fff);
   cursor: default;
-  box-shadow: 0 0 15px #27ae60;
+  /* box-shadow: 0 0 15px #27ae60; */
 }
 
 .memoryCard.flipped {
   color: var(--text-primary, #fff);
-  background: var(--bg-primary, #1a1a1a);
-  box-shadow: 0 0 10px var(--accent, #4a90e2);
+  /* background: var(--hover, #1a1a1a); */
+  /* box-shadow: 0 0 10px var(--accent, #4a90e2); */
 }
 
 /* Guess the Number */
@@ -185,6 +193,10 @@
   font-weight: 700;
   cursor: pointer;
   transition: background 0.3s ease;
+  border: 2px solid var(--border);
+  padding: 10px 16px;
+  border-radius: 26px;
+  font-size: medium;
 }
 
 #guessBtn:hover {
@@ -202,7 +214,7 @@
 #whackGrid div {
   width: 80px;
   height: 80px;
-  background: var(--bg-secondary, #ecf0f1);
+  background: var(--hover, #ecf0f1);
   border-radius: 12px;
   cursor: pointer;
   display: flex;
@@ -210,12 +222,13 @@
   justify-content: center;
   font-size: 42px;
   transition: background-color 0.3s ease;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); */
   user-select: none;
+  border: 2px solid var(--border, #ccc);
 }
 
 #whackGrid div.active {
-  background-color: var(--accent, #e74c3c);
+  /* background-color: var(--accent, #e74c3c); */
   /* box-shadow: 0 0 15px #c0392b; */
   cursor: pointer;
   color: white;
@@ -228,4 +241,26 @@
   margin-bottom: 10px;
   font-weight: 600;
   color: var(--text-secondary, #555);
+}
+
+.game_rule {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: small;
+  border: 1px solid var(--accent);
+  padding: 4px 16px;
+  border-radius: 26px;
+  margin-bottom: 30px;
+}
+
+.score {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-primary, #222);
+  margin: 10px 10px;
+  text-align: center;
+  border: 2px solid var(--border, #ddd);
+  border-radius: 24px;
+  padding: 0px 14px;
 }
