@@ -133,6 +133,7 @@
   grid-template-columns: repeat(4, 75px);
   gap: 15px;
   justify-content: center;
+  margin: 4px;
 }
 
 .memoryCard {
@@ -163,6 +164,29 @@
   color: var(--text-primary, #fff);
   /* background: var(--hover, #1a1a1a); */
   /* box-shadow: 0 0 10px var(--accent, #4a90e2); */
+}
+
+/* Responsive fix for memory game grid and cards */
+@media (max-width: 500px) {
+  #memoryGrid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+    padding: 2vw;
+    margin: 0;
+    width: 100%;
+    max-width: 420px;
+    box-sizing: border-box;
+  }
+  .memoryCard {
+    width: 100%;
+    max-width: 100%;
+    aspect-ratio: 1 / 1;
+    height: auto;
+    font-size: 7vw;
+    min-height: 40px;
+    max-height: 22vw;
+    box-sizing: border-box;
+  }
 }
 
 /* Guess the Number */
@@ -247,8 +271,6 @@
   color: var(--accent);
   text-decoration: none;
   font-weight: 500;
-  font-size: small;
-  border: 1px solid var(--accent);
   padding: 4px 16px;
   border-radius: 26px;
   margin-bottom: 30px;
