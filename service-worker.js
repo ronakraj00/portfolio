@@ -11,6 +11,8 @@ const filesToCache = [
   "/css-pattern-by-magicpattern_diagonal.png",
   "/css-pattern-by-magicpattern_lines.png",
   "/css-pattern-by-magicpattern.png",
+  "game.css",
+  "game.js",
 ];
 
 self.addEventListener("install", (e) => {
