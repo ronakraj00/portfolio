@@ -379,11 +379,13 @@ async function saveScore(game, score) {
 }
 
 // ====== Hall of Fame Update Logic ======
+// Track if any hall of fame data loaded successfully
+window._hofAnySuccess = false;
+
 function updateHallOfFame(game) {
   const ul = document.getElementById(`hof-list-${game}`);
   if (!ul) return;
-  // Find the closest ancestor section that wraps the Hall of Fame, including the title
-  const hofSection = ul.closest(".hall-of-fame-section");
+  const hofSection = document.querySelector(".hall-of-fame-section");
   fetch(`https://portfolio-api-dwyy.onrender.com/api/hall-of-fame/${game}`)
     .then((res) => {
       if (!res.ok) throw new Error("No response");
@@ -399,10 +401,24 @@ function updateHallOfFame(game) {
         }</span> <span>${entry.name}</span> <span>${entry.score}</span>`;
         ul.appendChild(li);
       });
+      window._hofAnySuccess = true;
     })
     .catch(() => {
-      // Hide the entire Hall of Fame section (including title) if fetch fails
-      if (hofSection) hofSection.style.display = "none";
+      // On error, clear this game's list
+      ul.innerHTML = "";
+    })
+    .finally(() => {
+      // After all fetches, if none succeeded, hide the whole section
+      // Wait for all updates to finish (after DOMContentLoaded)
+      if (typeof window._hofUpdateCount === "undefined") {
+        window._hofUpdateCount = 0;
+      }
+      window._hofUpdateCount++;
+      if (window._hofUpdateCount === 5) {
+        if (!window._hofAnySuccess && hofSection) {
+          hofSection.style.display = "none";
+        }
+      }
     });
 }
 
