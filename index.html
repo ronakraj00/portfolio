@@ -574,10 +574,19 @@
         );
         const aboutIcon = aboutTitle.querySelector(".hof-toggle-icon");
         const aboutContent = document.getElementById("aboutMeContent");
+        // Show About Me collapsed for some users, uncollapsed for others (randomly)
         if (aboutTitle && aboutIcon && aboutContent) {
-          aboutContent.classList.add("hof-content-collapsed");
-          aboutTitle.classList.add("hof-collapsed");
-          aboutIcon.textContent = "▼";
+          // 50% chance to start open or closed
+          const open = Math.random() < 0.5;
+          if (open) {
+            aboutContent.classList.remove("hof-content-collapsed");
+            aboutIcon.textContent = "▲";
+            aboutTitle.classList.remove("hof-collapsed");
+          } else {
+            aboutContent.classList.add("hof-content-collapsed");
+            aboutIcon.textContent = "▼";
+            aboutTitle.classList.add("hof-collapsed");
+          }
           aboutTitle.onclick = function () {
             if (aboutContent.classList.contains("hof-content-collapsed")) {
               aboutContent.classList.remove("hof-content-collapsed");

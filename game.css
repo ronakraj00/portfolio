@@ -347,18 +347,17 @@
   display: none;
 }
 
-
 #hofToggleTitle.section-title {
   border: 1px solid var(--border) !important;
-  width:fit-content;
+  width: fit-content;
   font-size: 1rem !important;
   font-weight: 300 !important;
   padding: 0.5rem 1rem !important;
 }
 
-#hallOfFameSection{
+#hallOfFameSection {
   border: 1px solid var(--border) !important;
   border-radius: 24px;
   padding: 14px;
-
+  padding-top: 40px;
 }
