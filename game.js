@@ -369,7 +369,7 @@ async function saveScore(game, score) {
     name = await getUserName();
     localStorage.setItem("userName", name);
   }
-  fetch("http://localhost:3001/api/score", {
+  fetch("https://portfolio-api-dwyy.onrender.com/api/score", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ game, name, score }),
@@ -380,12 +380,18 @@ async function saveScore(game, score) {
 
 // ====== Hall of Fame Update Logic ======
 function updateHallOfFame(game) {
-  fetch(`http://localhost:3001/api/hall-of-fame/${game}`)
-    .then((res) => res.json())
+  const ul = document.getElementById(`hof-list-${game}`);
+  if (!ul) return;
+  // Find the closest ancestor section that wraps the Hall of Fame, including the title
+  const hofSection = ul.closest(".hall-of-fame-section");
+  fetch(`https://portfolio-api-dwyy.onrender.com/api/hall-of-fame/${game}`)
+    .then((res) => {
+      if (!res.ok) throw new Error("No response");
+      return res.json();
+    })
     .then((list) => {
-      const ul = document.getElementById(`hof-list-${game}`);
-      if (!ul) return;
       ul.innerHTML = "";
+      if (hofSection) hofSection.style.display = "";
       list.forEach((entry, i) => {
         const li = document.createElement("li");
         li.innerHTML = `<span class="hall-of-fame-rank">#${
@@ -393,6 +399,10 @@ function updateHallOfFame(game) {
         }</span> <span>${entry.name}</span> <span>${entry.score}</span>`;
         ul.appendChild(li);
       });
+    })
+    .catch(() => {
+      // Hide the entire Hall of Fame section (including title) if fetch fails
+      if (hofSection) hofSection.style.display = "none";
     });
 }
 
