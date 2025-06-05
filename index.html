@@ -127,14 +127,40 @@
         --hover: #eeeeee;
       }
 
-      [data-theme="minimal-dark"] {
-        --bg-primary: #121212;
-        --bg-secondary: #1e1e1e;
-        --text-primary: #f1f1f1;
-        --text-secondary: #a9a9a9;
-        --accent: #f1f1f1;
-        --border: #333333;
-        --hover: #222222;
+      @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&family=JetBrains+Mono&display=swap");
+
+      [data-theme="sunrise"] {
+        --bg-primary: #fff3e0;
+        --bg-secondary: #ffe0b2;
+        --text-primary: #6d4c41;
+        --text-secondary: #8d6e63;
+        --accent: #ff7043;
+        --border: #ffccbc;
+        --hover: #ffcc80;
+        --font: "Raleway", sans-serif;
+      }
+
+      [data-theme="sunset"] {
+        --bg-primary: #ffe0e0;
+        --bg-secondary: #f8bbd0;
+        --text-primary: #4a2c2a;
+        --text-secondary: #7b4b4b;
+        --accent: #ec407a;
+        --border: #f48fb1;
+        --hover: #ffebee;
+        --font: "Raleway", sans-serif;
+      }
+
+      [data-theme="twilight"] {
+        --bg-primary: #2c2c54;
+        --bg-secondary: #474787;
+        --text-primary: #dcdde1;
+        --text-secondary: #a4b0be;
+        --accent: #ff6b81;
+        --border: #57606f;
+        --hover: #706fd3;
+        --font: "Raleway", sans-serif;
+        --blur: 6px;
       }
 
       * {
@@ -190,6 +216,9 @@
         border-radius: 8px;
         margin-top: 0.5rem;
         min-width: 120px;
+        max-height: 250px; /* Adjust height as needed */
+        overflow-y: auto;
+
         display: none;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       }
@@ -593,9 +622,9 @@
         <div class="theme-option" onclick="setTheme('minimal-light')">
           Minimal Light
         </div>
-        <div class="theme-option" onclick="setTheme('minimal-dark')">
-          Minimal Dark
-        </div>
+        <div class="theme-option" onclick="setTheme('sunrise')">Sunrise</div>
+        <div class="theme-option" onclick="setTheme('sunset')">Sunset</div>
+        <div class="theme-option" onclick="setTheme('twilight')">Twilight</div>
       </div>
     </div>
 
