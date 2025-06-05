@@ -264,3 +264,15 @@
   border-radius: 24px;
   padding: 0px 14px;
 }
+
+/* Remove blue tap highlight on mobile for interactive elements */
+#gamesSection,
+.game-btn,
+#circle,
+#clickMeBtn,
+.memoryCard,
+#guessBtn,
+#whackGrid div {
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
