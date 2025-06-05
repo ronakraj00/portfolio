@@ -418,37 +418,48 @@
         <div id="gameArea"></div>
       </section>
       <!-- Hall of Fame Section -->
-      <section id="hallOfFameSection" class="hall-of-fame-section">
-        <h2 class="section-title">🏆 Hall of Fame</h2>
-        <div class="hall-of-fame" id="hof-memory">
-          <div class="hall-of-fame-title">🃏 Memory Match</div>
-          <ul class="hall-of-fame-list" id="hof-list-memory">
-            <!-- Top 3 players will be inserted here -->
-          </ul>
-        </div>
-        <div class="hall-of-fame" id="hof-whack">
-          <div class="hall-of-fame-title">🐹 Find Totoro</div>
-          <ul class="hall-of-fame-list" id="hof-list-whack">
-            <!-- Top 3 players will be inserted here -->
-          </ul>
-        </div>
-        <div class="hall-of-fame" id="hof-circle">
-          <div class="hall-of-fame-title">🎯 Circle Reaction</div>
-          <ul class="hall-of-fame-list" id="hof-list-circle">
-            <!-- Top 3 players will be inserted here -->
-          </ul>
-        </div>
-        <div class="hall-of-fame" id="hof-clicker">
-          <div class="hall-of-fame-title">⚡ Speed Clicker</div>
-          <ul class="hall-of-fame-list" id="hof-list-clicker">
-            <!-- Top 3 players will be inserted here -->
-          </ul>
-        </div>
-        <div class="hall-of-fame" id="hof-guess">
-          <div class="hall-of-fame-title">🔢 Guess the Number</div>
-          <ul class="hall-of-fame-list" id="hof-list-guess">
-            <!-- Top 3 players will be inserted here -->
-          </ul>
+      <section
+        id="hallOfFameSection"
+        class="hall-of-fame-section"
+      >
+        <h2
+          id="hofToggleTitle"
+          class="section-title hof-toggle-title"
+        >
+          🏆 Hall of Fame
+          <span id="hofToggleIcon" class="hof-toggle-icon">▼</span>
+        </h2>
+        <div id="hallOfFameContent" class="hof-content-collapsed">
+          <div class="hall-of-fame" id="hof-memory">
+            <div class="hall-of-fame-title">🃏 Memory Match</div>
+            <ul class="hall-of-fame-list" id="hof-list-memory">
+              <!-- Top 3 players will be inserted here -->
+            </ul>
+          </div>
+          <div class="hall-of-fame" id="hof-whack">
+            <div class="hall-of-fame-title">🐹 Find Totoro</div>
+            <ul class="hall-of-fame-list" id="hof-list-whack">
+              <!-- Top 3 players will be inserted here -->
+            </ul>
+          </div>
+          <div class="hall-of-fame" id="hof-circle">
+            <div class="hall-of-fame-title">🎯 Circle Reaction</div>
+            <ul class="hall-of-fame-list" id="hof-list-circle">
+              <!-- Top 3 players will be inserted here -->
+            </ul>
+          </div>
+          <div class="hall-of-fame" id="hof-clicker">
+            <div class="hall-of-fame-title">⚡ Speed Clicker</div>
+            <ul class="hall-of-fame-list" id="hof-list-clicker">
+              <!-- Top 3 players will be inserted here -->
+            </ul>
+          </div>
+          <div class="hall-of-fame" id="hof-guess">
+            <div class="hall-of-fame-title">🔢 Guess the Number</div>
+            <ul class="hall-of-fame-list" id="hof-list-guess">
+              <!-- Top 3 players will be inserted here -->
+            </ul>
+          </div>
         </div>
       </section>
     </div>
@@ -544,6 +555,31 @@
           profileImage.classList.remove("shrink-profile");
           // Remove click handler when not shrunk
           profileImage.onclick = null;
+        }
+      });
+
+      // Hall of Fame toggle logic using section title
+      window.addEventListener("DOMContentLoaded", () => {
+        // Show Hall of Fame toggle button and set up logic
+        const hofSection = document.getElementById("hallOfFameSection");
+        const hofContent = document.getElementById("hallOfFameContent");
+        const hofToggleTitle = document.getElementById("hofToggleTitle");
+        const hofToggleIcon = document.getElementById("hofToggleIcon");
+        if (hofToggleTitle && hofContent && hofToggleIcon) {
+          hofContent.classList.add("hof-content-collapsed");
+          hofToggleIcon.textContent = "▼";
+          hofToggleTitle.classList.add("hof-collapsed");
+          hofToggleTitle.onclick = function () {
+            if (hofContent.classList.contains("hof-content-collapsed")) {
+              hofContent.classList.remove("hof-content-collapsed");
+              hofToggleIcon.textContent = "▲";
+              hofToggleTitle.classList.remove("hof-collapsed");
+            } else {
+              hofContent.classList.add("hof-content-collapsed");
+              hofToggleIcon.textContent = "▼";
+              hofToggleTitle.classList.add("hof-collapsed");
+            }
+          };
         }
       });
     </script>
