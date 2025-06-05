@@ -1,349 +1,438 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ronak Raj - Resume</title>
     <style>
-        .social-links{
-            /* text-align: left; */
-            /* border: 1px solid #032446; */
-            /* padding: 10px;
+      .social-links {
+        /* text-align: left; */
+        /* border: 1px solid #032446; */
+        /* padding: 10px;
             margin-left: 10px; */
-        }
-        .social-links a{
-            font-size: 11px;
-            color: #182b4e !important;
-            line-height: 1.3;
-        }
+      }
+      .social-links a {
+        font-size: 11px;
+        color: #182b4e !important;
+        line-height: 1.3;
+      }
 
-        a:link {
-            color: green;
-            background-color: transparent;
-            text-decoration: none;
-        }
+      a:link {
+        color: green;
+        background-color: transparent;
+        text-decoration: none;
+      }
 
-        a:visited {
-            color: rgb(230, 142, 157);
-            background-color: transparent;
-            text-decoration: none;
-        }
+      a:visited {
+        color: rgb(230, 142, 157);
+        background-color: transparent;
+        text-decoration: none;
+      }
 
-        @media print {
-            .font-control {
-                display: none !important; /* Hide font buttons */
-            }
-
-            body {
-                margin: 0;
-                /* padding: 0.2in; */
-                zoom: 0.99; /* Scales content to fit one page */
-            }
-
-            html, body {
-                width: 100%;
-                height: 100%;
-                overflow: hidden;
-            }
-
-            @page {
-                size: A4;
-                margin: 0in;
-            }
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-size: 1rem !important;
-        }
-
+      @media print {
         .font-control {
-            position: fixed;
-            top: 10px;
-            left: 10px;
-            display: flex;
-            gap: 5px;
-            z-index: 1000;
+          display: none !important; /* Hide font buttons */
         }
 
-        .font-btn {
-            padding: 5px 8px;
-            font-size: 0.6rem;
-            background-color: #2c3e50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .font-btn:hover {
-            background-color: #34495e;
-        }
-        
         body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.4;
-            color: #333;
-            max-width: 8.5in;
-            margin: 0 auto;
-            padding: 0.5in;
-            background: white;
+          margin: 0;
+          /* padding: 0.2in; */
+          zoom: 0.99; /* Scales content to fit one page */
         }
-        
-        .header {
-            text-align: center;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #bdc3c7;
-            padding-bottom: 15px;
+
+        html,
+        body {
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
         }
-        
-        .name {
-            font-size: 30px !important;
-            font-family:monospace;
-            font-weight: bold;
-            color: #000000;
-            margin-bottom: 5px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+
+        @page {
+          size: A4;
+          margin: 0in;
         }
-        
-        .title {
-            font-size: 16px;
-            color: #34495e;
-            margin-bottom: 10px;
-            font-weight: 600;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-size: 1rem !important;
+      }
+
+      .font-control {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        display: flex;
+        gap: 5px;
+        z-index: 1000;
+      }
+
+      .font-btn {
+        padding: 5px 8px;
+        font-size: 0.6rem;
+        background-color: #2c3e50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .font-btn:hover {
+        background-color: #34495e;
+      }
+
+      body {
+        font-family: "Arial", sans-serif;
+        line-height: 1.4;
+        color: #333;
+        max-width: 8.5in;
+        margin: 0 auto;
+        padding: 0.5in;
+        background: white;
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #bdc3c7;
+        padding-bottom: 15px;
+      }
+
+      .name {
+        font-size: 30px !important;
+        font-family: monospace;
+        font-weight: bold;
+        color: #000000;
+        margin-bottom: 5px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .title {
+        font-size: 16px;
+        color: #34495e;
+        margin-bottom: 10px;
+        font-weight: 600;
+      }
+
+      .contact-info {
+        font-size: 11px;
+        color: #555;
+        line-height: 1.3;
+      }
+
+      .section {
+        margin-bottom: 18px;
+      }
+
+      .section-title {
+        font-size: 14px;
+        font-weight: bold;
+        color: #004992;
+        text-transform: uppercase;
+        border-bottom: 1px solid #bdc3c7;
+        padding-bottom: 3px;
+        margin-bottom: 10px;
+        letter-spacing: 0.5px;
+      }
+
+      .skills-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        font-size: 11px;
+      }
+
+      .skill-category {
+        margin-bottom: 6px;
+      }
+
+      .skill-title {
+        font-weight: bold;
+        color: #002f5e;
+        margin-bottom: 2px;
+      }
+
+      .skill-list {
+        color: #555;
+        line-height: 1.3;
+      }
+
+      .education-item,
+      .experience-item,
+      .project-item {
+        margin-bottom: 12px;
+        font-size: 11px;
+      }
+
+      .institution,
+      .project-name {
+        font-weight: bold;
+        color: #2c3e50;
+        font-size: 12px;
+      }
+
+      .degree,
+      .role {
+        color: #34495e;
+        font-style: italic;
+        margin-bottom: 3px;
+      }
+
+      .details {
+        color: #555;
+        margin-bottom: 3px;
+      }
+
+      .project-links {
+        color: #3498db;
+        font-size: 10px;
+        margin-bottom: 5px;
+      }
+
+      .project-dates {
+        color: #7f8c8d;
+        font-size: 10px;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+
+      .achievements {
+        margin-top: 5px;
+      }
+
+      .achievement {
+        margin-bottom: 3px;
+        padding-left: 12px;
+        position: relative;
+        color: #555;
+        line-height: 1.3;
+      }
+
+      .achievement:before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        color: #2c3e50;
+        font-weight: bold;
+      }
+
+      .languages {
+        display: flex;
+        gap: 20px;
+        font-size: 11px;
+      }
+
+      .language-item {
+        color: #555;
+      }
+
+      .language-name {
+        font-weight: bold;
+        color: #2c3e50;
+      }
+
+      @media print {
+        body {
+          padding: 0.3in;
+          font-size: 11px;
         }
-        
-        .contact-info {
-            font-size: 11px;
-            color: #555;
-            line-height: 1.3;
-        }
-        
         .section {
-            margin-bottom: 18px;
+          margin-bottom: 15px;
         }
-        
-        .section-title {
-            font-size: 14px;
-            font-weight: bold;
-            color: #004992;
-            text-transform: uppercase;
-            border-bottom: 1px solid #bdc3c7;
-            padding-bottom: 3px;
-            margin-bottom: 10px;
-            letter-spacing: 0.5px;
-        }
-        
-        .skills-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-            font-size: 11px;
-        }
-        
-        .skill-category {
-            margin-bottom: 6px;
-        }
-        
-        .skill-title {
-            font-weight: bold;
-            color: #002f5e;
-            margin-bottom: 2px;
-        }
-        
-        .skill-list {
-            color: #555;
-            line-height: 1.3;
-        }
-        
-        .education-item, .experience-item, .project-item {
-            margin-bottom: 12px;
-            font-size: 11px;
-        }
-        
-        .institution, .project-name {
-            font-weight: bold;
-            color: #2c3e50;
-            font-size: 12px;
-        }
-        
-        .degree, .role {
-            color: #34495e;
-            font-style: italic;
-            margin-bottom: 3px;
-        }
-        
-        .details {
-            color: #555;
-            margin-bottom: 3px;
-        }
-        
-        .project-links {
-            color: #3498db;
-            font-size: 10px;
-            margin-bottom: 5px;
-        }
-        
-        .project-dates {
-            color: #7f8c8d;
-            font-size: 10px;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        
-        .achievements {
-            margin-top: 5px;
-        }
-        
-        .achievement {
-            margin-bottom: 3px;
-            padding-left: 12px;
-            position: relative;
-            color: #555;
-            line-height: 1.3;
-        }
-        
-        .achievement:before {
-            content: "•";
-            position: absolute;
-            left: 0;
-            color: #2c3e50;
-            font-weight: bold;
-        }
-        
-        .languages {
-            display: flex;
-            gap: 20px;
-            font-size: 11px;
-        }
-        
-        .language-item {
-            color: #555;
-        }
-        
-        .language-name {
-            font-weight: bold;
-            color: #2c3e50;
-        }
-        
-        @media print {
-            body {
-                padding: 0.3in;
-                font-size: 11px;
-            }
-            .section {
-                margin-bottom: 15px;
-            }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="font-control">
-        <button id="increaseFont" class="font-btn">A+</button>
-        <button id="decreaseFont" class="font-btn">A−</button>
+      <button id="increaseFont" class="font-btn">A+</button>
+      <button id="decreaseFont" class="font-btn">A−</button>
     </div>
 
     <div class="header">
-        <div class="name">Ronak Raj</div>
-        <!-- <div class="title">Full Stack Developer</div> -->
-        <div class="contact-info">
-            Student, NIT KKR<br>
-            📧 <a target="_blank" href="mailto:contactronakraj@gmail.com">contactronakraj@gmail.com</a><br>
-            <div class="social-links">
-                <a target="_blank" href="https://www.linkedin.com/in/ronakraj00/">LinkedIn - https://www.linkedin.com/in/ronakraj00/</a> 
-                | <a target="_blank" href="https://ronakraj00.github.io/portfolio/">Portfolio - https://ronakraj00.github.io/portfolio/</a> |
-                <a  target="_blank" href="https://github.com/ronakraj00">GitHub - https://github.com/ronakraj00</a>
-            </div>
+      <div class="name">Ronak Raj</div>
+      <!-- <div class="title">Full Stack Developer</div> -->
+      <div class="contact-info">
+        Student, NIT KKR<br />
+        📧
+        <a target="_blank" href="mailto:contactronakraj@gmail.com"
+          >contactronakraj@gmail.com</a
+        ><br />
+        <div class="social-links">
+          <a target="_blank" href="https://www.linkedin.com/in/ronakraj00/"
+            >LinkedIn - https://www.linkedin.com/in/ronakraj00/</a
+          >
+          |
+          <a target="_blank" href="https://ronakraj00.github.io/portfolio/"
+            >Portfolio - https://ronakraj00.github.io/portfolio/</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ronakraj00"
+            >GitHub - https://github.com/ronakraj00</a
+          >
         </div>
+      </div>
     </div>
 
     <div class="section">
-        <div class="section-title">Core Skills</div>
-        <div class="skills-grid">
-            <div class="skill-category">
-                <div class="skill-title">Frontend:</div>
-                <div class="skill-list">React, JavaScript (ES6+), HTML, CSS, Tailwind CSS, Responsive Design</div>
-            </div>
-            <div class="skill-category">
-                <div class="skill-title">Backend:</div>
-                <div class="skill-list">Node.js, Express.js, REST APIs</div>
-            </div>
-            <div class="skill-category">
-                <div class="skill-title">Database & DevOps:</div>
-                <div class="skill-list">Git & GitHub, MongoDB, SQL, Linux</div>
-            </div>
-            <div class="skill-category">
-                <div class="skill-title">Others:</div>
-                <div class="skill-list">MVC Architecture, PWA, Authentication & Authorization</div>
-            </div>
-            <div class="skill-category">
-                <div class="skill-title">Programming Languages:</div>
-                <div class="skill-list">JavaScript, Python, C++, Java</div>
-            </div>
-            <div class="skill-category">
-                <div class="skill-title">CS Fundamentals:</div>
-                <div class="skill-list">Data Structures and Algorithms, Software Engineering, Computer Networks, Operating System</div>
-            </div>
+      <div class="section-title">Core Skills</div>
+      <div class="skills-grid">
+        <div class="skill-category">
+          <div class="skill-title">Frontend:</div>
+          <div class="skill-list">
+            React, JavaScript (ES6+), HTML, CSS, Tailwind CSS, Responsive Design
+          </div>
         </div>
+        <div class="skill-category">
+          <div class="skill-title">Backend:</div>
+          <div class="skill-list">Node.js, Express.js, REST APIs</div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-title">Database & DevOps:</div>
+          <div class="skill-list">Git & GitHub, MongoDB, SQL, Linux</div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-title">Others:</div>
+          <div class="skill-list">
+            MVC Architecture, PWA, Authentication & Authorization
+          </div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-title">Programming Languages:</div>
+          <div class="skill-list">JavaScript, Python, C++, Java</div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-title">CS Fundamentals:</div>
+          <div class="skill-list">
+            Data Structures and Algorithms, Software Engineering, Computer
+            Networks, Operating System
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="section">
-        <div class="section-title">Education</div>
-        <div class="education-item">
-            <div class="institution">NIT Kurukshetra</div>
-            <div class="degree">Bachelor of Technology – Information Technology</div>
-            <div class="details"><strong>GPA:</strong> 8.34 | <strong>Duration:</strong> Nov 2022 – June 2026</div>
+      <div class="section-title">Education</div>
+      <div class="education-item">
+        <div class="institution">NIT Kurukshetra</div>
+        <div class="degree">
+          Bachelor of Technology – Information Technology
         </div>
-        <div class="education-item">
-            <div class="institution">SVM School</div>
-            <div class="degree">12th Grade – Mathematics Stream</div>
-            <div class="details"><strong>GPA:</strong> 90.1% | <strong>Duration:</strong> Apr 2020 – Mar 2021</div>
+        <div class="details">
+          <strong>GPA:</strong> 8.34 | <strong>Duration:</strong> Nov 2022 –
+          June 2026
         </div>
-        <div class="education-item">
-            <div class="degree">10th Grade</div>
-            <div class="details"><strong>GPA:</strong> 94.2% | <strong>Duration:</strong> Apr 2018 – Mar 2019</div>
+      </div>
+      <div class="education-item">
+        <div class="institution">SVM School</div>
+        <div class="degree">12th Grade – Mathematics Stream</div>
+        <div class="details">
+          <strong>GPA:</strong> 90.1% | <strong>Duration:</strong> Apr 2020 –
+          Mar 2021
         </div>
+      </div>
+      <div class="education-item">
+        <div class="degree">10th Grade</div>
+        <div class="details">
+          <strong>GPA:</strong> 94.2% | <strong>Duration:</strong> Apr 2018 –
+          Mar 2019
+        </div>
+      </div>
     </div>
 
     <div class="section">
-        <div class="section-title">Projects</div>
-        
-        <div class="project-item">
-            <div class="project-name">Inventory Management System</div>
-            <div class="project-links"><a  target="_blank" href="https://inventory.adaptable.app">Live Demo</a> • <a target="_blank" href="https://github.com/ronakraj00/inventory">GitHub</a></div>
-            <div class="project-dates">Dec 2023 – Jan 2024</div>
-            <div class="achievements">
-                <div class="achievement">Developed a comprehensive web application for creating and managing collections of item with images</div>
-                <div class="achievement">Implemented Model-View-Controller (MVC) architecture using Express.js backend and MongoDB database</div>
-                <div class="achievement">Created responsive user interface using Pug template engine with integrated user authentication via Passport.js</div>
-                <div class="achievement">Gained expertise in MVP architecture design patterns with Authentication & Authorization</div>
-            </div>
-        </div>
+      <div class="section-title">Projects</div>
 
-        <div class="project-item">
-            <div class="project-name">CyberWatch - Cybercrime Reporting Dashboard</div>
-            <div class="project-links">Smart India Hackathon Project | <a target="_blank" href="https://team2-nine.vercel.app/">Live Demo</a> • <a target="_blank" href="https://github.com/ronakraj00/team2">GitHub</a></div>
-            <div class="project-dates">Sep 2024</div>
-            <div class="achievements">
-                <div class="achievement">Built real-time cybercrime reporting dashboard using React for frontend and Express.js for backend</div>
-                <div class="achievement">Developed and consumed RESTful APIs to visualize cyber security incidents and analytics</div>
-                <div class="achievement">Gained hands-on experience in API design, team collaboration, and competitive hackathon development</div>
-            </div>
+      <div class="project-item">
+        <div class="project-name">Inventory Management System</div>
+        <div class="project-links">
+          <a target="_blank" href="https://inventory.adaptable.app"
+            >Live Demo</a
+          >
+          •
+          <a target="_blank" href="https://github.com/ronakraj00/inventory"
+            >GitHub</a
+          >
         </div>
+        <div class="project-dates">Dec 2023 – Jan 2024</div>
+        <div class="achievements">
+          <div class="achievement">
+            Developed a comprehensive web application for creating and managing
+            collections of item with images
+          </div>
+          <div class="achievement">
+            Implemented Model-View-Controller (MVC) architecture using
+            Express.js backend and MongoDB database
+          </div>
+          <div class="achievement">
+            Created responsive user interface using Pug template engine with
+            integrated user authentication via Passport.js
+          </div>
+          <div class="achievement">
+            Gained expertise in MVP architecture design patterns with
+            Authentication & Authorization
+          </div>
+        </div>
+      </div>
 
-        <div class="project-item">
-            <div class="project-name">Memory Game - Progressive Web App</div>
-            <div class="project-links"><a target="_blank" href="https://memory-iota-one.vercel.app/">Live Demo</a> • <a target="_blank" href="https://github.com/ronakraj00/memory">GitHub</a></div>
-            <div class="project-dates">Feb 2024</div>
-            <div class="achievements">
-                <div class="achievement">Designed and built interactive card-based memory game using React framework</div>
-                <div class="achievement">Integrated PokeAPI for dynamic image fetching and implemented as Progressive Web App (PWA)</div>
-                <div class="achievement">Applied advanced React Hooks including useState and useEffect for state management</div>
-            </div>
+      <div class="project-item">
+        <div class="project-name">
+          CyberWatch - Cybercrime Reporting Dashboard
         </div>
+        <div class="project-links">
+          Smart India Hackathon Project |
+          <a target="_blank" href="https://team2-nine.vercel.app/">Live Demo</a>
+          •
+          <a target="_blank" href="https://github.com/ronakraj00/team2"
+            >GitHub</a
+          >
+        </div>
+        <div class="project-dates">Sep 2024</div>
+        <div class="achievements">
+          <div class="achievement">
+            Built real-time cybercrime reporting dashboard using React for
+            frontend and Express.js for backend
+          </div>
+          <div class="achievement">
+            Developed and consumed RESTful APIs to visualize cyber security
+            incidents and analytics
+          </div>
+          <div class="achievement">
+            Gained hands-on experience in API design, team collaboration, and
+            competitive hackathon development
+          </div>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="project-name">Memory Game - Progressive Web App</div>
+        <div class="project-links">
+          <a target="_blank" href="https://memory-iota-one.vercel.app/"
+            >Live Demo</a
+          >
+          •
+          <a target="_blank" href="https://github.com/ronakraj00/memory"
+            >GitHub</a
+          >
+        </div>
+        <div class="project-dates">Feb 2024</div>
+        <div class="achievements">
+          <div class="achievement">
+            Designed and built interactive card-based memory game using React
+            framework
+          </div>
+          <div class="achievement">
+            Integrated PokeAPI for dynamic image fetching and implemented as
+            Progressive Web App (PWA)
+          </div>
+          <div class="achievement">
+            Applied advanced React Hooks including useState and useEffect for
+            state management
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- <div class="section">
@@ -356,45 +445,43 @@
     </div> -->
 
     <div class="section">
-        <div class="section-title">Languages</div>
-        <div class="languages">
-            <div class="language-item">
-                <span class="language-name">English:</span> Fluent
-            </div>
-            <div class="language-item">
-                <span class="language-name">Hindi:</span> Fluent
-            </div>
+      <div class="section-title">Languages</div>
+      <div class="languages">
+        <div class="language-item">
+          <span class="language-name">English:</span> Fluent
         </div>
+        <div class="language-item">
+          <span class="language-name">Hindi:</span> Fluent
+        </div>
+      </div>
     </div>
 
     <script>
-        let rootFontSize = 1;
+      let rootFontSize = 1;
 
-        function updateFontSize(newSize) {
-            const styleTag = document.querySelector("style");
-            const css = styleTag.textContent;
-            const updatedCSS = css.replace(
-                /font-size:\s*[\d.]+rem\s*!important;/,
-                `font-size: ${newSize.toFixed(1)}rem !important;`
-            );
-            styleTag.textContent = updatedCSS;
+      function updateFontSize(newSize) {
+        const styleTag = document.querySelector("style");
+        const css = styleTag.textContent;
+        const updatedCSS = css.replace(
+          /font-size:\s*[\d.]+rem\s*!important;/,
+          `font-size: ${newSize.toFixed(1)}rem !important;`
+        );
+        styleTag.textContent = updatedCSS;
+      }
+
+      document.getElementById("increaseFont").addEventListener("click", () => {
+        if (rootFontSize < 2.0) {
+          rootFontSize += 0.1;
+          updateFontSize(rootFontSize);
         }
+      });
 
-        document.getElementById("increaseFont").addEventListener("click", () => {
-            if (rootFontSize < 2.0) {
-                rootFontSize += 0.1;
-                updateFontSize(rootFontSize);
-            }
-        });
-
-        document.getElementById("decreaseFont").addEventListener("click", () => {
-            if (rootFontSize > 0.3) {
-                rootFontSize -= 0.1;
-                updateFontSize(rootFontSize);
-            }
-        });
+      document.getElementById("decreaseFont").addEventListener("click", () => {
+        if (rootFontSize > 0.3) {
+          rootFontSize -= 0.1;
+          updateFontSize(rootFontSize);
+        }
+      });
     </script>
-
-
-</body>
+  </body>
 </html>

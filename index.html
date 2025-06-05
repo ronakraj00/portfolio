@@ -1,838 +1,971 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ronak Raj - Portfolio</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- <link rel="icon" type="image/x-icon" href="icon.png"> -->
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#2c3e50">
-    <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
-
-
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link rel="icon" type="image/x-icon" href="icon.png" />
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#2c3e50" />
+    <!-- <link rel="icon" type="image/png" href="icon.png" /> -->
 
     <style>
+      body {
+        font-family: monospace !important;
+      }
 
-        body{
-            font-family: monospace !important;
-        }
+      .project-details {
+        padding-left: 20px;
+        margin: 15px 0;
+        list-style-type: disc;
+        /* color: #333; */
+        font-size: 0.95rem;
+        line-height: 1.6;
+      }
 
-        .project-details {
-            padding-left: 20px;
-            margin: 15px 0;
-            list-style-type: disc;
-            /* color: #333; */
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
+      .project-details li {
+        margin-bottom: 8px;
+        list-style: circle;
+      }
 
-        .project-details li {
-            margin-bottom: 8px;
-            list-style:circle;
-        }
+      .highlight {
+        color: var(--accent);
+        /* font-weight: 500; */
+      }
 
-        .highlight {
-            color: var(--accent);
-            /* font-weight: 500; */
-        }
+      :root {
+        --bg-primary: #ffffff;
+        --bg-secondary: #f8f9fa;
+        --text-primary: #1a1a1a;
+        --text-secondary: #666666;
+        --accent: #5f92ff;
+        --border: #e5e7eb;
+        --hover: #f3f4f6;
+      }
 
+      [data-theme="dark"] {
+        --bg-primary: #0a0a0a;
+        --bg-secondary: #1a1a1a;
+        --text-primary: #ffffff;
+        --text-secondary: #a3a3a3;
+        --accent: #5b9aff;
+        --border: #333333;
+        --hover: #262626;
+      }
 
-        :root {
-            --bg-primary: #ffffff;
-            --bg-secondary: #f8f9fa;
-            --text-primary: #1a1a1a;
-            --text-secondary: #666666;
-            --accent: #5f92ff;
-            --border: #e5e7eb;
-            --hover: #f3f4f6;
-        }
+      [data-theme="forest"] {
+        --bg-primary: #f0f4f0;
+        --bg-secondary: #e8f2e8;
+        --text-primary: #1a3a1a;
+        --text-secondary: #4a5a4a;
+        --accent: #16a34a;
+        --border: #c5d4c5;
+        --hover: #e0ebe0;
+      }
 
-        [data-theme="dark"] {
-            --bg-primary: #0a0a0a;
-            --bg-secondary: #1a1a1a;
-            --text-primary: #ffffff;
-            --text-secondary: #a3a3a3;
-            --accent: #5b9aff;
-            --border: #333333;
-            --hover: #262626;
-        }
+      [data-theme="ocean"] {
+        --bg-primary: #f0f8ff;
+        --bg-secondary: #e6f3ff;
+        --text-primary: #1a2332;
+        --text-secondary: #4a5568;
+        --accent: #0891b2;
+        --border: #c2d9e8;
+        --hover: #ddeeff;
+      }
 
-        [data-theme="forest"] {
-            --bg-primary: #f0f4f0;
-            --bg-secondary: #e8f2e8;
-            --text-primary: #1a3a1a;
-            --text-secondary: #4a5a4a;
-            --accent: #16a34a;
-            --border: #c5d4c5;
-            --hover: #e0ebe0;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        [data-theme="ocean"] {
-            --bg-primary: #f0f8ff;
-            --bg-secondary: #e6f3ff;
-            --text-primary: #1a2332;
-            --text-secondary: #4a5568;
-            --accent: #0891b2;
-            --border: #c2d9e8;
-            --hover: #ddeeff;
-        }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui,
+          sans-serif;
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+        line-height: 1.6;
+        transition: all 0.3s ease;
+      }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-            transition: all 0.3s ease;
-        }
+      .theme-switcher {
+        position: fixed;
+        top: 2rem;
+        right: 2rem;
+        z-index: 1000;
+      }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
+      .theme-btn {
+        background: var(--bg-secondary);
+        border: 1px solid var(--border);
+        color: var(--text-primary);
+        padding: 0.5rem;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1.2rem;
+        transition: all 0.2s ease;
+      }
 
-        .theme-switcher {
-            position: fixed;
-            top: 2rem;
-            right: 2rem;
-            z-index: 1000;
-        }
+      .theme-btn:hover {
+        background: var(--hover);
+        transform: scale(1.05);
+      }
 
-        .theme-btn {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            color: var(--text-primary);
-            padding: 0.5rem;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1.2rem;
-            transition: all 0.2s ease;
-        }
+      .theme-dropdown {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: var(--bg-primary);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        margin-top: 0.5rem;
+        min-width: 120px;
+        display: none;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
 
-        .theme-btn:hover {
-            background: var(--hover);
-            transform: scale(1.05);
-        }
+      .theme-dropdown.show {
+        display: block;
+      }
 
-        .theme-dropdown {
-            position: absolute;
-            top: 100%;
-            right: 0;
-            background: var(--bg-primary);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            margin-top: 0.5rem;
-            min-width: 120px;
-            display: none;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
+      .theme-option {
+        padding: 0.75rem 1rem;
+        cursor: pointer;
+        transition: background 0.2s ease;
+        border-bottom: 1px solid var(--border);
+      }
 
-        .theme-dropdown.show {
-            display: block;
-        }
+      .theme-option:last-child {
+        border-bottom: none;
+      }
 
-        .theme-option {
-            padding: 0.75rem 1rem;
-            cursor: pointer;
-            transition: background 0.2s ease;
-            border-bottom: 1px solid var(--border);
-        }
+      .theme-option:hover {
+        background: var(--hover);
+      }
 
-        .theme-option:last-child {
-            border-bottom: none;
-        }
-
-        .theme-option:hover {
-            background: var(--hover);
-        }
-
-/* color: transparent;
+      /* color: transparent;
             background-clip: text;
         } */
 
-        .location {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-        }
+      .location {
+        font-size: 1.2rem;
+        color: var(--text-secondary);
+        margin-bottom: 2rem;
+      }
 
-        .contact-links {
-            display: flex;
-            flex-direction: row;
-            gap: 2rem;
-            flex-wrap: wrap;
-            margin-bottom: 2rem;
-        }
+      .contact-links {
+        display: flex;
+        flex-direction: row;
+        gap: 2rem;
+        flex-wrap: wrap;
+        margin-bottom: 2rem;
+      }
 
-        .contact-link {
-            color: var(--accent);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
+      .contact-link {
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
 
-        .contact-link:hover {
-            transform: translateY(-2px);
-            color: var(--text-primary);
-        }
+      .contact-link:hover {
+        transform: translateY(-2px);
+        color: var(--text-primary);
+      }
 
-        .section {
-            margin-bottom: 4rem;
-        }
+      .section {
+        margin-bottom: 4rem;
+      }
 
-        .section-title {
-            font-size: 2rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            position: relative;
-        }
+      .section-title {
+        font-size: 2rem;
+        font-weight: 800;
+        margin-bottom: 1.5rem;
+        position: relative;
+      }
 
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -0.5rem;
-            left: 0;
-            width: 3rem;
-            height: 3px;
-            background: var(--accent);
-            border-radius: 2px;
-        }
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -0.5rem;
+        left: 0;
+        width: 3rem;
+        height: 3px;
+        background: var(--accent);
+        border-radius: 2px;
+      }
 
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
 
-        .skill-category {
-            /* background: var(--bg-secondary); */
-            /* padding: 1.5rem; */
-            border-radius: 6px;
-            /* border: 1px solid var(--border); */
-            /* transition: all 0.3s ease; */
-            padding: 1rem;
-            border-radius: 6px;
-            /* margin-bottom: 0.9rem; */
-            border: 1px solid var(--border);
-            /* background: #fff; */
-            border-radius: 20px;
-            /* box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1); */
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
-        }
+      .skill-category {
+        /* background: var(--bg-secondary); */
+        /* padding: 1.5rem; */
+        border-radius: 6px;
+        /* border: 1px solid var(--border); */
+        /* transition: all 0.3s ease; */
+        padding: 1rem;
+        border-radius: 6px;
+        /* margin-bottom: 0.9rem; */
+        border: 1px solid var(--border);
+        /* background: #fff; */
+        border-radius: 20px;
+        /* box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1); */
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+      }
 
-        .skill-category::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: url(./css-pattern-by-magicpattern.png);
-            background-size: contain;
-            opacity: 0.1; /* control opacity here */
-            z-index: -1;
-        }
+      .skill-category::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: url(./css-pattern-by-magicpattern.png);
+        background-size: contain;
+        opacity: 0.1; /* control opacity here */
+        z-index: -1;
+      }
 
-        /* .skill-category:hover {
+      /* .skill-category:hover {
             transform: translateY(-1px);
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         } */
 
-        .skill-category h3 {
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--accent);
-        }
+      .skill-category h3 {
+        font-weight: 700;
+        margin-bottom: 1rem;
+        color: var(--accent);
+      }
 
-        .skill-items {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-        }
+      .skill-items {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+      }
 
-        .skill-item {
-            display: flex;
-            align-items: center;
-            gap: 0.2rem;
-            background: var(--bg-primary);
-            padding: 0.2rem 0.4rem;
-            border-radius: 5px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            border: 1px solid var(--border);
-            transition: all 0.2s ease;
-        }
+      .skill-item {
+        display: flex;
+        align-items: center;
+        gap: 0.2rem;
+        background: var(--bg-primary);
+        padding: 0.2rem 0.4rem;
+        border-radius: 5px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        border: 1px solid var(--border);
+        transition: all 0.2s ease;
+      }
 
-        /* .skill-item:hover {
+      /* .skill-item:hover {
             background: var(--accent);
             color: white;
             transform: scale(1.05);
         } */
 
-        .education-item, .project-item {
-            /* background: var(--bg-secondary); */
-            padding: 1rem;
-            border-radius: 6px;
-            margin-bottom: 0.9rem;
-            border: 1px solid var(--border);
-            /* background: #fff; */
-            border-radius: 20px;
-            /* box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); */
-            /* background: url(./css-pattern-by-magicpattern.png); */
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
-        }
+      .education-item,
+      .project-item {
+        /* background: var(--bg-secondary); */
+        padding: 1rem;
+        border-radius: 6px;
+        margin-bottom: 0.9rem;
+        border: 1px solid var(--border);
+        /* background: #fff; */
+        border-radius: 20px;
+        /* box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); */
+        /* background: url(./css-pattern-by-magicpattern.png); */
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+      }
 
-        .education-item::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: url(./css-pattern-by-magicpattern_box.png);
-            background-size: contain;
-            opacity: 0.1; /* control opacity here */
-            z-index: -1;
-        }
+      .education-item::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: url(./css-pattern-by-magicpattern_box.png);
+        background-size: contain;
+        opacity: 0.1; /* control opacity here */
+        z-index: -1;
+      }
 
-        .project-item::before{
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: url(./css-pattern-by-magicpattern_lines.png);
-            background-size: contain;
-            opacity: 0.1; /* control opacity here */
-            z-index: -1;
-        }
+      .project-item::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: url(./css-pattern-by-magicpattern_lines.png);
+        background-size: contain;
+        opacity: 0.1; /* control opacity here */
+        z-index: -1;
+      }
 
-        /* .education-item:hover, .project-item:hover {
+      /* .education-item:hover, .project-item:hover {
             transform: translateY(-1px);
             box-shadow: 0 3px 10px rgba(0,0,0,0.08);
         } */
 
-        .education-title, .project-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
+      .education-title,
+      .project-title {
+        font-size: 1.3rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+      }
 
-        .education-subtitle, .project-subtitle {
-            color: var(--text-secondary);
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-        }
+      .education-subtitle,
+      .project-subtitle {
+        color: var(--text-secondary);
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+      }
 
-        .education-details {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
+      .education-details {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
 
-        .gpa {
-            background: var(--accent);
-            color: white;
-            padding: 0.25rem 0.75rem;
-            border-radius: 15px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
+      .gpa {
+        background: var(--accent);
+        color: white;
+        padding: 0.25rem 0.75rem;
+        border-radius: 15px;
+        font-size: 0.85rem;
+        font-weight: 600;
+      }
 
-        .duration {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
+      .duration {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+      }
 
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin: 1rem 0;
-        }
+      .project-tech {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin: 1rem 0;
+      }
 
-        .tech-tag {
-            background: rgba(51, 51, 51, 0.952);
-            color: white;
-            padding: 0.25rem 0.75rem;
-            border-radius: 12px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
+      .tech-tag {
+        background: rgba(51, 51, 51, 0.952);
+        color: white;
+        padding: 0.25rem 0.75rem;
+        border-radius: 12px;
+        font-size: 0.8rem;
+        font-weight: 500;
+      }
 
-        .project-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
+      .project-links {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
 
-        .project-link {
-            color: var(--accent);
-            text-decoration: none;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.2s ease;
-        }
+      .project-link {
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.2s ease;
+      }
 
-        .project-link:hover {
-            transform: translateX(5px);
-        }
+      .project-link:hover {
+        transform: translateX(5px);
+      }
 
-        .languages {
-            display: flex;
-            gap: 0.6rem;
-            flex-wrap: wrap;
-        }
+      .languages {
+        display: flex;
+        gap: 0.6rem;
+        flex-wrap: wrap;
+      }
 
-        .language-item {
-            background: var(--bg-secondary);
-            padding: 0.3rem 0.6rem;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            text-align: center;
-            transition: all 0.3s ease;
-            font-size: small;
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
-        }
+      .language-item {
+        background: var(--bg-secondary);
+        padding: 0.3rem 0.6rem;
+        border-radius: 8px;
+        border: 1px solid var(--border);
+        text-align: center;
+        transition: all 0.3s ease;
+        font-size: small;
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+      }
 
-        .language-item::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: url(./css-pattern-by-magicpattern_diagonal.png);
-            background-size: contain;
-            opacity: 0.1; /* control opacity here */
-            z-index: -1;
-        }
+      .language-item::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: url(./css-pattern-by-magicpattern_diagonal.png);
+        background-size: contain;
+        opacity: 0.1; /* control opacity here */
+        z-index: -1;
+      }
 
-        /* .language-item:hover {
+      /* .language-item:hover {
             background: var(--accent);
             color: white;
             transform: scale(1.05);
         } */
 
-        .language-name {
-            font-weight: 700;
-            margin-bottom: 0.25rem;
+      .language-name {
+        font-weight: 700;
+        margin-bottom: 0.25rem;
+      }
+
+      .profile-header {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .profile-image {
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        background: url("profile_me_picture_2.jpg");
+        background-size: cover;
+      }
+
+      .profile-image {
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        background: url("profile_me_picture_2.jpg");
+        background-size: cover;
+        background-position: center;
+        transition: all 0.4s ease-in-out;
+        position: relative;
+      }
+
+      /* When scrolled, shrink and fix to top-left */
+      .shrink-profile {
+        width: 50px !important;
+        height: 50px !important;
+        position: fixed;
+        top: 12px;
+        left: 12px;
+        z-index: 1000;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          padding: 1rem;
         }
 
-        .profile-header{
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
+        .theme-switcher {
+          top: 1rem;
+          right: 1rem;
+        }
+
+        .header {
+          flex-direction: column;
+          text-align: center;
+          gap: 2rem;
+        }
+
+        .profile-header {
+          /* border: 1px solid var(--border); */
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 1rem;
         }
 
         .profile-image {
-            width: 160px;
-            height: 160px;
-            border-radius: 50%;
-            background: url('profile_me_picture_2.jpg');
-            background-size: cover;
+          width: 160px;
+          height: 160px;
+          border-radius: 50%;
         }
 
-
-        .profile-image {
-            width: 160px;
-            height: 160px;
-            border-radius: 50%;
-            background: url('profile_me_picture_2.jpg');
-            background-size: cover;
-            background-position: center;
-            transition: all 0.4s ease-in-out;
-            position: relative;
-        }
-
-        /* When scrolled, shrink and fix to top-left */
-        .shrink-profile {
-            width: 50px !important;
-            height: 50px !important;
-            position: fixed;
-            top: 12px;
-            left: 12px;
-            z-index: 1000;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 1rem;
-            }
-            
-            .theme-switcher {
-                top: 1rem;
-                right: 1rem;
-            }
-            
-            .header {
-                flex-direction: column;
-                text-align: center;
-                gap: 2rem;
-            }
-            
-            .profile-header {
-                /* border: 1px solid var(--border); */
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 1rem;
-            }
-            
-            .profile-image {
-                width: 160px;
-                height: 160px;
-                border-radius: 50%;
-            }
-            
-
-            /* .contact-links {
+        /* .contact-links {
                 flex-direction: column;
                 gap: 1rem;
             } */
-            
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .education-details {
-                flex-direction: column;
-                align-items: flex-start;
-            }
+
+        .skills-grid {
+          grid-template-columns: 1fr;
         }
+
+        .education-details {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
     </style>
-</head>
-<body data-theme="light">
+  </head>
+  <body data-theme="light">
     <div class="theme-switcher">
-        <button class="theme-btn" onclick="toggleThemeDropdown()">
-            <i class="fas fa-palette"></i>
-        </button>
-        <div class="theme-dropdown" id="themeDropdown">
-            <div class="theme-option" onclick="setTheme('light')">Light</div>
-            <div class="theme-option" onclick="setTheme('dark')">Dark</div>
-            <div class="theme-option" onclick="setTheme('forest')">Forest</div>
-            <div class="theme-option" onclick="setTheme('ocean')">Ocean</div>
-        </div>
+      <button class="theme-btn" onclick="toggleThemeDropdown()">
+        <i class="fas fa-palette"></i>
+      </button>
+      <div class="theme-dropdown" id="themeDropdown">
+        <div class="theme-option" onclick="setTheme('light')">Light</div>
+        <div class="theme-option" onclick="setTheme('dark')">Dark</div>
+        <div class="theme-option" onclick="setTheme('forest')">Forest</div>
+        <div class="theme-option" onclick="setTheme('ocean')">Ocean</div>
+      </div>
     </div>
 
     <div class="container">
-        <header class="header">
-            <div class="profile-header">
-                <div class="profile-image" id="profileImage"></div>
-                <div class="name-section">
-                    <h1 class="name">Ronak Raj</h1>
-                    <p class="location">Student, NIT KKR</p>
-                </div>
+      <header class="header">
+        <div class="profile-header">
+          <div class="profile-image" id="profileImage"></div>
+          <div class="name-section">
+            <h1 class="name">Ronak Raj</h1>
+            <p class="location">Student, NIT KKR</p>
+          </div>
+        </div>
+        <div class="contact-links">
+          <a
+            target="_blank"
+            href="mailto:contactronakraj@gmail.com"
+            class="contact-link"
+          >
+            <i class="fas fa-envelope"></i>
+            Email
+          </a>
+          <a
+            target="_blank"
+            href="https://www.linkedin.com/in/ronakraj00/"
+            class="contact-link"
+          >
+            <i class="fab fa-linkedin"></i>
+            LinkedIn
+          </a>
+          <a target="_blank" href="resume_ronak_raj.html" class="contact-link">
+            <i class="fas fa-globe"></i>
+            Resume
+          </a>
+          <a
+            target="_blank"
+            href="https://github.com/ronakraj00"
+            class="contact-link"
+          >
+            <i class="fab fa-github"></i>
+            GitHub
+          </a>
+        </div>
+      </header>
+
+      <section class="section">
+        <h2 class="section-title">Core Skills</h2>
+        <div class="skills-grid">
+          <div class="skill-category">
+            <h3>Frontend</h3>
+            <div class="skill-items">
+              <div class="skill-item">
+                <i class="fab fa-react" style="color: #61dafb"></i>
+                React
+              </div>
+              <div class="skill-item">
+                <i class="fab fa-js-square" style="color: #f7df1e"></i>
+                JavaScript (ES6+)
+              </div>
+              <div class="skill-item">
+                <i class="fab fa-html5" style="color: #e34f26"></i>
+                HTML
+              </div>
+              <div class="skill-item">
+                <i class="fab fa-css3-alt" style="color: #1572b6"></i>
+                CSS
+              </div>
+              <div class="skill-item">
+                <i class="fas fa-wind" style="color: #06b6d4"></i>
+                Tailwind CSS
+              </div>
+              <div class="skill-item">
+                <i class="fas fa-mobile-alt"></i>
+                Responsive Design
+              </div>
             </div>
-            <div class="contact-links">
-                <a target="_blank" href="mailto:contactronakraj@gmail.com" class="contact-link">
-                    <i class="fas fa-envelope"></i>
-                    Email
-                </a>
-                <a target="_blank" href="https://www.linkedin.com/in/ronakraj00/" class="contact-link">
-                    <i class="fab fa-linkedin"></i>
-                    LinkedIn
-                </a>
-                <a target="_blank" href="resume_ronak_raj.html" class="contact-link">
-                    <i class="fas fa-globe"></i>
-                    Resume
-                </a>
-                <a target="_blank" href="https://github.com/ronakraj00" class="contact-link">
-                    <i class="fab fa-github"></i>
-                    GitHub
-                </a>
+          </div>
+
+          <div class="skill-category">
+            <h3>Backend</h3>
+            <div class="skill-items">
+              <div class="skill-item">
+                <i class="fab fa-node-js" style="color: #339933"></i>
+                Node.js
+              </div>
+              <div class="skill-item">
+                <i class="fas fa-server"></i>
+                Express.js
+              </div>
+              <div class="skill-item">
+                <i class="fas fa-exchange-alt"></i>
+                REST APIs
+              </div>
             </div>
-        </header>
+          </div>
 
-        <section class="section">
-            <h2 class="section-title">Core Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>Frontend</h3>
-                    <div class="skill-items">
-                        <div class="skill-item">
-                            <i class="fab fa-react" style="color: #61dafb;"></i>
-                            React
-                        </div>
-                        <div class="skill-item">
-                            <i class="fab fa-js-square" style="color: #f7df1e;"></i>
-                            JavaScript (ES6+)
-                        </div>
-                        <div class="skill-item">
-                            <i class="fab fa-html5" style="color: #e34f26;"></i>
-                            HTML
-                        </div>
-                        <div class="skill-item">
-                            <i class="fab fa-css3-alt" style="color: #1572b6;"></i>
-                            CSS
-                        </div>
-                        <div class="skill-item">
-                            <i class="fas fa-wind" style="color: #06b6d4;"></i>
-                            Tailwind CSS
-                        </div>
-                        <div class="skill-item">
-                            <i class="fas fa-mobile-alt"></i>
-                            Responsive Design
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="skill-category">
-                    <h3>Backend</h3>
-                    <div class="skill-items">
-                        <div class="skill-item">
-                            <i class="fab fa-node-js" style="color: #339933;"></i>
-                            Node.js
-                        </div>
-                        <div class="skill-item">
-                            <i class="fas fa-server"></i>
-                            Express.js
-                        </div>
-                        <div class="skill-item">
-                            <i class="fas fa-exchange-alt"></i>
-                            REST APIs
-                        </div>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <h3>Database & DevOps</h3>
-                    <div class="skill-items">
-                        <div class="skill-item">
-                            <i class="fab fa-git-alt" style="color: #f05032;"></i>
-                            Git & GitHub
-                        </div>
-                        <div class="skill-item">
-                            <i class="fas fa-leaf" style="color: #4db33d;"></i>
-                            MongoDB
-                        </div>
-                        <div class="skill-item">
-                            <i class="fas fa-database"></i>
-                            SQL
-                        </div>
-                        <div class="skill-item">
-                            <i class="fab fa-linux" style="color: #fcc624;"></i>
-                            Linux
-                        </div>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <h3>Programming Languages</h3>
-                    <div class="skill-items">
-                        <div class="skill-item">
-                            <i class="fab fa-js-square" style="color: #f7df1e;"></i>
-                            JavaScript
-                        </div>
-                        <div class="skill-item">
-                            <i class="fab fa-python" style="color: #3776ab;"></i>
-                            Python
-                        </div>
-                        <div class="skill-item">
-                            <i class="fas fa-code"></i>
-                            C++
-                        </div>
-                        <div class="skill-item">
-                            <i class="fab fa-java" style="color: #ed8b00;"></i>
-                            Java
-                        </div>
-                    </div>
-                </div>
+          <div class="skill-category">
+            <h3>Database & DevOps</h3>
+            <div class="skill-items">
+              <div class="skill-item">
+                <i class="fab fa-git-alt" style="color: #f05032"></i>
+                Git & GitHub
+              </div>
+              <div class="skill-item">
+                <i class="fas fa-leaf" style="color: #4db33d"></i>
+                MongoDB
+              </div>
+              <div class="skill-item">
+                <i class="fas fa-database"></i>
+                SQL
+              </div>
+              <div class="skill-item">
+                <i class="fab fa-linux" style="color: #fcc624"></i>
+                Linux
+              </div>
             </div>
-        </section>
+          </div>
 
-        <section class="section">
-            <h2 class="section-title">Education</h2>
-            <div class="education-item">
-                <div class="education-title">NIT Kurukshetra</div>
-                <div class="education-subtitle">Bachelor of Technology – Information Technology</div>
-                <div class="education-details">
-                    <div class="gpa">GPA: 8.34</div>
-                    <div class="duration">Nov 2022 – June 2026</div>
-                </div>
+          <div class="skill-category">
+            <h3>Programming Languages</h3>
+            <div class="skill-items">
+              <div class="skill-item">
+                <i class="fab fa-js-square" style="color: #f7df1e"></i>
+                JavaScript
+              </div>
+              <div class="skill-item">
+                <i class="fab fa-python" style="color: #3776ab"></i>
+                Python
+              </div>
+              <div class="skill-item">
+                <i class="fas fa-code"></i>
+                C++
+              </div>
+              <div class="skill-item">
+                <i class="fab fa-java" style="color: #ed8b00"></i>
+                Java
+              </div>
             </div>
-            
-            <div class="education-item">
-                <div class="education-title">SVM School</div>
-                <div class="education-subtitle">12th Grade – Mathematics Stream</div>
-                <div class="education-details">
-                    <div class="gpa">90.1%</div>
-                    <div class="duration">Apr 2020 – Mar 2021</div>
-                </div>
-            </div>
-            
-            <div class="education-item">
-                <div class="education-title">SVM School</div>
-                <div class="education-subtitle">10th Grade</div>
-                <div class="education-details">
-                    <div class="gpa">94.2%</div>
-                    <div class="duration">Apr 2018 – Mar 2019</div>
-                </div>
-            </div>
-        </section>
+          </div>
+        </div>
+      </section>
 
-        <section class="section">
-            <h2 class="section-title">Projects</h2>
-            
-            <div class="project-item">
-    <div class="project-title">Inventory Management System</div>
-    <div class="project-subtitle">Dec 2023 – Jan 2024</div>
-    <ul class="project-details">
-      <li>Developed a <span class="highlight">comprehensive web application</span> to manage item collections with images.</li>
-      <li>Used <span class="highlight">Model-View-Controller (MVC)</span> architecture with <span class="highlight">Express.js</span> and <span class="highlight">MongoDB</span>.</li>
-      <li>Built responsive UI using <span class="highlight">Pug template engine</span>.</li>
-      <li>Integrated <span class="highlight">user authentication</span> with <span class="highlight">Passport.js</span>.</li>
-    </ul>
-    <div class="project-tech">
-      <span class="tech-tag">Express.js</span>
-      <span class="tech-tag">MongoDB</span>
-      <span class="tech-tag">Pug</span>
-      <span class="tech-tag">Passport.js</span>
-      <span class="tech-tag">MVC</span>
-    </div>
-    <div class="project-links">
-      <a target="_blank" href="https://inventory.adaptable.app" class="project-link"><i class="fas fa-external-link-alt"></i>Live Demo</a>
-      <a target="_blank" href="https://github.com/ronakraj00/inventory" class="project-link"><i class="fab fa-github"></i>GitHub</a>
-    </div>
-  </div>
+      <section class="section">
+        <h2 class="section-title">Education</h2>
+        <div class="education-item">
+          <div class="education-title">NIT Kurukshetra</div>
+          <div class="education-subtitle">
+            Bachelor of Technology – Information Technology
+          </div>
+          <div class="education-details">
+            <div class="gpa">GPA: 8.34</div>
+            <div class="duration">Nov 2022 – June 2026</div>
+          </div>
+        </div>
 
-  <div class="project-item">
-    <div class="project-title">CyberWatch - Cybercrime Reporting Dashboard</div>
-    <div class="project-subtitle">Smart India Hackathon Project | Sep 2024</div>
-    <ul class="project-details">
-      <li>Built a real-time <span class="highlight">cybercrime reporting dashboard</span> with <span class="highlight">React</span> frontend and <span class="highlight">Express.js</span> backend.</li>
-      <li>Developed and consumed <span class="highlight">RESTful APIs</span> for data communication.</li>
-      <li>Visualized <span class="highlight">cybersecurity incidents</span> and <span class="highlight">analytics</span> dynamically.</li>
-      <li>Collaborated in a <span class="highlight">team-based hackathon environment</span>.</li>
-    </ul>
-    <div class="project-tech">
-      <span class="tech-tag">React</span>
-      <span class="tech-tag">Express.js</span>
-      <span class="tech-tag">REST APIs</span>
-      <span class="tech-tag">Data Visualization</span>
-    </div>
-    <div class="project-links">
-      <a target="_blank" href="https://team2-nine.vercel.app/" class="project-link"><i class="fas fa-external-link-alt"></i>Live Demo</a>
-      <a target="_blank" href="https://github.com/ronakraj00/team2" class="project-link"><i class="fab fa-github"></i>GitHub</a>
-    </div>
-  </div>
+        <div class="education-item">
+          <div class="education-title">SVM School</div>
+          <div class="education-subtitle">12th Grade – Mathematics Stream</div>
+          <div class="education-details">
+            <div class="gpa">90.1%</div>
+            <div class="duration">Apr 2020 – Mar 2021</div>
+          </div>
+        </div>
 
-  <div class="project-item">
-    <div class="project-title">Memory Game - Progressive Web App</div>
-    <div class="project-subtitle">Feb 2024</div>
-    <ul class="project-details">
-      <li>Designed an interactive <span class="highlight">card-based memory game</span> using <span class="highlight">React</span>.</li>
-      <li>Fetched dynamic images from <span class="highlight">PokeAPI</span>.</li>
-      <li>Implemented the game as a <span class="highlight">Progressive Web App (PWA)</span>.</li>
-      <li>Utilized <span class="highlight">React Hooks</span> like <code>useState</code> and <code>useEffect</code> for state management.</li>
-    </ul>
-    <div class="project-tech">
-      <span class="tech-tag">React</span>
-      <span class="tech-tag">PWA</span>
-      <span class="tech-tag">PokeAPI</span>
-      <span class="tech-tag">React Hooks</span>
-    </div>
-    <div class="project-links">
-      <a target="_blank" href="https://memory-iota-one.vercel.app/" class="project-link"><i class="fas fa-external-link-alt"></i>Live Demo</a>
-      <a target="_blank" href="https://github.com/ronakraj00/memory" class="project-link"><i class="fab fa-github"></i>GitHub</a>
-    </div>
-  </div>
-        </section>
+        <div class="education-item">
+          <div class="education-title">SVM School</div>
+          <div class="education-subtitle">10th Grade</div>
+          <div class="education-details">
+            <div class="gpa">94.2%</div>
+            <div class="duration">Apr 2018 – Mar 2019</div>
+          </div>
+        </div>
+      </section>
 
-        <section class="section">
-            <h2 class="section-title">Languages</h2>
-            <div class="languages">
-                <div class="language-item">
-                    <div class="language-name">English</div>
-                    <div>Fluent</div>
-                </div>
-                <div class="language-item">
-                    <div class="language-name">Hindi</div>
-                    <div>Fluent</div>
-                </div>
-            </div>
-        </section>
+      <section class="section">
+        <h2 class="section-title">Projects</h2>
+
+        <div class="project-item">
+          <div class="project-title">Inventory Management System</div>
+          <div class="project-subtitle">Dec 2023 – Jan 2024</div>
+          <ul class="project-details">
+            <li>
+              Developed a
+              <span class="highlight">comprehensive web application</span> to
+              manage item collections with images.
+            </li>
+            <li>
+              Used
+              <span class="highlight">Model-View-Controller (MVC)</span>
+              architecture with <span class="highlight">Express.js</span> and
+              <span class="highlight">MongoDB</span>.
+            </li>
+            <li>
+              Built responsive UI using
+              <span class="highlight">Pug template engine</span>.
+            </li>
+            <li>
+              Integrated <span class="highlight">user authentication</span> with
+              <span class="highlight">Passport.js</span>.
+            </li>
+          </ul>
+          <div class="project-tech">
+            <span class="tech-tag">Express.js</span>
+            <span class="tech-tag">MongoDB</span>
+            <span class="tech-tag">Pug</span>
+            <span class="tech-tag">Passport.js</span>
+            <span class="tech-tag">MVC</span>
+          </div>
+          <div class="project-links">
+            <a
+              target="_blank"
+              href="https://inventory.adaptable.app"
+              class="project-link"
+              ><i class="fas fa-external-link-alt"></i>Live Demo</a
+            >
+            <a
+              target="_blank"
+              href="https://github.com/ronakraj00/inventory"
+              class="project-link"
+              ><i class="fab fa-github"></i>GitHub</a
+            >
+          </div>
+        </div>
+
+        <div class="project-item">
+          <div class="project-title">
+            CyberWatch - Cybercrime Reporting Dashboard
+          </div>
+          <div class="project-subtitle">
+            Smart India Hackathon Project | Sep 2024
+          </div>
+          <ul class="project-details">
+            <li>
+              Built a real-time
+              <span class="highlight">cybercrime reporting dashboard</span> with
+              <span class="highlight">React</span> frontend and
+              <span class="highlight">Express.js</span> backend.
+            </li>
+            <li>
+              Developed and consumed
+              <span class="highlight">RESTful APIs</span> for data
+              communication.
+            </li>
+            <li>
+              Visualized
+              <span class="highlight">cybersecurity incidents</span> and
+              <span class="highlight">analytics</span> dynamically.
+            </li>
+            <li>
+              Collaborated in a
+              <span class="highlight">team-based hackathon environment</span>.
+            </li>
+          </ul>
+          <div class="project-tech">
+            <span class="tech-tag">React</span>
+            <span class="tech-tag">Express.js</span>
+            <span class="tech-tag">REST APIs</span>
+            <span class="tech-tag">Data Visualization</span>
+          </div>
+          <div class="project-links">
+            <a
+              target="_blank"
+              href="https://team2-nine.vercel.app/"
+              class="project-link"
+              ><i class="fas fa-external-link-alt"></i>Live Demo</a
+            >
+            <a
+              target="_blank"
+              href="https://github.com/ronakraj00/team2"
+              class="project-link"
+              ><i class="fab fa-github"></i>GitHub</a
+            >
+          </div>
+        </div>
+
+        <div class="project-item">
+          <div class="project-title">Memory Game - Progressive Web App</div>
+          <div class="project-subtitle">Feb 2024</div>
+          <ul class="project-details">
+            <li>
+              Designed an interactive
+              <span class="highlight">card-based memory game</span> using
+              <span class="highlight">React</span>.
+            </li>
+            <li>
+              Fetched dynamic images from
+              <span class="highlight">PokeAPI</span>.
+            </li>
+            <li>
+              Implemented the game as a
+              <span class="highlight">Progressive Web App (PWA)</span>.
+            </li>
+            <li>
+              Utilized <span class="highlight">React Hooks</span> like
+              <code>useState</code> and <code>useEffect</code> for state
+              management.
+            </li>
+          </ul>
+          <div class="project-tech">
+            <span class="tech-tag">React</span>
+            <span class="tech-tag">PWA</span>
+            <span class="tech-tag">PokeAPI</span>
+            <span class="tech-tag">React Hooks</span>
+          </div>
+          <div class="project-links">
+            <a
+              target="_blank"
+              href="https://memory-iota-one.vercel.app/"
+              class="project-link"
+              ><i class="fas fa-external-link-alt"></i>Live Demo</a
+            >
+            <a
+              target="_blank"
+              href="https://github.com/ronakraj00/memory"
+              class="project-link"
+              ><i class="fab fa-github"></i>GitHub</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Languages</h2>
+        <div class="languages">
+          <div class="language-item">
+            <div class="language-name">English</div>
+            <div>Fluent</div>
+          </div>
+          <div class="language-item">
+            <div class="language-name">Hindi</div>
+            <div>Fluent</div>
+          </div>
+        </div>
+      </section>
     </div>
 
     <script>
-        function toggleThemeDropdown() {
-            const dropdown = document.getElementById('themeDropdown');
-            dropdown.classList.toggle('show');
-        }
+      function toggleThemeDropdown() {
+        const dropdown = document.getElementById("themeDropdown");
+        dropdown.classList.toggle("show");
+      }
 
-        function setTheme(theme) {
-            document.body.setAttribute('data-theme', theme);
-            localStorage.setItem('selectedTheme', theme);
-            document.getElementById('themeDropdown').classList.remove('show');
-        }
+      function setTheme(theme) {
+        document.body.setAttribute("data-theme", theme);
+        localStorage.setItem("selectedTheme", theme);
+        document.getElementById("themeDropdown").classList.remove("show");
+      }
 
-        // Close dropdown when clicking outside
-        document.addEventListener('click', function(event) {
-            const themeSwitcher = document.querySelector('.theme-switcher');
-            const dropdown = document.getElementById('themeDropdown');
-            
-            if (!themeSwitcher.contains(event.target)) {
-                dropdown.classList.remove('show');
+      // Close dropdown when clicking outside
+      document.addEventListener("click", function (event) {
+        const themeSwitcher = document.querySelector(".theme-switcher");
+        const dropdown = document.getElementById("themeDropdown");
+
+        if (!themeSwitcher.contains(event.target)) {
+          dropdown.classList.remove("show");
+        }
+      });
+
+      // Add smooth scrolling for internal links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      window.addEventListener("DOMContentLoaded", () => {
+        const savedTheme = localStorage.getItem("selectedTheme") || "dark";
+        document.body.setAttribute("data-theme", savedTheme);
+      });
+    </script>
+
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("/service-worker.js").then(
+            (registration) => {
+              console.log(
+                "Service Worker registered with scope:",
+                registration.scope
+              );
+            },
+            (err) => {
+              console.log("Service Worker registration failed:", err);
             }
+          );
         });
-
-        // Add smooth scrolling for internal links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        window.addEventListener('DOMContentLoaded', () => {
-            const savedTheme = localStorage.getItem('selectedTheme') || 'dark';
-            document.body.setAttribute('data-theme', savedTheme);
-        });
-
+      }
     </script>
-
     <script>
-        if ("serviceWorker" in navigator) {
-            window.addEventListener("load", () => {
-            navigator.serviceWorker.register("/service-worker.js").then(
-                (registration) => {
-                console.log("Service Worker registered with scope:", registration.scope);
-                },
-                (err) => {
-                console.log("Service Worker registration failed:", err);
-                }
-            );
-            });
+      const profileImage = document.getElementById("profileImage");
+
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 60) {
+          profileImage.classList.add("shrink-profile");
+        } else {
+          profileImage.classList.remove("shrink-profile");
         }
+      });
     </script>
     <script>
-        const profileImage = document.getElementById('profileImage');
+      let deferredPrompt;
+      const a2hsBtn = document.createElement("button");
+      a2hsBtn.textContent = "📲 Add to Home Screen";
+      a2hsBtn.style.position = "fixed";
+      a2hsBtn.style.bottom = "20px";
+      a2hsBtn.style.right = "20px";
+      a2hsBtn.style.padding = "10px 14px";
+      a2hsBtn.style.background = "#2c3e50";
+      a2hsBtn.style.color = "#fff";
+      a2hsBtn.style.border = "none";
+      a2hsBtn.style.borderRadius = "6px";
+      a2hsBtn.style.cursor = "pointer";
+      a2hsBtn.style.zIndex = "9999";
+      a2hsBtn.style.display = "none";
+      document.body.appendChild(a2hsBtn);
 
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 60) {
-            profileImage.classList.add('shrink-profile');
+      window.addEventListener("beforeinstallprompt", (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        a2hsBtn.style.display = "block";
+      });
+
+      a2hsBtn.addEventListener("click", () => {
+        a2hsBtn.style.display = "none";
+        if (deferredPrompt) {
+          deferredPrompt.prompt();
+          deferredPrompt.userChoice.then((choiceResult) => {
+            if (choiceResult.outcome === "accepted") {
+              console.log("User accepted the A2HS prompt");
             } else {
-            profileImage.classList.remove('shrink-profile');
+              console.log("User dismissed the A2HS prompt");
             }
-        });
+            deferredPrompt = null;
+          });
+        }
+      });
     </script>
-
-</body>
+  </body>
 </html>
