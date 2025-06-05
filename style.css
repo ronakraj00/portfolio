@@ -540,14 +540,15 @@ body {
 /* When scrolled, shrink and fix to top-left */
 .shrink-profile {
   border-radius: 14px !important;
-  width: 50px !important;
-  height: 50px !important;
+  width: 2.4rem !important;
+  height: 2.4rem !important;
   position: fixed;
-  top: 18px;
-  left: 12px;
+  top: 1rem;
+  left: 1rem;
   z-index: 1000;
   background: var(--bg-secondary) !important;
   overflow: hidden;
+  border-radius: 8px !important;
 }
 
 .shrink-profile .profile-images-container {
