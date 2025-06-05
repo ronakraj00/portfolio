@@ -86,6 +86,13 @@ function startCircleGame(container) {
       positionCircle,
       Math.random() * 1500 + 1000
     );
+
+    if (reactionTimes.length === 5) {
+      gameActive = false;
+      saveScore("circle", Number(getAverageTime(reactionTimes).toFixed(2)));
+      message.textContent += " | Game Over!";
+      return;
+    }
   };
 
   // Ensure the first circle is ready and has text
@@ -123,6 +130,7 @@ function startClickerGame(container) {
       clickMeBtn.disabled = true;
       clickMeBtn.textContent = "Time's Up!";
       gameActive = false;
+      saveScore("clicker", score);
     }
   }, 1000);
 }
@@ -144,6 +152,7 @@ function startMemoryGame(container) {
   const message = container.querySelector("#memoryMessage");
   let flipped = [];
   let matched = [];
+  let startTime = Date.now(); // Start timer
 
   gameCards.forEach((emoji, idx) => {
     const card = document.createElement("div");
@@ -179,8 +188,10 @@ function startMemoryGame(container) {
           grid.children[i].classList.remove("flipped");
         });
         if (matched.length === gameCards.length) {
-          message.textContent = "🎉 You matched all pairs!";
+          const timeTaken = ((Date.now() - startTime) / 1000).toFixed(2);
+          message.textContent = `🎉 You matched all pairs in ${timeTaken}s!`;
           gameActive = false;
+          saveScore("memory", Number(timeTaken)); // Save time taken as score
         }
       } else {
         message.textContent = "Try again!";
@@ -242,6 +253,7 @@ function startGuessGame(container) {
       guessResult.textContent = `🎉 Correct! You guessed it in ${attempts} attempts!`;
       gameActive = false;
       guessBtn.disabled = true;
+      saveScore("guess", 100 - attempts + 1); // Higher score for fewer attempts
     } else if (val < target) {
       guessResult.textContent = "Too low! Try again.";
     } else {
@@ -289,15 +301,18 @@ function startWhackGame(container) {
     const moleIndex = Math.floor(Math.random() * 9);
     const moleHole = grid.children[moleIndex];
     moleHole.classList.add("active");
-    moleHole.querySelector("img").style.display = "block"; // Show the mole image
+    moleHole.querySelector("img").style.display = "block";
     moleHole.onclick = () => {
       if (!gameActive) return;
       score++;
       document.getElementById("whackScore").textContent = score;
       moleHole.classList.remove("active");
-      moleHole.querySelector("img").style.display = "none"; // Hide the mole image
+      moleHole.querySelector("img").style.display = "none";
+      if (score >= 20) {
+        gameActive = false;
+        saveScore("whack", score);
+      }
     };
-    // Speed up: reduce the timeout range (was 700-1300ms, now 300-700ms)
     window.whackTimeout = setTimeout(showMole, Math.random() * 400 + 300);
   }
 
@@ -319,3 +334,69 @@ function shuffleArray(arr) {
   }
   return arr;
 }
+
+// ====== User Name Modal Logic ======
+function getUserName() {
+  return new Promise((resolve) => {
+    const modal = document.getElementById("userNameModal");
+    const input = document.getElementById("userNameInput");
+    const btn = document.getElementById("userNameSubmitBtn");
+    modal.style.display = "flex";
+    input.value = "";
+    input.focus();
+    function submit() {
+      const name = input.value.trim();
+      if (name) {
+        modal.style.display = "none";
+        btn.removeEventListener("click", submit);
+        input.removeEventListener("keydown", onKeyDown);
+        resolve(name);
+      }
+    }
+    function onKeyDown(e) {
+      if (e.key === "Enter") submit();
+    }
+    btn.addEventListener("click", submit);
+    input.addEventListener("keydown", onKeyDown);
+  });
+}
+
+// getUserName();
+
+async function saveScore(game, score) {
+  let name = localStorage.getItem("userName");
+  if (!name) {
+    name = await getUserName();
+    localStorage.setItem("userName", name);
+  }
+  fetch("http://localhost:3001/api/score", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ game, name, score }),
+  }).then(() => {
+    updateHallOfFame(game);
+  });
+}
+
+// ====== Hall of Fame Update Logic ======
+function updateHallOfFame(game) {
+  fetch(`http://localhost:3001/api/hall-of-fame/${game}`)
+    .then((res) => res.json())
+    .then((list) => {
+      const ul = document.getElementById(`hof-list-${game}`);
+      if (!ul) return;
+      ul.innerHTML = "";
+      list.forEach((entry, i) => {
+        const li = document.createElement("li");
+        li.innerHTML = `<span class="hall-of-fame-rank">#${
+          i + 1
+        }</span> <span>${entry.name}</span> <span>${entry.score}</span>`;
+        ul.appendChild(li);
+      });
+    });
+}
+
+// ====== On page load, update all Hall of Fame lists ======
+window.addEventListener("DOMContentLoaded", () => {
+  ["memory", "whack", "circle", "clicker", "guess"].forEach(updateHallOfFame);
+});
