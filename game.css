@@ -14,10 +14,28 @@
 
 .game-list {
   display: flex;
-  flex-wrap: wrap;
   gap: 10px;
-  justify-content: center;
+  justify-content: flex-start;
   margin-bottom: 1rem;
+  overflow-x: auto;
+  padding: 10px 0;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) var(--bg-secondary);
+  -webkit-overflow-scrolling: touch;
+}
+
+.game-list::-webkit-scrollbar {
+  height: 6px;
+}
+
+.game-list::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+  border-radius: 3px;
+}
+
+.game-list::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 3px;
 }
 
 .game-btn {
@@ -28,13 +46,20 @@
   border-radius: 6px;
   cursor: pointer;
   font-weight: 600;
-  /* box-shadow: 0 3px 6px rgba(0,0,0,0.1); */
-  transition: background 0.3s ease, box-shadow 0.2s ease;
+  transition: background 0.3s ease, transform 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .game-btn:hover {
   background: var(--bg-primary, #357abd);
-  /* box-shadow: 0 6px 12px rgba(0,0,0,0.15); */
+  transform: translateY(-2px);
+}
+
+.game-btn.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  transform: translateY(-2px);
 }
 
 #gameArea {

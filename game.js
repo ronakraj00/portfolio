@@ -17,6 +17,17 @@ async function startGame(gameType) {
   
   gameActive = true;
 
+  // Remove active class from all game buttons
+  document.querySelectorAll('.game-btn').forEach(btn => {
+    btn.classList.remove('active');
+  });
+
+  // Add active class to the selected game button
+  const selectedBtn = document.querySelector(`.game-btn[onclick="startGame('${gameType}')"]`);
+  if (selectedBtn) {
+    selectedBtn.classList.add('active');
+  }
+
   if (gameType === "circle") {
     startCircleGame(gameArea);
   } else if (gameType === "clicker") {
