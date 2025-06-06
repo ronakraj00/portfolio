@@ -13,6 +13,7 @@
     <link rel="icon" type="image/x-icon" href="icon.png" />
     <link rel="manifest" href="manifest.json" />
     <meta name="theme-color" id="themeColorMeta" content="#000000" />
+    <meta name="color-scheme" id="colorSchemeMeta" content="dark" />
     <!-- <link rel="icon" type="image/png" href="icon.png" /> -->
   </head>
   <body data-theme="light">
@@ -512,6 +513,7 @@
       function setTheme(theme) {
         document.body.setAttribute("data-theme", theme);
         const themeColorMeta = document.getElementById("themeColorMeta");
+        const colorSchemeMeta = document.getElementById("colorSchemeMeta");
         
         // Set theme color based on the selected theme
         const themeColors = {
@@ -529,6 +531,7 @@
         };
         
         themeColorMeta.setAttribute("content", themeColors[theme] || "#ffffff");
+        colorSchemeMeta.setAttribute("content", theme === "light" ? "light" : "dark");
         localStorage.setItem("selectedTheme", theme);
         document.getElementById("themeDropdown").classList.remove("show");
       }
@@ -577,7 +580,9 @@
         };
         
         const themeColorMeta = document.getElementById("themeColorMeta");
+        const colorSchemeMeta = document.getElementById("colorSchemeMeta");
         themeColorMeta.setAttribute("content", themeColors[savedTheme] || "#0a0a0a");
+        colorSchemeMeta.setAttribute("content", savedTheme === "light" ? "light" : "dark");
       });
     </script>
 
