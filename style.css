@@ -560,7 +560,7 @@ body {
 }
 
 /* When scrolled, shrink and fix to top-left */
-.shrink-profile {
+/* .shrink-profile {
   border-radius: 14px !important;
   width: 2.4rem !important;
   height: 2.4rem !important;
@@ -595,7 +595,7 @@ body {
   inset: 0;
   background: var(--bg-secondary);
   z-index: 1;
-}
+} */
 
 /* User Name Modal Styles */
 #userNameModal {
