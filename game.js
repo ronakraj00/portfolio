@@ -328,10 +328,7 @@ function startWhackGame(container) {
       document.getElementById("whackScore").textContent = score;
       moleHole.classList.remove("active");
       moleHole.querySelector("img").style.display = "none";
-      if (score >= 20) {
-        gameActive = false;
-        saveScore("whack", score);
-      }
+      saveScore("whack", score);
     };
     window.whackTimeout = setTimeout(showMole, Math.random() * 400 + 300);
   }
