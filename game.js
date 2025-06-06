@@ -363,19 +363,63 @@ function getUserName() {
 
 // getUserName();
 
+function showGraffitiCelebration() {
+  const graffiti = document.createElement('div');
+  graffiti.className = 'graffiti-celebration';
+  graffiti.textContent = 'HIGH SCORE!';
+  document.body.appendChild(graffiti);
+  
+  // Remove the element after animation completes
+  setTimeout(() => {
+    graffiti.remove();
+  }, 2000);
+}
+
+// Test the celebration
+showGraffitiCelebration();
+
 async function saveScore(game, score) {
   let name = localStorage.getItem("userName");
   if (!name) {
     name = await getUserName();
     localStorage.setItem("userName", name);
   }
-  fetch("https://portfolio-api-dwyy.onrender.com/api/score", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ game, name, score }),
-  }).then(() => {
+
+  try {
+    const response = await fetch("https://portfolio-api-dwyy.onrender.com/api/score", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ game, name, score }),
+    });
+
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+
+    const data = await response.json();
+    console.log('Score save response:', data); // Debug log
+
+    // Get current high scores to check if this is a new high score
+    const hofResponse = await fetch(`https://portfolio-api-dwyy.onrender.com/api/hall-of-fame/${game}`);
+    if (hofResponse.ok) {
+      const highScores = await hofResponse.json();
+      console.log('Current high scores:', highScores); // Debug log
+      
+      // Check if this score would be in top 3
+      const isHighScore = highScores.length < 3 || score > highScores[highScores.length - 1].score;
+      console.log('Is high score:', isHighScore); // Debug log
+      
+      if (isHighScore) {
+        showGraffitiCelebration();
+      }
+    }
+
+    // Update the hall of fame display
     updateHallOfFame(game);
-  });
+  } catch (error) {
+    console.error('Error saving score:', error);
+    updateHallOfFame(game);
+  }
 }
 
 // ====== Hall of Fame Update Logic ======
