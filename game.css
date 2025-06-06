@@ -1,7 +1,7 @@
 /* Common styling for all games container */
 #gamesSection {
-  max-width: 600px;
-  margin: 2rem auto;
+  width: 100%;
+  margin: 2rem 0;
   font-family: var(--font, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif);
   color: var(--text-primary, #222);
   /* pointer-events: none; */
@@ -10,6 +10,11 @@
   padding: 8px;
   /* margin-bottom: 120px; */
   user-select: none;
+}
+
+#gamesSection.section {
+  max-width: none;
+  margin: 2rem 0;
 }
 
 .game-list {
@@ -388,6 +393,7 @@
   border-radius: 24px;
   padding: 14px;
   padding-top: 40px;
+  max-width: 800px;
 }
 
 /* ================= Conway's Game of Life ================= */
