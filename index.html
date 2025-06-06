@@ -631,8 +631,10 @@
       a2hsBtn.style.position = "fixed";
       a2hsBtn.style.bottom = "20px";
       a2hsBtn.style.right = "20px";
-      a2hsBtn.style.fontWeight = "700";
+      a2hsBtn.style.fontWeight = "600";
       a2hsBtn.style.fontSize = "16px";
+      a2hsBtn.style.border = "2px solid var(--border)";
+      a2hsBtn.style.borderRadius = "14px";
       a2hsBtn.style.padding = "13px 8px";
       const accentColor = getComputedStyle(
         document.documentElement
@@ -641,9 +643,6 @@
       a2hsBtn.style.color = getComputedStyle(document.documentElement)
         .getPropertyValue("--text-primary")
         .trim();
-
-      a2hsBtn.style.border = "none";
-      a2hsBtn.style.borderRadius = "6px";
       a2hsBtn.style.cursor = "pointer";
       a2hsBtn.style.zIndex = "9999";
       a2hsBtn.style.display = "none";
