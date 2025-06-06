@@ -16,12 +16,16 @@ class StarsSimulation {
     }
 
     resize() {
-        this.canvas.width = this.canvas.offsetWidth;
-        this.canvas.height = this.canvas.offsetHeight;
+        // Get the parent section's dimensions
+        const section = this.canvas.parentElement;
+        if (section) {
+            this.canvas.width = section.offsetWidth;
+            this.canvas.height = section.offsetHeight;
+        }
     }
 
     createStars() {
-        const numberOfStars = 200;
+        const numberOfStars = Math.floor((this.canvas.width * this.canvas.height) / 1000); // Adjust star density based on canvas size
         for (let i = 0; i < numberOfStars; i++) {
             this.stars.push({
                 x: Math.random() * this.canvas.width,
@@ -126,6 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (section) {
             section.style.position = 'relative';
             section.style.overflow = 'hidden';
+            section.style.minHeight = '200px'; // Ensure minimum height for the section
             section.insertBefore(canvas, section.firstChild);
             
             // Move all content above the canvas
