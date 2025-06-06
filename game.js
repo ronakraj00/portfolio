@@ -489,6 +489,29 @@ function updateHallOfFame(game) {
 // ====== On page load, update all Hall of Fame lists ======
 window.addEventListener("DOMContentLoaded", () => {
   ["memory", "whack", "circle", "clicker", "guess"].forEach(updateHallOfFame);
+
+  // Add toggle functionality for games section
+  const gamesToggleTitle = document.getElementById("gamesToggleTitle");
+  const gamesContent = document.getElementById("gamesContent");
+  const gamesToggleIcon = document.getElementById("gamesToggleIcon");
+
+  if (gamesToggleTitle && gamesContent && gamesToggleIcon) {
+    gamesContent.classList.add("games-content-collapsed");
+    gamesToggleIcon.textContent = "▼";
+    gamesToggleTitle.classList.add("games-collapsed");
+    
+    gamesToggleTitle.onclick = function () {
+      if (gamesContent.classList.contains("games-content-collapsed")) {
+        gamesContent.classList.remove("games-content-collapsed");
+        gamesToggleIcon.textContent = "▲";
+        gamesToggleTitle.classList.remove("games-collapsed");
+      } else {
+        gamesContent.classList.add("games-content-collapsed");
+        gamesToggleIcon.textContent = "▼";
+        gamesToggleTitle.classList.add("games-collapsed");
+      }
+    };
+  }
 });
 
 /* ================= Conway's Game of Life ================= */

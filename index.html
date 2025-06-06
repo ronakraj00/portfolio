@@ -406,26 +406,31 @@
       </div>
 
       <section id="gamesSection" class="section">
-        <h2 class="section-title">🎮 Mini Games</h2>
-        <div>
-          <div class="game-list">
-            <button class="game-btn" onclick="startGame('memory')">
-              🃏 Memory Match
-            </button>
-            <button class="game-btn" onclick="startGame('whack')">
-              🐹 Find Totoro
-            </button>
-            <button class="game-btn" onclick="startGame('circle')">
-              🎯 Circle Reaction
-            </button>
-            <button class="game-btn" onclick="startGame('clicker')">
-              ⚡ Speed Clicker
-            </button>
-            <button class="game-btn" onclick="startGame('guess')">
-              🔢 Guess the Number
-            </button>
+        <h2 id="gamesToggleTitle" class="section-title games-toggle-title games-collapsed">
+          🎮 Mini Games
+          <span id="gamesToggleIcon" class="games-toggle-icon">▼</span>
+        </h2>
+        <div id="gamesContent" class="games-content-collapsed">
+          <div>
+            <div class="game-list">
+              <button class="game-btn" onclick="startGame('memory')">
+                🃏 Memory Match
+              </button>
+              <button class="game-btn" onclick="startGame('whack')">
+                🐹 Find Totoro
+              </button>
+              <button class="game-btn" onclick="startGame('circle')">
+                🎯 Circle Reaction
+              </button>
+              <button class="game-btn" onclick="startGame('clicker')">
+                ⚡ Speed Clicker
+              </button>
+              <button class="game-btn" onclick="startGame('guess')">
+                🔢 Guess the Number
+              </button>
+            </div>
+            <div id="gameArea"></div>
           </div>
-          <div id="gameArea"></div>
         </div>
       </section>
       <!-- Hall of Fame Section -->
@@ -586,19 +591,13 @@
         );
         const aboutIcon = aboutTitle.querySelector(".hof-toggle-icon");
         const aboutContent = document.getElementById("aboutMeContent");
-        // Show About Me collapsed for some users, uncollapsed for others (randomly)
+        
         if (aboutTitle && aboutIcon && aboutContent) {
-          // 50% chance to start open or closed
-          const open = Math.random() < 0.5;
-          if (open) {
-            aboutContent.classList.remove("hof-content-collapsed");
-            aboutIcon.textContent = "▲";
-            aboutTitle.classList.remove("hof-collapsed");
-          } else {
-            aboutContent.classList.add("hof-content-collapsed");
-            aboutIcon.textContent = "▼";
-            aboutTitle.classList.add("hof-collapsed");
-          }
+          // Always start collapsed
+          aboutContent.classList.add("hof-content-collapsed");
+          aboutIcon.textContent = "▼";
+          aboutTitle.classList.add("hof-collapsed");
+          
           aboutTitle.onclick = function () {
             if (aboutContent.classList.contains("hof-content-collapsed")) {
               aboutContent.classList.remove("hof-content-collapsed");
@@ -701,6 +700,7 @@
       });
     </script>
     <script src="game.js"></script>
+    <script src="games-simulation.js"></script>
     <script src="fluid.js"></script>
     <script>
       const imageContainer = document.getElementById("imageContainer");
