@@ -551,20 +551,25 @@ function startConwayGame(container) {
   }
 
   function drawCells() {
-    ctx.fillStyle = "var(--text-primary)";  // Use primary text color
-    ctx.font = `${cellSize - 2}px monospace`;  // Set font size to fit cell
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
+    // Use a solid color with good contrast
+    ctx.fillStyle = "#4CAF50";  // A visible green color
+    ctx.strokeStyle = "#2E7D32"; // Darker green for border
+    ctx.lineWidth = 1;
 
     for (let y = 0; y < gridSize; y++) {
       for (let x = 0; x < gridSize; x++) {
         if (grid[y][x]) {
-          // Draw question mark in the center of each cell
-          ctx.fillText(
-            "?",
-            x * cellSize + cellSize / 2,
-            y * cellSize + cellSize / 2
+          // Draw cells with rounded corners and border
+          ctx.beginPath();
+          ctx.roundRect(
+            x * cellSize + 1,
+            y * cellSize + 1,
+            cellSize - 2,
+            cellSize - 2,
+            2
           );
+          ctx.fill();
+          ctx.stroke();
         }
       }
     }

@@ -7,7 +7,7 @@ class GamesSimulation {
     this.animationId = null;
 
     // Matrix characters
-    this.chars = 'GAME PLAY FUN WIN LOSE SCORE LEVEL UP DOWN LEFT RIGHT';
+    this.chars = '🎮🎲🎯🎨🎭🎪🎫🎬🎭🎪🎨🎯🎲🎮';
     this.fontSize = 14;
     this.columns = 0;
 
