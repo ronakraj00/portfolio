@@ -278,12 +278,13 @@ body {
   display: none;
 }
 
-.about-section > .section-title{
+.about-section > .section-title {
   border: 1px solid var(--border) !important;
-  width:fit-content;
+  width: fit-content;
   font-size: 1rem !important;
   font-weight: 300 !important;
   padding: 0.5rem 1rem !important;
+  background: var(--bg-primary);
 }
 
 .about-section{
@@ -688,6 +689,15 @@ body {
 
 .hof-content-collapsed {
   display: none;
+}
+
+#hofToggleTitle.section-title {
+  border: 1px solid var(--border) !important;
+  width: fit-content;
+  font-size: 1rem !important;
+  font-weight: 300 !important;
+  padding: 0.5rem 1rem !important;
+  background: var(--bg-primary);
 }
 
 @media (max-width: 768px) {
