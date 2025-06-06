@@ -287,6 +287,7 @@ function startWhackGame(container) {
     const hole = document.createElement("div");
     hole.dataset.index = i;
     const mole = document.createElement("img"); // Create img element for mole
+    mole.style.borderRadius = "12px";
     mole.src = "icon.png"; // Use icon.png as mole
     mole.style.width = "100%";
     mole.style.height = "100%";
@@ -477,4 +478,184 @@ function updateHallOfFame(game) {
 // ====== On page load, update all Hall of Fame lists ======
 window.addEventListener("DOMContentLoaded", () => {
   ["memory", "whack", "circle", "clicker", "guess"].forEach(updateHallOfFame);
+});
+
+/* ================= Conway's Game of Life ================= */
+
+function startConwayGame(container) {
+  const gridSize = 40; // Increased grid size for more interesting patterns
+  const cellSize = 12; // Adjusted cell size for better visibility
+  let grid = Array(gridSize).fill().map(() => Array(gridSize).fill(0));
+  let animationFrameId = null;
+  let lastUpdate = 0;
+  const updateInterval = 300; // Control animation speed (lower = faster)
+
+  // Create canvas
+  const canvas = document.getElementById('conwayCanvas');
+  canvas.width = container.clientWidth;
+  canvas.height = container.clientHeight;
+  
+  const ctx = canvas.getContext("2d");
+
+  function drawGrid() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.strokeStyle = "var(--border)";
+    ctx.lineWidth = 0.3; // Thinner grid lines
+
+    // Draw vertical lines
+    for (let x = 0; x <= gridSize; x++) {
+      ctx.beginPath();
+      ctx.moveTo(x * cellSize, 0);
+      ctx.lineTo(x * cellSize, canvas.height);
+      ctx.stroke();
+    }
+
+    // Draw horizontal lines
+    for (let y = 0; y <= gridSize; y++) {
+      ctx.beginPath();
+      ctx.moveTo(0, y * cellSize);
+      ctx.lineTo(canvas.width, y * cellSize);
+      ctx.stroke();
+    }
+  }
+
+  function drawCells() {
+    // Use a solid color with good contrast
+    ctx.fillStyle = "#4CAF50";  // A visible green color
+    ctx.strokeStyle = "#2E7D32"; // Darker green for border
+    ctx.lineWidth = 1;
+
+    for (let y = 0; y < gridSize; y++) {
+      for (let x = 0; x < gridSize; x++) {
+        if (grid[y][x]) {
+          // Draw cells with rounded corners and border
+          ctx.beginPath();
+          ctx.roundRect(
+            x * cellSize + 1,
+            y * cellSize + 1,
+            cellSize - 2,
+            cellSize - 2,
+            2
+          );
+          ctx.fill();
+          ctx.stroke();
+        }
+      }
+    }
+  }
+
+  function countNeighbors(x, y) {
+    let count = 0;
+    for (let dy = -1; dy <= 1; dy++) {
+      for (let dx = -1; dx <= 1; dx++) {
+        if (dx === 0 && dy === 0) continue;
+        const nx = (x + dx + gridSize) % gridSize;
+        const ny = (y + dy + gridSize) % gridSize;
+        count += grid[ny][nx];
+      }
+    }
+    return count;
+  }
+
+  function updateGrid() {
+    const newGrid = Array(gridSize).fill().map(() => Array(gridSize).fill(0));
+    for (let y = 0; y < gridSize; y++) {
+      for (let x = 0; x < gridSize; x++) {
+        const neighbors = countNeighbors(x, y);
+        if (grid[y][x]) {
+          newGrid[y][x] = neighbors === 2 || neighbors === 3 ? 1 : 0;
+        } else {
+          newGrid[y][x] = neighbors === 3 ? 1 : 0;
+        }
+      }
+    }
+    grid = newGrid;
+  }
+
+  function createGlider(x, y) {
+    const pattern = [
+      [0, 1, 0],
+      [0, 0, 1],
+      [1, 1, 1]
+    ];
+    for (let dy = 0; dy < 3; dy++) {
+      for (let dx = 0; dx < 3; dx++) {
+        const nx = (x + dx + gridSize) % gridSize;
+        const ny = (y + dy + gridSize) % gridSize;
+        grid[ny][nx] = pattern[dy][dx];
+      }
+    }
+  }
+
+  function createBlinker(x, y) {
+    const pattern = [
+      [0, 1, 0],
+      [0, 1, 0],
+      [0, 1, 0]
+    ];
+    for (let dy = 0; dy < 3; dy++) {
+      for (let dx = 0; dx < 3; dx++) {
+        const nx = (x + dx + gridSize) % gridSize;
+        const ny = (y + dy + gridSize) % gridSize;
+        grid[ny][nx] = pattern[dy][dx];
+      }
+    }
+  }
+
+  function randomizeGrid() {
+    // Clear the grid first
+    grid = Array(gridSize).fill().map(() => Array(gridSize).fill(0));
+    
+    // Add some random cells
+    for (let y = 0; y < gridSize; y++) {
+      for (let x = 0; x < gridSize; x++) {
+        grid[y][x] = Math.random() > 0.7 ? 1 : 0;
+      }
+    }
+
+    // Add some interesting patterns
+    createGlider(Math.floor(gridSize * 0.2), Math.floor(gridSize * 0.2));
+    createBlinker(Math.floor(gridSize * 0.7), Math.floor(gridSize * 0.7));
+  }
+
+  function animate(timestamp) {
+    if (timestamp - lastUpdate >= updateInterval) {
+      updateGrid();
+      lastUpdate = timestamp;
+    }
+    drawGrid();
+    drawCells();
+    animationFrameId = requestAnimationFrame(animate);
+  }
+
+  // Initialize with random pattern
+  randomizeGrid();
+  drawGrid();
+  drawCells();
+  
+  // Start animation
+  animationFrameId = requestAnimationFrame(animate);
+
+  // Handle window resize
+  window.addEventListener('resize', () => {
+    canvas.width = container.clientWidth;
+    canvas.height = container.clientHeight;
+    drawGrid();
+    drawCells();
+  });
+
+  // Cleanup function to stop animation when needed
+  return () => {
+    if (animationFrameId) {
+      cancelAnimationFrame(animationFrameId);
+    }
+  };
+}
+
+// Initialize Conway's Game of Life when the DOM is loaded
+window.addEventListener("DOMContentLoaded", () => {
+  const conwayFooter = document.getElementById("conwayFooter");
+  if (conwayFooter) {
+    startConwayGame(conwayFooter);
+  }
 });
