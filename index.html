@@ -14,6 +14,7 @@
     <link rel="manifest" href="manifest.json" />
     <meta name="theme-color" id="themeColorMeta" content="#000000" />
     <meta name="color-scheme" id="colorSchemeMeta" content="dark" />
+    <script src="links.js"></script>
     <!-- <link rel="icon" type="image/png" href="icon.png" /> -->
   </head>
   <body data-theme="light">
@@ -401,6 +402,20 @@
                 <div class="language-name">Hindi</div>
                 <div>Fluent</div>
               </div>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <!-- Interesting Links Section -->
+      <div class="links-section">
+        <h2 class="section-title hof-toggle-title" style="border: none" onclick="toggleSection('interestingLinksContent', this)">
+          Interesting Things I Found on Internet <span class="hof-toggle-icon">▼</span>
+        </h2>
+        <div class="hof-content-collapsed" id="interestingLinksContent">
+          <section class="section">
+            <div class="links-grid" id="linksGrid">
+              <!-- Links will be populated by JavaScript -->
             </div>
           </section>
         </div>
@@ -823,6 +838,54 @@
       }
 
       resetAutoplay();
+    </script>
+    <script>
+      function toggleSection(contentId, element) {
+        const content = document.getElementById(contentId);
+        const icon = element.querySelector('.hof-toggle-icon');
+        
+        if (content) {
+          content.classList.toggle('hof-content-collapsed');
+          icon.textContent = content.classList.contains('hof-content-collapsed') ? '▼' : '▲';
+        }
+      }
+
+      // Function to populate links
+      function populateLinks() {
+        const linksGrid = document.getElementById('linksGrid');
+        if (!linksGrid) return;
+
+        interestingLinks.forEach(link => {
+          const linkCard = document.createElement('div');
+          linkCard.className = 'link-card';
+          linkCard.innerHTML = `
+              <a class="link-link" href="${link.url}" target="_blank" class="link-url">${link.title} →</a>
+          `;
+          linksGrid.appendChild(linkCard);
+        });
+      }
+
+      // Initialize all sections
+      document.addEventListener('DOMContentLoaded', function() {
+        // Initialize About Me section
+        const aboutMeTitle = document.querySelector('.hof-toggle-title');
+        if (aboutMeTitle) {
+          aboutMeTitle.onclick = function() {
+            toggleSection('aboutMeContent', this);
+          };
+        }
+        
+        // Initialize Interesting Links section
+        const interestingLinksTitle = document.querySelector('.hof-toggle-title:nth-of-type(2)');
+        if (interestingLinksTitle) {
+          interestingLinksTitle.onclick = function() {
+            toggleSection('interestingLinksContent', this);
+          };
+        }
+
+        // Populate links
+        populateLinks();
+      });
     </script>
   </body>
 </html>

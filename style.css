@@ -360,6 +360,9 @@ body {
 .about-section > .section-title::after {
   display: none;
 }
+.links-section > .section-title::after {
+  display: none;
+}
 
 .about-section > .section-title {
   border: 1px solid var(--border) !important;
@@ -369,14 +372,26 @@ body {
   padding: 0.5rem 1rem !important;
   background: var(--bg-primary);
 }
+.links-section > .section-title {
+  border: 1px solid var(--border) !important;
+  width: fit-content;
+  font-size: 1rem !important;
+  font-weight: 300 !important;
+  padding: 0.5rem 1rem !important;
+  background: var(--bg-primary);
+}
 
-.about-section{
+.about-section,.links-section{
   /* color: var(--accent); */
   border: 1px solid var(--border);
   padding: 14px;
   padding-top: 40px;
   border-radius: 24px;
   max-width: 800px;
+}
+
+.links-section{
+  margin-top: 40px;
 }
 
 .skills-grid {
@@ -1215,4 +1230,27 @@ html {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Interesting Links Section Styles */
+
+.link-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 4px;
+}
+
+.link-link {
+  color: var(--accent);
+  padding: 4px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.link-link:hover{
+  transform: translateX(4px);
 }
