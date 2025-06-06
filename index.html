@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="game.css" />
     <link rel="icon" type="image/x-icon" href="icon.png" />
     <link rel="manifest" href="manifest.json" />
-    <meta name="theme-color" content="#000000" />
+    <meta name="theme-color" id="themeColorMeta" content="#ffffff" />
     <!-- <link rel="icon" type="image/png" href="icon.png" /> -->
   </head>
   <body data-theme="light">
@@ -511,7 +511,24 @@
 
       function setTheme(theme) {
         document.body.setAttribute("data-theme", theme);
-        // updateA2HSButtonStyle();
+        const themeColorMeta = document.getElementById("themeColorMeta");
+        
+        // Set theme color based on the selected theme
+        const themeColors = {
+          light: "#ffffff",
+          dark: "#0a0a0a",
+          forest: "#f0f4f0",
+          ocean: "#f0f8ff",
+          japan: "#fff1f2",
+          retro: "#fffcf2",
+          future: "#0f0f1f",
+          cyberpunk: "#0d0221",
+          sunrise: "#fff3e0",
+          sunset: "#ffe0e0",
+          twilight: "#2c2c54"
+        };
+        
+        themeColorMeta.setAttribute("content", themeColors[theme] || "#ffffff");
         localStorage.setItem("selectedTheme", theme);
         document.getElementById("themeDropdown").classList.remove("show");
       }
