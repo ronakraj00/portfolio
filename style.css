@@ -168,6 +168,7 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
+  animation: fadeIn 0.3s ease-out;
 }
 
 .theme-switcher {
@@ -186,11 +187,44 @@ body {
   cursor: pointer;
   font-size: 1.2rem;
   transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  transform: translateZ(0);
+  -webkit-tap-highlight-color: transparent;
 }
 
 .theme-btn:hover {
   background: var(--hover);
   transform: scale(1.05);
+}
+
+.theme-btn::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%, -50%);
+  transform-origin: 50% 50%;
+}
+
+.theme-btn:active::after {
+  animation: ripple 0.6s ease-out;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(100, 100);
+    opacity: 0;
+  }
 }
 
 .theme-dropdown {
@@ -207,6 +241,8 @@ body {
 
   display: none;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
 }
 
 .theme-dropdown.show {
@@ -257,6 +293,24 @@ body {
   border: 2px solid var(--border);
   padding: 4px 16px;
   border-radius: 26px;
+  position: relative;
+  overflow: hidden;
+  transform: translateZ(0);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.contact-link::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%, -50%);
+  transform-origin: 50% 50%;
 }
 
 .contact-link:hover {
@@ -264,9 +318,25 @@ body {
   color: var(--text-primary);
 }
 
+.contact-link:active::after {
+  animation: ripple 0.6s ease-out;
+}
+
 .section {
   margin-bottom: 4rem;
   max-width: 800px !important;
+  animation: sectionFadeIn 0.4s ease-out;
+}
+
+@keyframes sectionFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .section-title {
@@ -314,6 +384,8 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
   margin-top: 2rem;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
 }
 
 .skill-category {
@@ -332,6 +404,8 @@ body {
   position: relative;
   z-index: 1;
   overflow: hidden;
+  animation: listItemFadeIn 0.3s ease-out;
+  animation-fill-mode: both;
 }
 
 .skill-category::before {
@@ -372,6 +446,28 @@ body {
   font-weight: 500;
   border: 1px solid var(--border);
   transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  transform: translateZ(0);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.skill-item::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%, -50%);
+  transform-origin: 50% 50%;
+}
+
+.skill-item:active::after {
+  animation: ripple 0.6s ease-out;
 }
 
 /* .skill-item:hover {
@@ -394,6 +490,8 @@ body {
   position: relative;
   z-index: 1;
   overflow: hidden;
+  animation: listItemFadeIn 0.3s ease-out;
+  animation-fill-mode: both;
 }
 
 .education-item::before {
@@ -487,10 +585,32 @@ body {
   align-items: center;
   gap: 0.5rem;
   transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  transform: translateZ(0);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.project-link::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%, -50%);
+  transform-origin: 50% 50%;
 }
 
 .project-link:hover {
   transform: translateX(5px);
+}
+
+.project-link:active::after {
+  animation: ripple 0.6s ease-out;
 }
 
 .languages {
@@ -510,6 +630,10 @@ body {
   position: relative;
   z-index: 1;
   overflow: hidden;
+  position: relative;
+  overflow: hidden;
+  animation: listItemFadeIn 0.3s ease-out;
+  animation-fill-mode: both;
 }
 
 .language-item::before {
@@ -520,6 +644,24 @@ body {
   background-size: contain;
   opacity: 0.1; /* control opacity here */
   z-index: -1;
+}
+
+.language-item::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%, -50%);
+  transform-origin: 50% 50%;
+}
+
+.language-item:active::after {
+  animation: ripple 0.6s ease-out;
 }
 
 /* .language-item:hover {
@@ -550,6 +692,8 @@ body {
   transition: all 0.4s ease-in-out;
   overflow: hidden;
   cursor: grab;
+  animation: listItemFadeIn 0.3s ease-out;
+  animation-fill-mode: both;
 }
 
 .profile-images-container {
@@ -624,6 +768,16 @@ body {
   z-index: 99999;
   align-items: center;
   justify-content: center;
+  animation: modalFadeIn 0.3s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 #userNameModal .user-modal-content {
@@ -639,6 +793,18 @@ body {
   align-items: center;
   border: 2px solid var(--border);
   font-family: var(--font, inherit);
+  animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 #userNameModal h3 {
@@ -659,6 +825,18 @@ body {
   background: var(--bg-secondary);
   color: var(--text-primary);
   transition: border-color 0.2s;
+  animation: inputFadeIn 0.3s ease-out;
+}
+
+@keyframes inputFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 #userNameInput:focus {
@@ -680,6 +858,10 @@ body {
   transition: background 0.2s;
   letter-spacing: 0.5px;
   border: 2px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  transform: translateZ(0);
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* #userNameSubmitBtn:hover {
@@ -832,5 +1014,205 @@ body {
   100% {
     opacity: 0;
     transform: scale(1);
+  }
+}
+
+/* Add smooth scrolling to the entire page */
+html {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Add Android-like touch feedback */
+.theme-btn,
+.contact-link,
+.project-link,
+.skill-item,
+.language-item,
+#userNameSubmitBtn {
+  position: relative;
+  overflow: hidden;
+  transform: translateZ(0);
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Ripple effect for buttons */
+.theme-btn::after,
+.contact-link::after,
+.project-link::after,
+.skill-item::after,
+.language-item::after,
+#userNameSubmitBtn::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%, -50%);
+  transform-origin: 50% 50%;
+}
+
+.theme-btn:active::after,
+.contact-link:active::after,
+.project-link:active::after,
+.skill-item:active::after,
+.language-item:active::after,
+#userNameSubmitBtn:active::after {
+  animation: ripple 0.6s ease-out;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(100, 100);
+    opacity: 0;
+  }
+}
+
+/* Enhance transitions for smoother animations */
+.theme-btn,
+.contact-link,
+.project-link,
+.skill-item,
+.language-item,
+#userNameSubmitBtn,
+.profile-image,
+.education-item,
+.project-item,
+.skill-category {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, opacity;
+}
+
+/* Add elevation and press effect */
+.theme-btn:active,
+.contact-link:active,
+.project-link:active,
+.skill-item:active,
+.language-item:active,
+#userNameSubmitBtn:active {
+  transform: scale(0.98);
+}
+
+/* Enhance scrolling containers */
+.theme-dropdown,
+.skills-grid,
+.project-tech,
+.languages {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+/* Add Android-like page transitions */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Enhance modal animations */
+#userNameModal .user-modal-content {
+  animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Add pull-to-refresh animation */
+@keyframes pullToRefresh {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Enhance profile image interactions */
+.profile-image {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.profile-image:active {
+  transform: scale(0.95);
+}
+
+/* Add Android-like list item animations */
+.education-item,
+.project-item,
+.skill-category {
+  animation: listItemFadeIn 0.3s ease-out;
+  animation-fill-mode: both;
+}
+
+.education-item:nth-child(2),
+.project-item:nth-child(2),
+.skill-category:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.education-item:nth-child(3),
+.project-item:nth-child(3),
+.skill-category:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+@keyframes listItemFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Add Android-like input field animations */
+#userNameInput {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#userNameInput:focus {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Add Android-like section transitions */
+.section {
+  animation: sectionFadeIn 0.4s ease-out;
+}
+
+@keyframes sectionFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
