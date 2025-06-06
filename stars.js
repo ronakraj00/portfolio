@@ -16,7 +16,6 @@ class StarsSimulation {
     }
 
     resize() {
-        // Get the parent section's dimensions
         const section = this.canvas.parentElement;
         if (section) {
             this.canvas.width = section.offsetWidth;
@@ -25,17 +24,40 @@ class StarsSimulation {
     }
 
     createStars() {
-        const numberOfStars = Math.floor((this.canvas.width * this.canvas.height) / 1000); // Adjust star density based on canvas size
+        const numberOfStars = Math.floor((this.canvas.width * this.canvas.height) / 800); // Increased star density
+        
+        // Create different types of stars
         for (let i = 0; i < numberOfStars; i++) {
+            const starType = Math.random();
+            let size, speed, brightness, twinkleSpeed;
+            
+            if (starType < 0.6) { // 60% small stars
+                size = Math.random() * 1 + 0.5;
+                speed = Math.random() * 0.02 - 0.01;
+                brightness = Math.random() * 0.3 + 0.2;
+                twinkleSpeed = Math.random() * 0.02 + 0.01;
+            } else if (starType < 0.9) { // 30% medium stars
+                size = Math.random() * 1.5 + 1;
+                speed = Math.random() * 0.03 - 0.015;
+                brightness = Math.random() * 0.4 + 0.3;
+                twinkleSpeed = Math.random() * 0.015 + 0.01;
+            } else { // 10% large stars
+                size = Math.random() * 2 + 1.5;
+                speed = Math.random() * 0.04 - 0.02;
+                brightness = Math.random() * 0.5 + 0.4;
+                twinkleSpeed = Math.random() * 0.01 + 0.005;
+            }
+
             this.stars.push({
                 x: Math.random() * this.canvas.width,
                 y: Math.random() * this.canvas.height,
-                size: Math.random() * 2 + 0.5,
-                speedX: Math.random() * 0.05 - 0.025,
-                speedY: Math.random() * 0.05 - 0.025,
-                brightness: Math.random() * 0.5 + 0.2,
-                twinkleSpeed: Math.random() * 0.03 + 0.02,
-                twinkleDirection: Math.random() > 0.5 ? 1 : -1
+                size: size,
+                speedX: speed,
+                speedY: speed,
+                brightness: brightness,
+                twinkleSpeed: twinkleSpeed,
+                twinkleDirection: Math.random() > 0.5 ? 1 : -1,
+                originalBrightness: brightness // Store original brightness for reference
             });
         }
     }
@@ -49,10 +71,44 @@ class StarsSimulation {
         });
     }
 
+    getStarColor(brightness) {
+        const theme = document.body.getAttribute('data-theme') || 'dark';
+        
+        const colors = {
+            light: `rgba(0, 0, 0, ${brightness * 0.8})`,
+            dark: `rgba(255, 255, 255, ${brightness})`,
+            forest: `rgba(0, 100, 0, ${brightness})`,
+            ocean: `rgba(0, 0, 139, ${brightness})`,
+            japan: `rgba(255, 0, 0, ${brightness})`,
+            retro: `rgba(128, 0, 128, ${brightness})`,
+            future: `rgba(0, 255, 255, ${brightness})`,
+            cyberpunk: `rgba(255, 0, 255, ${brightness})`,
+            sunrise: `rgba(255, 165, 0, ${brightness})`,
+            sunset: `rgba(255, 69, 0, ${brightness})`,
+            twilight: `rgba(75, 0, 130, ${brightness})`
+        };
+
+        return colors[theme] || colors.dark;
+    }
+
     drawStar(star) {
+        // Draw star glow
+        const gradient = this.ctx.createRadialGradient(
+            star.x, star.y, 0,
+            star.x, star.y, star.size * 2
+        );
+        gradient.addColorStop(0, this.getStarColor(star.brightness));
+        gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+
+        this.ctx.beginPath();
+        this.ctx.arc(star.x, star.y, star.size * 2, 0, Math.PI * 2);
+        this.ctx.fillStyle = gradient;
+        this.ctx.fill();
+
+        // Draw star core
         this.ctx.beginPath();
         this.ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
-        this.ctx.fillStyle = `rgba(255, 255, 255, ${star.brightness})`;
+        this.ctx.fillStyle = this.getStarColor(star.brightness);
         this.ctx.fill();
     }
 
@@ -63,11 +119,11 @@ class StarsSimulation {
 
         // Enhanced twinkle effect
         star.brightness += star.twinkleSpeed * star.twinkleDirection;
-        if (star.brightness >= 1 || star.brightness <= 0.1) {
+        if (star.brightness >= star.originalBrightness + 0.3 || star.brightness <= star.originalBrightness - 0.2) {
             star.twinkleDirection *= -1;
         }
 
-        // More subtle mouse interaction
+        // Subtle mouse interaction
         const dx = this.mouse.x - star.x;
         const dy = this.mouse.y - star.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
@@ -75,15 +131,15 @@ class StarsSimulation {
         if (distance < this.mouse.radius) {
             const angle = Math.atan2(dy, dx);
             const force = (this.mouse.radius - distance) / this.mouse.radius;
-            star.x -= Math.cos(angle) * force * 1.5;
-            star.y -= Math.sin(angle) * force * 1.5;
+            star.x -= Math.cos(angle) * force * 1.2;
+            star.y -= Math.sin(angle) * force * 1.2;
         }
 
-        // Wrap around edges
-        if (star.x < 0) star.x = this.canvas.width;
-        if (star.x > this.canvas.width) star.x = 0;
-        if (star.y < 0) star.y = this.canvas.height;
-        if (star.y > this.canvas.height) star.y = 0;
+        // Wrap around edges with smooth transition
+        if (star.x < -10) star.x = this.canvas.width + 10;
+        if (star.x > this.canvas.width + 10) star.x = -10;
+        if (star.y < -10) star.y = this.canvas.height + 10;
+        if (star.y > this.canvas.height + 10) star.y = -10;
     }
 
     animate() {
@@ -130,10 +186,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (section) {
             section.style.position = 'relative';
             section.style.overflow = 'hidden';
-            section.style.minHeight = '200px'; // Ensure minimum height for the section
+            section.style.minHeight = '200px';
             section.insertBefore(canvas, section.firstChild);
             
-            // Move all content above the canvas
             if (linksContent) {
                 linksContent.style.position = 'relative';
                 linksContent.style.zIndex = '1';
@@ -146,12 +201,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function handleToggle(content, simulation, section) {
         if (content.classList.contains('hof-content-collapsed')) {
-            // Section is collapsed, create new simulation
             if (!simulation) {
                 return createStarsSimulation(section);
             }
         } else {
-            // Section is expanded, destroy the simulation
             if (simulation) {
                 simulation.destroy();
                 return null;
@@ -160,12 +213,10 @@ document.addEventListener('DOMContentLoaded', () => {
         return simulation;
     }
 
-    // Initial setup
     if (linksContent && linksContent.classList.contains('hof-content-collapsed')) {
         starsSimulation = createStarsSimulation(linksSection);
     }
 
-    // Add observer to watch for class changes
     const observer = new MutationObserver((mutations) => {
         mutations.forEach((mutation) => {
             if (mutation.attributeName === 'class') {
