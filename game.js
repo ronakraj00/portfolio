@@ -3,10 +3,18 @@ let gameActive = false;
 // Utility for delay
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
-function startGame(gameType) {
+async function startGame(gameType) {
   const gameArea = document.getElementById("gameArea");
   gameArea.innerHTML = "";
   clearAllTimers();
+  
+  // Get user name before starting the game
+  let name = localStorage.getItem("userName");
+  if (!name) {
+    name = await getUserName();
+    localStorage.setItem("userName", name);
+  }
+  
   gameActive = true;
 
   if (gameType === "circle") {
@@ -376,13 +384,13 @@ function showGraffitiCelebration() {
 }
 
 // Test the celebration
-showGraffitiCelebration();
+// showGraffitiCelebration();
 
 async function saveScore(game, score) {
-  let name = localStorage.getItem("userName");
+  const name = localStorage.getItem("userName");
   if (!name) {
-    name = await getUserName();
-    localStorage.setItem("userName", name);
+    console.error("No user name found");
+    return;
   }
 
   try {
@@ -397,17 +405,17 @@ async function saveScore(game, score) {
     }
 
     const data = await response.json();
-    console.log('Score save response:', data); // Debug log
+    console.log('Score save response:', data);
 
     // Get current high scores to check if this is a new high score
     const hofResponse = await fetch(`https://portfolio-api-dwyy.onrender.com/api/hall-of-fame/${game}`);
     if (hofResponse.ok) {
       const highScores = await hofResponse.json();
-      console.log('Current high scores:', highScores); // Debug log
+      console.log('Current high scores:', highScores);
       
       // Check if this score would be in top 3
       const isHighScore = highScores.length < 3 || score > highScores[highScores.length - 1].score;
-      console.log('Is high score:', isHighScore); // Debug log
+      console.log('Is high score:', isHighScore);
       
       if (isHighScore) {
         showGraffitiCelebration();

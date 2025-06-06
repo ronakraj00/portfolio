@@ -633,12 +633,12 @@ body {
 }
 
 #userNameInput {
-  padding: 10px 16px;
+  padding: 13px 36px;
   border-radius: 8px;
   border: 2px solid var(--border);
   font-size: 1rem;
   margin-bottom: 1.2rem;
-  width: 180px;
+  width: 280px;
   text-align: center;
   background: var(--bg-secondary);
   color: var(--text-primary);
@@ -652,7 +652,8 @@ body {
 }
 
 #userNameSubmitBtn {
-  padding: 8px 24px;
+  width: 280px;
+  padding: 8px 48px;
   border-radius: 8px;
   background: var(--accent);
   color: #fff;
@@ -662,7 +663,7 @@ body {
   cursor: pointer;
   transition: background 0.2s;
   letter-spacing: 0.5px;
-  border: 2px solid black;
+  border: 2px solid var(--border);
 }
 
 /* #userNameSubmitBtn:hover {
