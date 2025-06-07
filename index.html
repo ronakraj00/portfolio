@@ -108,6 +108,20 @@
       .main-content.show {
         opacity: 1;
       }
+
+      .emoji-animation {
+        display: inline-block;
+        animation: emojiChange 2s infinite;
+      }
+
+      @keyframes emojiChange {
+        0%, 50% {
+          content: "❤️";
+        }
+        50.1%, 100% {
+          content: "🧠";
+        }
+      }
     </style>
   </head>
   <body data-theme="light">
@@ -595,7 +609,7 @@
       <footer id="conwayFooter">
         <canvas id="conwayCanvas"></canvas>
         <div class="footer-content">
-          <p>Designed and Developed with ❤️ by Ronak</p>
+          <p>Designed and Developed with <span id="emoji-animation">❤️</span> by Ronak</p>
           
           <p class="conway-credit">Background: <a style="color: var(--text-secondary); list-style: none; text-decoration: none;" href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" target="_blank">Conway's Game of Life ↗</a></p>
         </div>
@@ -1004,6 +1018,16 @@
           }, 500);
         }, 500);
       });
+    </script>
+    <script>
+      // Emoji animation
+      const emojiElement = document.getElementById('emoji-animation');
+      let isHeart = true;
+      
+      setInterval(() => {
+        emojiElement.textContent = isHeart ? '🧠' : '❤️';
+        isHeart = !isHeart;
+      }, 2000);
     </script>
   </body>
 </html>
