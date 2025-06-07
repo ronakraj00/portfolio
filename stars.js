@@ -25,6 +25,7 @@ class StarsSimulation {
 
     createStars() {
         const numberOfStars = Math.floor((this.canvas.width * this.canvas.height) / 800); // Increased star density
+        const minDistance = 20; // Minimum distance between stars
         
         // Create different types of stars
         for (let i = 0; i < numberOfStars; i++) {
@@ -48,16 +49,43 @@ class StarsSimulation {
                 twinkleSpeed = Math.random() * 0.01 + 0.005;
             }
 
+            // Try to find a valid position for the star
+            let x, y;
+            let attempts = 0;
+            const maxAttempts = 50;
+
+            do {
+                x = Math.random() * this.canvas.width;
+                y = Math.random() * this.canvas.height;
+                attempts++;
+
+                // Check if this position is far enough from other stars
+                let isValid = true;
+                for (let j = 0; j < this.stars.length; j++) {
+                    const dx = x - this.stars[j].x;
+                    const dy = y - this.stars[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < minDistance) {
+                        isValid = false;
+                        break;
+                    }
+                }
+
+                if (isValid || attempts >= maxAttempts) {
+                    break;
+                }
+            } while (true);
+
             this.stars.push({
-                x: Math.random() * this.canvas.width,
-                y: Math.random() * this.canvas.height,
+                x: x,
+                y: y,
                 size: size,
                 speedX: speed,
                 speedY: speed,
                 brightness: brightness,
                 twinkleSpeed: twinkleSpeed,
                 twinkleDirection: Math.random() > 0.5 ? 1 : -1,
-                originalBrightness: brightness // Store original brightness for reference
+                originalBrightness: brightness
             });
         }
     }
