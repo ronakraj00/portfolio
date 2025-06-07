@@ -364,6 +364,10 @@ body {
   display: none;
 }
 
+.links-section{
+  min-height: fit-content !important;
+}
+
 .about-section > .section-title {
   border: 1px solid var(--border) !important;
   width: fit-content;
@@ -379,6 +383,7 @@ body {
   font-weight: 300 !important;
   padding: 0.5rem 1rem !important;
   background: var(--bg-primary);
+  font-size: 0.8rem !important;
 }
 
 .about-section,.links-section{
@@ -957,6 +962,9 @@ body {
     flex-direction: column;
     align-items: flex-start;
   }
+
+  
+
 }
 
 /* Graffiti Celebration Styles */
