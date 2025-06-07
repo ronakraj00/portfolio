@@ -67,508 +67,554 @@
       .toast.show {
         opacity: 1;
       }
+      .loading-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--background);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        transition: opacity 0.5s ease-out;
+      }
+
+      .loading-overlay.fade-out {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .loading-spinner {
+        width: 50px;
+        height: 50px;
+        border: 3px solid var(--border);
+        border-top: 3px solid var(--accent);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+
+      .main-content {
+        opacity: 0;
+        transition: opacity 0.5s ease-in;
+      }
+
+      .main-content.show {
+        opacity: 1;
+      }
     </style>
   </head>
   <body data-theme="light">
-    <div class="toast" id="toast"></div>
-    <div class="theme-switcher">
-      <button class="theme-btn" onclick="toggleThemeDropdown()">
-        <i class="fas fa-palette"></i>
-      </button>
-      <div class="theme-dropdown" id="themeDropdown">
-        <div class="theme-option" onclick="setTheme('light')">Light</div>
-        <div class="theme-option" onclick="setTheme('dark')">Dark</div>
-        <div class="theme-option" onclick="setTheme('forest')">Forest</div>
-        <div class="theme-option" onclick="setTheme('ocean')">Ocean</div>
-        <div class="theme-option" onclick="setTheme('japan')">Japan</div>
-        <div class="theme-option" onclick="setTheme('retro')">Retro</div>
-        <div class="theme-option" onclick="setTheme('future')">Future</div>
-        <div class="theme-option" onclick="setTheme('cyberpunk')">
-          Cyberpunk
-        </div>
-        <div class="theme-option" onclick="setTheme('sunrise')">Sunrise</div>
-        <div class="theme-option" onclick="setTheme('sunset')">Sunset</div>
-        <div class="theme-option" onclick="setTheme('twilight')">Twilight</div>
-      </div>
+    <div class="loading-overlay">
+      <div class="loading-spinner"></div>
     </div>
-
-    <div class="container">
-      <header class="header">
-        <div class="profile-header">
-          <div class="profile-image" id="profileImage">
-            <div class="profile-images-container" id="imageContainer">
-              <div
-                class="profile-image-slide"
-                style="background-image: url('profile_me_picture_2.jpg')"
-              ></div>
-              <div
-                class="profile-image-slide"
-                style="background-image: url('image.png')"
-              ></div>
-              <div
-                class="profile-image-slide"
-                style="background-image: url('image2.png')"
-              ></div>
-              <div
-                class="profile-image-slide"
-                style="background-image: url('image3.png')"
-              ></div>
-              <div
-                class="profile-image-slide"
-                style="background-image: url('image5.png')"
-              ></div>
-              <div
-                class="profile-image-slide"
-                style="background-image: url('image6.png')"
-              ></div>
-            </div>
-            <div class="profile-nav-dots" id="navDots"></div>
+    <div class="main-content">
+      <div class="toast" id="toast"></div>
+      <div class="theme-switcher">
+        <button class="theme-btn" onclick="toggleThemeDropdown()">
+          <i class="fas fa-palette"></i>
+        </button>
+        <div class="theme-dropdown" id="themeDropdown">
+          <div class="theme-option" onclick="setTheme('light')">Light</div>
+          <div class="theme-option" onclick="setTheme('dark')">Dark</div>
+          <div class="theme-option" onclick="setTheme('forest')">Forest</div>
+          <div class="theme-option" onclick="setTheme('ocean')">Ocean</div>
+          <div class="theme-option" onclick="setTheme('japan')">Japan</div>
+          <div class="theme-option" onclick="setTheme('retro')">Retro</div>
+          <div class="theme-option" onclick="setTheme('future')">Future</div>
+          <div class="theme-option" onclick="setTheme('cyberpunk')">
+            Cyberpunk
           </div>
-          <div class="name-section">
-            <h1 class="name">༺ RONAK RAJ ༻</h1>
-            <p class="location">Student, NIT KKR</p>
-          </div>
-        </div>
-        <div class="contact-links">
-          <a
-            target="_blank"
-            href="mailto:contactronakraj@gmail.com"
-            class="contact-link"
-          >
-            <i class="fas fa-envelope"></i>
-            Email
-          </a>
-          <a
-            target="_blank"
-            href="https://www.linkedin.com/in/ronakraj00/"
-            class="contact-link"
-          >
-            <i class="fab fa-linkedin"></i>
-            LinkedIn
-          </a>
-          <a target="_blank" href="resume_ronak_raj.html" class="contact-link">
-            <i class="fas fa-globe"></i>
-            Resume
-          </a>
-          <a
-            target="_blank"
-            href="https://github.com/ronakraj00"
-            class="contact-link"
-          >
-            <i class="fab fa-github"></i>
-            GitHub
-          </a>
-        </div>
-      </header>
-
-      <!-- About Me Collapsible Div -->
-      <div class="about-section">
-        <h2 class="section-title hof-toggle-title" style="border: none">
-          About Me <span class="hof-toggle-icon">▼</span>
-        </h2>
-        <div class="hof-content-collapsed" id="aboutMeContent">
-          <section class="section">
-            <h2 class="section-title">Core Skills</h2>
-            <div class="skills-grid">
-              <div class="skill-category">
-                <h3>Frontend</h3>
-                <div class="skill-items">
-                  <div class="skill-item">
-                    <i class="fab fa-react" style="color: #61dafb"></i>
-                    React
-                  </div>
-                  <div class="skill-item">
-                    <i class="fab fa-js-square" style="color: #f7df1e"></i>
-                    JavaScript (ES6+)
-                  </div>
-                  <div class="skill-item">
-                    <i class="fab fa-html5" style="color: #e34f26"></i>
-                    HTML
-                  </div>
-                  <div class="skill-item">
-                    <i class="fab fa-css3-alt" style="color: #1572b6"></i>
-                    CSS
-                  </div>
-                  <div class="skill-item">
-                    <i class="fas fa-wind" style="color: #06b6d4"></i>
-                    Tailwind CSS
-                  </div>
-                  <div class="skill-item">
-                    <i class="fas fa-mobile-alt"></i>
-                    Responsive Design
-                  </div>
-                </div>
-              </div>
-
-              <div class="skill-category">
-                <h3>Backend</h3>
-                <div class="skill-items">
-                  <div class="skill-item">
-                    <i class="fab fa-node-js" style="color: #339933"></i>
-                    Node.js
-                  </div>
-                  <div class="skill-item">
-                    <i class="fas fa-server"></i>
-                    Express.js
-                  </div>
-                  <div class="skill-item">
-                    <i class="fas fa-exchange-alt"></i>
-                    REST APIs
-                  </div>
-                </div>
-              </div>
-
-              <div class="skill-category">
-                <h3>Database & DevOps</h3>
-                <div class="skill-items">
-                  <div class="skill-item">
-                    <i class="fab fa-git-alt" style="color: #f05032"></i>
-                    Git & GitHub
-                  </div>
-                  <div class="skill-item">
-                    <i class="fas fa-leaf" style="color: #4db33d"></i>
-                    MongoDB
-                  </div>
-                  <div class="skill-item">
-                    <i class="fas fa-database"></i>
-                    SQL
-                  </div>
-                  <div class="skill-item">
-                    <i class="fab fa-linux" style="color: #fcc624"></i>
-                    Linux
-                  </div>
-                </div>
-              </div>
-
-              <div class="skill-category">
-                <h3>Programming Languages</h3>
-                <div class="skill-items">
-                  <div class="skill-item">
-                    <i class="fab fa-js-square" style="color: #f7df1e"></i>
-                    JavaScript
-                  </div>
-                  <div class="skill-item">
-                    <i class="fab fa-python" style="color: #3776ab"></i>
-                    Python
-                  </div>
-                  <div class="skill-item">
-                    <i class="fas fa-code"></i>
-                    C++
-                  </div>
-                  <div class="skill-item">
-                    <i class="fab fa-java" style="color: #ed8b00"></i>
-                    Java
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-          <section class="section">
-            <h2 class="section-title">Education</h2>
-            <div class="education-item">
-              <div class="education-title">NIT Kurukshetra</div>
-              <div class="education-subtitle">
-                Bachelor of Technology – Information Technology
-              </div>
-              <div class="education-details">
-                <div class="gpa">GPA: 8.34</div>
-                <div class="duration">Nov 2022 – June 2026</div>
-              </div>
-            </div>
-
-            <div class="education-item">
-              <div class="education-title">SVM School</div>
-              <div class="education-subtitle">
-                12th Grade – Mathematics Stream
-              </div>
-              <div class="education-details">
-                <div class="gpa">90.1%</div>
-                <div class="duration">Apr 2020 – Mar 2021</div>
-              </div>
-            </div>
-
-            <div class="education-item">
-              <div class="education-title">SVM School</div>
-              <div class="education-subtitle">10th Grade</div>
-              <div class="education-details">
-                <div class="gpa">94.2%</div>
-                <div class="duration">Apr 2018 – Mar 2019</div>
-              </div>
-            </div>
-          </section>
-          <section class="section">
-            <h2 class="section-title">Projects</h2>
-            <div class="project-item">
-              <div class="project-title">Inventory Management System</div>
-              <div class="project-subtitle">Dec 2023 – Jan 2024</div>
-              <ul class="project-details">
-                <li>
-                  Developed a
-                  <span class="highlight">comprehensive web application</span>
-                  to manage item collections with images.
-                </li>
-                <li>
-                  Used
-                  <span class="highlight">Model-View-Controller (MVC)</span>
-                  architecture with
-                  <span class="highlight">Express.js</span> and
-                  <span class="highlight">MongoDB</span>.
-                </li>
-                <li>
-                  Built responsive UI using
-                  <span class="highlight">Pug template engine</span>.
-                </li>
-                <li>
-                  Integrated
-                  <span class="highlight">user authentication</span> with
-                  <span class="highlight">Passport.js</span>.
-                </li>
-              </ul>
-              <div class="project-tech">
-                <span class="tech-tag">Express.js</span>
-                <span class="tech-tag">MongoDB</span>
-                <span class="tech-tag">Pug</span>
-                <span class="tech-tag">Passport.js</span>
-                <span class="tech-tag">MVC</span>
-              </div>
-              <div class="project-links">
-                <a
-                  target="_blank"
-                  href="https://inventory.adaptable.app"
-                  class="project-link"
-                  ><i class="fas fa-external-link-alt"></i>Live Demo</a
-                >
-                <a
-                  target="_blank"
-                  href="https://github.com/ronakraj00/inventory"
-                  class="project-link"
-                  ><i class="fab fa-github"></i>GitHub</a
-                >
-              </div>
-            </div>
-
-            <div class="project-item">
-              <div class="project-title">
-                CyberWatch - Cybercrime Reporting Dashboard
-              </div>
-              <div class="project-subtitle">
-                Smart India Hackathon Project | Sep 2024
-              </div>
-              <ul class="project-details">
-                <li>
-                  Built a real-time
-                  <span class="highlight">cybercrime reporting dashboard</span>
-                  with <span class="highlight">React</span> frontend and
-                  <span class="highlight">Express.js</span> backend.
-                </li>
-                <li>
-                  Developed and consumed
-                  <span class="highlight">RESTful APIs</span> for data
-                  communication.
-                </li>
-                <li>
-                  Visualized
-                  <span class="highlight">cybersecurity incidents</span> and
-                  <span class="highlight">analytics</span> dynamically.
-                </li>
-                <li>
-                  Collaborated in a
-                  <span class="highlight">team-based hackathon environment</span
-                  >.
-                </li>
-              </ul>
-              <div class="project-tech">
-                <span class="tech-tag">React</span>
-                <span class="tech-tag">Express.js</span>
-                <span class="tech-tag">REST APIs</span>
-                <span class="tech-tag">Data Visualization</span>
-              </div>
-              <div class="project-links">
-                <a
-                  target="_blank"
-                  href="https://team2-nine.vercel.app/"
-                  class="project-link"
-                  ><i class="fas fa-external-link-alt"></i>Live Demo</a
-                >
-                <a
-                  target="_blank"
-                  href="https://github.com/ronakraj00/team2"
-                  class="project-link"
-                  ><i class="fab fa-github"></i>GitHub</a
-                >
-              </div>
-            </div>
-
-            <div class="project-item">
-              <div class="project-title">Memory Game - Progressive Web App</div>
-              <div class="project-subtitle">Feb 2024</div>
-              <ul class="project-details">
-                <li>
-                  Designed an interactive
-                  <span class="highlight">card-based memory game</span> using
-                  <span class="highlight">React</span>.
-                </li>
-                <li>
-                  Fetched dynamic images from
-                  <span class="highlight">PokeAPI</span>.
-                </li>
-                <li>
-                  Implemented the game as a
-                  <span class="highlight">Progressive Web App (PWA)</span>.
-                </li>
-                <li>
-                  Utilized <span class="highlight">React Hooks</span> like
-                  <code>useState</code> and <code>useEffect</code> for state
-                  management.
-                </li>
-              </ul>
-              <div class="project-tech">
-                <span class="tech-tag">React</span>
-                <span class="tech-tag">PWA</span>
-                <span class="tech-tag">PokeAPI</span>
-                <span class="tech-tag">React Hooks</span>
-              </div>
-              <div class="project-links">
-                <a
-                  target="_blank"
-                  href="https://memory-iota-one.vercel.app/"
-                  class="project-link"
-                  ><i class="fas fa-external-link-alt"></i>Live Demo</a
-                >
-                <a
-                  target="_blank"
-                  href="https://github.com/ronakraj00/memory"
-                  class="project-link"
-                  ><i class="fab fa-github"></i>GitHub</a
-                >
-              </div>
-            </div>
-          </section>
-          <section class="section">
-            <h2 class="section-title">Languages</h2>
-            <div class="languages">
-              <div class="language-item">
-                <div class="language-name">English</div>
-                <div>Fluent</div>
-              </div>
-              <div class="language-item">
-                <div class="language-name">Hindi</div>
-                <div>Fluent</div>
-              </div>
-            </div>
-          </section>
+          <div class="theme-option" onclick="setTheme('sunrise')">Sunrise</div>
+          <div class="theme-option" onclick="setTheme('sunset')">Sunset</div>
+          <div class="theme-option" onclick="setTheme('twilight')">Twilight</div>
         </div>
       </div>
 
-      <!-- Interesting Links Section -->
-      <div class="links-section">
-        <h2 class="section-title hof-toggle-title" style="border: none" onclick="toggleSection('interestingLinksContent', this)">
-          Interesting Things I Found on Internet <span class="hof-toggle-icon">▼</span>
-        </h2>
-        <div class="hof-content-collapsed" id="interestingLinksContent">
-          <section class="section">
-            <div class="links-grid" id="linksGrid">
-              <!-- Links will be populated by JavaScript -->
+      <div class="container">
+        <header class="header">
+          <div class="profile-header">
+            <div class="profile-image" id="profileImage">
+              <div class="profile-images-container" id="imageContainer">
+                <div
+                  class="profile-image-slide"
+                  style="background-image: url('profile_me_picture_2.jpg')"
+                ></div>
+                <div
+                  class="profile-image-slide"
+                  style="background-image: url('image.png')"
+                ></div>
+                <div
+                  class="profile-image-slide"
+                  style="background-image: url('image2.png')"
+                ></div>
+                <div
+                  class="profile-image-slide"
+                  style="background-image: url('image3.png')"
+                ></div>
+                <div
+                  class="profile-image-slide"
+                  style="background-image: url('image5.png')"
+                ></div>
+                <div
+                  class="profile-image-slide"
+                  style="background-image: url('image6.png')"
+                ></div>
+              </div>
+              <div class="profile-nav-dots" id="navDots"></div>
             </div>
-          </section>
+            <div class="name-section">
+              <h1 class="name">༺ RONAK RAJ ༻</h1>
+              <p class="location">Student, NIT KKR</p>
+            </div>
+          </div>
+          <div class="contact-links">
+            <a
+              target="_blank"
+              href="mailto:contactronakraj@gmail.com"
+              class="contact-link"
+            >
+              <i class="fas fa-envelope"></i>
+              Email
+            </a>
+            <a
+              target="_blank"
+              href="https://www.linkedin.com/in/ronakraj00/"
+              class="contact-link"
+            >
+              <i class="fab fa-linkedin"></i>
+              LinkedIn
+            </a>
+            <a target="_blank" href="resume_ronak_raj.html" class="contact-link">
+              <i class="fas fa-globe"></i>
+              Resume
+            </a>
+            <a
+              target="_blank"
+              href="https://github.com/ronakraj00"
+              class="contact-link"
+            >
+              <i class="fab fa-github"></i>
+              GitHub
+            </a>
+          </div>
+        </header>
+
+        <!-- About Me Collapsible Div -->
+        <div class="about-section">
+          <h2 class="section-title hof-toggle-title" style="border: none">
+            About Me <span class="hof-toggle-icon">▼</span>
+          </h2>
+          <div class="hof-content-collapsed" id="aboutMeContent">
+            <section class="section">
+              <h2 class="section-title">Core Skills</h2>
+              <div class="skills-grid">
+                <div class="skill-category">
+                  <h3>Frontend</h3>
+                  <div class="skill-items">
+                    <div class="skill-item">
+                      <i class="fab fa-react" style="color: #61dafb"></i>
+                      React
+                    </div>
+                    <div class="skill-item">
+                      <i class="fab fa-js-square" style="color: #f7df1e"></i>
+                      JavaScript (ES6+)
+                    </div>
+                    <div class="skill-item">
+                      <i class="fab fa-html5" style="color: #e34f26"></i>
+                      HTML
+                    </div>
+                    <div class="skill-item">
+                      <i class="fab fa-css3-alt" style="color: #1572b6"></i>
+                      CSS
+                    </div>
+                    <div class="skill-item">
+                      <i class="fas fa-wind" style="color: #06b6d4"></i>
+                      Tailwind CSS
+                    </div>
+                    <div class="skill-item">
+                      <i class="fas fa-mobile-alt"></i>
+                      Responsive Design
+                    </div>
+                  </div>
+                </div>
+
+                <div class="skill-category">
+                  <h3>Backend</h3>
+                  <div class="skill-items">
+                    <div class="skill-item">
+                      <i class="fab fa-node-js" style="color: #339933"></i>
+                      Node.js
+                    </div>
+                    <div class="skill-item">
+                      <i class="fas fa-server"></i>
+                      Express.js
+                    </div>
+                    <div class="skill-item">
+                      <i class="fas fa-exchange-alt"></i>
+                      REST APIs
+                    </div>
+                  </div>
+                </div>
+
+                <div class="skill-category">
+                  <h3>Database & DevOps</h3>
+                  <div class="skill-items">
+                    <div class="skill-item">
+                      <i class="fab fa-git-alt" style="color: #f05032"></i>
+                      Git & GitHub
+                    </div>
+                    <div class="skill-item">
+                      <i class="fas fa-leaf" style="color: #4db33d"></i>
+                      MongoDB
+                    </div>
+                    <div class="skill-item">
+                      <i class="fas fa-database"></i>
+                      SQL
+                    </div>
+                    <div class="skill-item">
+                      <i class="fab fa-linux" style="color: #fcc624"></i>
+                      Linux
+                    </div>
+                  </div>
+                </div>
+
+                <div class="skill-category">
+                  <h3>Programming Languages</h3>
+                  <div class="skill-items">
+                    <div class="skill-item">
+                      <i class="fab fa-js-square" style="color: #f7df1e"></i>
+                      JavaScript
+                    </div>
+                    <div class="skill-item">
+                      <i class="fab fa-python" style="color: #3776ab"></i>
+                      Python
+                    </div>
+                    <div class="skill-item">
+                      <i class="fas fa-code"></i>
+                      C++
+                    </div>
+                    <div class="skill-item">
+                      <i class="fab fa-java" style="color: #ed8b00"></i>
+                      Java
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section class="section">
+              <h2 class="section-title">Education</h2>
+              <div class="education-item">
+                <div class="education-title">NIT Kurukshetra</div>
+                <div class="education-subtitle">
+                  Bachelor of Technology – Information Technology
+                </div>
+                <div class="education-details">
+                  <div class="gpa">GPA: 8.34</div>
+                  <div class="duration">Nov 2022 – June 2026</div>
+                </div>
+              </div>
+
+              <div class="education-item">
+                <div class="education-title">SVM School</div>
+                <div class="education-subtitle">
+                  12th Grade – Mathematics Stream
+                </div>
+                <div class="education-details">
+                  <div class="gpa">90.1%</div>
+                  <div class="duration">Apr 2020 – Mar 2021</div>
+                </div>
+              </div>
+
+              <div class="education-item">
+                <div class="education-title">SVM School</div>
+                <div class="education-subtitle">10th Grade</div>
+                <div class="education-details">
+                  <div class="gpa">94.2%</div>
+                  <div class="duration">Apr 2018 – Mar 2019</div>
+                </div>
+              </div>
+            </section>
+            <section class="section">
+              <h2 class="section-title">Projects</h2>
+              <div class="project-item">
+                <div class="project-title">Inventory Management System</div>
+                <div class="project-subtitle">Dec 2023 – Jan 2024</div>
+                <ul class="project-details">
+                  <li>
+                    Developed a
+                    <span class="highlight">comprehensive web application</span>
+                    to manage item collections with images.
+                  </li>
+                  <li>
+                    Used
+                    <span class="highlight">Model-View-Controller (MVC)</span>
+                    architecture with
+                    <span class="highlight">Express.js</span> and
+                    <span class="highlight">MongoDB</span>.
+                  </li>
+                  <li>
+                    Built responsive UI using
+                    <span class="highlight">Pug template engine</span>.
+                  </li>
+                  <li>
+                    Integrated
+                    <span class="highlight">user authentication</span> with
+                    <span class="highlight">Passport.js</span>.
+                  </li>
+                </ul>
+                <div class="project-tech">
+                  <span class="tech-tag">Express.js</span>
+                  <span class="tech-tag">MongoDB</span>
+                  <span class="tech-tag">Pug</span>
+                  <span class="tech-tag">Passport.js</span>
+                  <span class="tech-tag">MVC</span>
+                </div>
+                <div class="project-links">
+                  <a
+                    target="_blank"
+                    href="https://inventory.adaptable.app"
+                    class="project-link"
+                    ><i class="fas fa-external-link-alt"></i>Live Demo</a
+                  >
+                  <a
+                    target="_blank"
+                    href="https://github.com/ronakraj00/inventory"
+                    class="project-link"
+                    ><i class="fab fa-github"></i>GitHub</a
+                  >
+                </div>
+              </div>
+
+              <div class="project-item">
+                <div class="project-title">
+                  CyberWatch - Cybercrime Reporting Dashboard
+                </div>
+                <div class="project-subtitle">
+                  Smart India Hackathon Project | Sep 2024
+                </div>
+                <ul class="project-details">
+                  <li>
+                    Built a real-time
+                    <span class="highlight">cybercrime reporting dashboard</span>
+                    with <span class="highlight">React</span> frontend and
+                    <span class="highlight">Express.js</span> backend.
+                  </li>
+                  <li>
+                    Developed and consumed
+                    <span class="highlight">RESTful APIs</span> for data
+                    communication.
+                  </li>
+                  <li>
+                    Visualized
+                    <span class="highlight">cybersecurity incidents</span> and
+                    <span class="highlight">analytics</span> dynamically.
+                  </li>
+                  <li>
+                    Collaborated in a
+                    <span class="highlight">team-based hackathon environment</span
+                    >.
+                  </li>
+                </ul>
+                <div class="project-tech">
+                  <span class="tech-tag">React</span>
+                  <span class="tech-tag">Express.js</span>
+                  <span class="tech-tag">REST APIs</span>
+                  <span class="tech-tag">Data Visualization</span>
+                </div>
+                <div class="project-links">
+                  <a
+                    target="_blank"
+                    href="https://team2-nine.vercel.app/"
+                    class="project-link"
+                    ><i class="fas fa-external-link-alt"></i>Live Demo</a
+                  >
+                  <a
+                    target="_blank"
+                    href="https://github.com/ronakraj00/team2"
+                    class="project-link"
+                    ><i class="fab fa-github"></i>GitHub</a
+                  >
+                </div>
+              </div>
+
+              <div class="project-item">
+                <div class="project-title">Memory Game - Progressive Web App</div>
+                <div class="project-subtitle">Feb 2024</div>
+                <ul class="project-details">
+                  <li>
+                    Designed an interactive
+                    <span class="highlight">card-based memory game</span> using
+                    <span class="highlight">React</span>.
+                  </li>
+                  <li>
+                    Fetched dynamic images from
+                    <span class="highlight">PokeAPI</span>.
+                  </li>
+                  <li>
+                    Implemented the game as a
+                    <span class="highlight">Progressive Web App (PWA)</span>.
+                  </li>
+                  <li>
+                    Utilized <span class="highlight">React Hooks</span> like
+                    <code>useState</code> and <code>useEffect</code> for state
+                    management.
+                  </li>
+                </ul>
+                <div class="project-tech">
+                  <span class="tech-tag">React</span>
+                  <span class="tech-tag">PWA</span>
+                  <span class="tech-tag">PokeAPI</span>
+                  <span class="tech-tag">React Hooks</span>
+                </div>
+                <div class="project-links">
+                  <a
+                    target="_blank"
+                    href="https://memory-iota-one.vercel.app/"
+                    class="project-link"
+                    ><i class="fas fa-external-link-alt"></i>Live Demo</a
+                  >
+                  <a
+                    target="_blank"
+                    href="https://github.com/ronakraj00/memory"
+                    class="project-link"
+                    ><i class="fab fa-github"></i>GitHub</a
+                  >
+                </div>
+              </div>
+            </section>
+            <section class="section">
+              <h2 class="section-title">Languages</h2>
+              <div class="languages">
+                <div class="language-item">
+                  <div class="language-name">English</div>
+                  <div>Fluent</div>
+                </div>
+                <div class="language-item">
+                  <div class="language-name">Hindi</div>
+                  <div>Fluent</div>
+                </div>
+              </div>
+            </section>
+          </div>
         </div>
+
+        <!-- Interesting Links Section -->
+        <div class="links-section">
+          <h2 class="section-title hof-toggle-title" style="border: none" onclick="toggleSection('interestingLinksContent', this)">
+            Interesting Things I Found on Internet <span class="hof-toggle-icon">▼</span>
+          </h2>
+          <div class="hof-content-collapsed" id="interestingLinksContent">
+            <section class="section">
+              <div class="links-grid" id="linksGrid">
+                <!-- Links will be populated by JavaScript -->
+              </div>
+            </section>
+          </div>
+        </div>
+
+        <section id="gamesSection" class="section">
+          <h2 id="gamesToggleTitle" class="section-title games-toggle-title games-collapsed">
+            🎮 Mini Games
+            <span id="gamesToggleIcon" class="games-toggle-icon">▼</span>
+          </h2>
+          <div id="gamesContent" class="games-content-collapsed">
+            <div>
+              <div class="game-list">
+                <button class="game-btn" onclick="startGame('memory')">
+                  🃏 Memory Match
+                </button>
+                <button class="game-btn" onclick="startGame('whack')">
+                  🐹 Find Totoro
+                </button>
+                <button class="game-btn" onclick="startGame('circle')">
+                  🎯 Circle Reaction
+                </button>
+                <button class="game-btn" onclick="startGame('clicker')">
+                  ⚡ Speed Clicker
+                </button>
+                <button class="game-btn" onclick="startGame('guess')">
+                  🔢 Guess the Number
+                </button>
+              </div>
+              <div id="gameArea"></div>
+            </div>
+          </div>
+        </section>
+        <!-- Hall of Fame Section -->
+        <section id="hallOfFameSection" class="hall-of-fame-section">
+          <h2
+            id="hofToggleTitle"
+            class="section-title hof-toggle-title hof-collapsed"
+          >
+            🏆 Hall of Fame
+            <span id="hofToggleIcon" class="hof-toggle-icon">▼</span>
+          </h2>
+          <div id="hallOfFameContent" class="hof-content-collapsed">
+            <div class="hall-of-fame" id="hof-memory">
+              <div class="hall-of-fame-title">🃏 Memory Match</div>
+              <ul class="hall-of-fame-list" id="hof-list-memory">
+                <!-- Top 3 players will be inserted here -->
+              </ul>
+            </div>
+            <div class="hall-of-fame" id="hof-whack">
+              <div class="hall-of-fame-title">🐹 Find Totoro</div>
+              <ul class="hall-of-fame-list" id="hof-list-whack">
+                <!-- Top 3 players will be inserted here -->
+              </ul>
+            </div>
+            <div class="hall-of-fame" id="hof-circle">
+              <div class="hall-of-fame-title">🎯 Circle Reaction</div>
+              <ul class="hall-of-fame-list" id="hof-list-circle">
+                <!-- Top 3 players will be inserted here -->
+              </ul>
+            </div>
+            <div class="hall-of-fame" id="hof-clicker">
+              <div class="hall-of-fame-title">⚡ Speed Clicker</div>
+              <ul class="hall-of-fame-list" id="hof-list-clicker">
+                <!-- Top 3 players will be inserted here -->
+              </ul>
+            </div>
+            <div class="hall-of-fame" id="hof-guess">
+              <div class="hall-of-fame-title">🔢 Guess the Number</div>
+              <ul class="hall-of-fame-list" id="hof-list-guess">
+                <!-- Top 3 players will be inserted here -->
+              </ul>
+            </div>
+          </div>
+        </section>
       </div>
 
-      <section id="gamesSection" class="section">
-        <h2 id="gamesToggleTitle" class="section-title games-toggle-title games-collapsed">
-          🎮 Mini Games
-          <span id="gamesToggleIcon" class="games-toggle-icon">▼</span>
-        </h2>
-        <div id="gamesContent" class="games-content-collapsed">
-          <div>
-            <div class="game-list">
-              <button class="game-btn" onclick="startGame('memory')">
-                🃏 Memory Match
-              </button>
-              <button class="game-btn" onclick="startGame('whack')">
-                🐹 Find Totoro
-              </button>
-              <button class="game-btn" onclick="startGame('circle')">
-                🎯 Circle Reaction
-              </button>
-              <button class="game-btn" onclick="startGame('clicker')">
-                ⚡ Speed Clicker
-              </button>
-              <button class="game-btn" onclick="startGame('guess')">
-                🔢 Guess the Number
-              </button>
-            </div>
-            <div id="gameArea"></div>
-          </div>
+      <!-- Footer with Conway's Game of Life -->
+      <footer id="conwayFooter">
+        <canvas id="conwayCanvas"></canvas>
+        <div class="footer-content">
+          <p>Designed and Developed with ❤️ by Ronak</p>
+          
+          <p class="conway-credit">Background: <a style="color: var(--text-secondary); list-style: none; text-decoration: none;" href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" target="_blank">Conway's Game of Life ↗</a></p>
         </div>
-      </section>
-      <!-- Hall of Fame Section -->
-      <section id="hallOfFameSection" class="hall-of-fame-section">
-        <h2
-          id="hofToggleTitle"
-          class="section-title hof-toggle-title hof-collapsed"
-        >
-          🏆 Hall of Fame
-          <span id="hofToggleIcon" class="hof-toggle-icon">▼</span>
-        </h2>
-        <div id="hallOfFameContent" class="hof-content-collapsed">
-          <div class="hall-of-fame" id="hof-memory">
-            <div class="hall-of-fame-title">🃏 Memory Match</div>
-            <ul class="hall-of-fame-list" id="hof-list-memory">
-              <!-- Top 3 players will be inserted here -->
-            </ul>
-          </div>
-          <div class="hall-of-fame" id="hof-whack">
-            <div class="hall-of-fame-title">🐹 Find Totoro</div>
-            <ul class="hall-of-fame-list" id="hof-list-whack">
-              <!-- Top 3 players will be inserted here -->
-            </ul>
-          </div>
-          <div class="hall-of-fame" id="hof-circle">
-            <div class="hall-of-fame-title">🎯 Circle Reaction</div>
-            <ul class="hall-of-fame-list" id="hof-list-circle">
-              <!-- Top 3 players will be inserted here -->
-            </ul>
-          </div>
-          <div class="hall-of-fame" id="hof-clicker">
-            <div class="hall-of-fame-title">⚡ Speed Clicker</div>
-            <ul class="hall-of-fame-list" id="hof-list-clicker">
-              <!-- Top 3 players will be inserted here -->
-            </ul>
-          </div>
-          <div class="hall-of-fame" id="hof-guess">
-            <div class="hall-of-fame-title">🔢 Guess the Number</div>
-            <ul class="hall-of-fame-list" id="hof-list-guess">
-              <!-- Top 3 players will be inserted here -->
-            </ul>
-          </div>
+      </footer>
+
+      <!-- User Name Modal -->
+      <div id="userNameModal">
+        <div class="user-modal-content">
+          <h3 style="text-align: center; font-weight: 400">
+            Enter your name to play the games
+          </h3>
+          <input
+            id="userNameInput"
+            type="text"
+            maxlength="20"
+            placeholder="Your name"
+          />
+          <button id="userNameSubmitBtn">Save</button>
         </div>
-      </section>
-    </div>
-
-    <!-- Footer with Conway's Game of Life -->
-    <footer id="conwayFooter">
-      <canvas id="conwayCanvas"></canvas>
-      <div class="footer-content">
-        <p>Designed and Developed with ❤️ by Ronak</p>
-        
-        <p class="conway-credit">Background: <a style="color: var(--text-secondary); list-style: none; text-decoration: none;" href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" target="_blank">Conway's Game of Life ↗</a></p>
-      </div>
-    </footer>
-
-    <!-- User Name Modal -->
-    <div id="userNameModal">
-      <div class="user-modal-content">
-        <h3 style="text-align: center; font-weight: 400">
-          Enter your name to play the games
-        </h3>
-        <input
-          id="userNameInput"
-          type="text"
-          maxlength="20"
-          placeholder="Your name"
-        />
-        <button id="userNameSubmitBtn">Save</button>
       </div>
     </div>
 
@@ -938,6 +984,25 @@
 
         // Populate links
         populateLinks();
+      });
+    </script>
+    <script>
+      // Loading functionality
+      window.addEventListener('load', function() {
+        // Ensure all resources are loaded
+        const loadingOverlay = document.querySelector('.loading-overlay');
+        const mainContent = document.querySelector('.main-content');
+        
+        // Add a small delay to ensure smooth transition
+        setTimeout(() => {
+          loadingOverlay.classList.add('fade-out');
+          mainContent.classList.add('show');
+          
+          // Remove the loading overlay from DOM after animation
+          setTimeout(() => {
+            loadingOverlay.remove();
+          }, 500);
+        }, 500);
       });
     </script>
   </body>
