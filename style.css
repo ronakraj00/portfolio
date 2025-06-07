@@ -703,7 +703,7 @@ body {
 
 .profile-image {
   border: 4px solid var(--bg-primary);        /* Inner border */
-  outline: 4px solid var(--accent);         /* Outer "gap" or highlight */
+  outline: 3px solid var(--accent);         /* Outer "gap" or highlight */
   outline-offset: 2px;
   width: 160px;
   height: 160px;
