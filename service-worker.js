@@ -7,22 +7,24 @@ const ASSETS_TO_CACHE = [
   "/game.js",
   "/icon.png",
   "/manifest.json",
-  // Add all images used in your HTML
   "/profile_me_picture_2.jpg",
   "/image.png",
   "/image2.png",
   "/image3.png",
   "/image5.png",
   "/image6.png",
-  // Add any other assets you want to cache
   "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css",
-  // Cache CSS patterns for backgrounds (actual file names)
   "/css-pattern-by-magicpattern.png",
   "/css-pattern-by-magicpattern_box.png",
   "/css-pattern-by-magicpattern_lines.png",
   "/css-pattern-by-magicpattern_diagonal.png",
   "/css-pattern-by-magicpattern_bw.png",
-  // ...add more if you have more pattern files
+  "/fluid.js",
+  "/games-simulation.js",
+  "/links.js",
+  "/resume_ronak_raj.html",
+  "/service-worker.js",
+  "/stars.js",
 ];
 
 // Install event: cache all assets
