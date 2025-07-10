@@ -1,5 +1,8 @@
 let gameActive = false;
-
+if(!gameActive){
+  const gameArea = document.getElementById("gameArea");
+  gameArea.innerHTML = "Select the Game To Play";
+}
 // Utility for delay
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 

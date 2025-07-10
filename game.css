@@ -87,7 +87,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: url(./css-pattern-by-magicpattern_bw.png);
+  /* background: url(./css-pattern-by-magicpattern_bw.png); */
   background-size: contain;
   opacity: 0.1;
   z-index: -1;

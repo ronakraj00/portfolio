@@ -346,7 +346,7 @@ body {
   position: relative;
 }
 
-.section-title::after {
+/* .section-title::after {
   content: "";
   position: absolute;
   bottom: -0.5rem;
@@ -355,7 +355,7 @@ body {
   height: 3px;
   background: var(--accent);
   border-radius: 2px;
-}
+} */
 
 .about-section > .section-title::after {
   display: none;
@@ -432,7 +432,7 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: url(./css-pattern-by-magicpattern.png);
+  /* background: url(./css-pattern-by-magicpattern.png); */
   background-size: contain;
   opacity: 0.1; /* control opacity here */
   z-index: -1;
@@ -518,7 +518,7 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: url(./css-pattern-by-magicpattern_box.png);
+  /* background: url(./css-pattern-by-magicpattern_box.png); */
   background-size: contain;
   opacity: 0.1; /* control opacity here */
   z-index: -1;
@@ -528,7 +528,7 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: url(./css-pattern-by-magicpattern_lines.png);
+  /* background: url(./css-pattern-by-magicpattern_lines.png); */
   background-size: contain;
   opacity: 0.1; /* control opacity here */
   z-index: -1;
@@ -660,7 +660,7 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: url(./css-pattern-by-magicpattern_diagonal.png);
+  /* background: url(./css-pattern-by-magicpattern_diagonal.png); */
   background-size: contain;
   opacity: 0.1; /* control opacity here */
   z-index: -1;
