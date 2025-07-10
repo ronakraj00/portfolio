@@ -41,6 +41,8 @@ async function startGame(gameType) {
     startGuessGame(gameArea);
   } else if (gameType === "whack") {
     startWhackGame(gameArea);
+  } else if (gameType === "sudoku") {
+    startSudokuGame(gameArea);
   }
 }
 
@@ -49,6 +51,14 @@ function clearAllTimers() {
   clearInterval(window.clickerInterval);
   clearTimeout(window.whackTimeout);
   clearInterval(window.whackInterval);
+  if (window.whackTimer) {
+    clearInterval(window.whackTimer);
+    window.whackTimer = null;
+  }
+  if (window.conwayAnimationFrameId) {
+    cancelAnimationFrame(window.conwayAnimationFrameId);
+    window.conwayAnimationFrameId = null;
+  }
 }
 
 /* ================= Circle Reaction Game ================= */
@@ -291,7 +301,7 @@ function startGuessGame(container) {
 function startWhackGame(container) {
   let score = 0;
   let timeLeft = 30; // 30 seconds game duration
-  let whackTimer = null;
+  window.whackTimer = null;
   container.innerHTML = `
     <h3 class="game_rule">Find Totoro! ${gameInfoIcon('whack')}</h3>
     <p class="score">Score: <span id="whackScore">0</span></p>
@@ -343,7 +353,7 @@ function startWhackGame(container) {
     gameActive = false;
     clearMoles();
     if (window.whackTimeout) clearTimeout(window.whackTimeout);
-    if (whackTimer) clearInterval(whackTimer);
+    if (window.whackTimer) clearInterval(window.whackTimer);
     saveScore("whack", score);
     const message = document.createElement("p");
     message.textContent = `Game Over! Your score: ${score}`;
@@ -351,7 +361,7 @@ function startWhackGame(container) {
   }
 
   // Start the timer
-  whackTimer = setInterval(() => {
+  window.whackTimer = setInterval(() => {
     timeLeft--;
     whackTime.textContent = timeLeft;
     if (timeLeft <= 0) {
@@ -360,6 +370,113 @@ function startWhackGame(container) {
   }, 1000);
 
   showMole();
+}
+
+/* ================= Sudoku Solver Game ================= */
+
+function startSudokuGame(container) {
+  container.innerHTML = `
+    <h3 class="game_rule">Sudoku Solver ${gameInfoIcon('sudoku')}</h3>
+    <div id="sudokuGrid"></div>
+    <button id="checkSudokuBtn">Check</button>
+    <button id="resetSudokuBtn">Reset</button>
+    <p id="sudokuMessage"></p>
+  `;
+
+  const grid = container.querySelector("#sudokuGrid");
+  const checkBtn = container.querySelector("#checkSudokuBtn");
+  const resetBtn = container.querySelector("#resetSudokuBtn");
+  const message = container.querySelector("#sudokuMessage");
+
+  // Generate a simple puzzle (0 = empty)
+  const puzzle = [
+    [5, 3, 0, 0, 7, 0, 0, 0, 0],
+    [6, 0, 0, 1, 9, 5, 0, 0, 0],
+    [0, 9, 8, 0, 0, 0, 0, 6, 0],
+    [8, 0, 0, 0, 6, 0, 0, 0, 3],
+    [4, 0, 0, 8, 0, 3, 0, 0, 1],
+    [7, 0, 0, 0, 2, 0, 0, 0, 6],
+    [0, 6, 0, 0, 0, 0, 2, 8, 0],
+    [0, 0, 0, 4, 1, 9, 0, 0, 5],
+    [0, 0, 0, 0, 8, 0, 0, 7, 9]
+  ];
+
+  let userGrid = puzzle.map(row => row.slice());
+
+  function renderGrid() {
+    grid.innerHTML = '';
+    grid.style.display = 'grid';
+    grid.style.gridTemplateColumns = 'repeat(9, 32px)';
+    grid.style.gridGap = '2px';
+    for (let r = 0; r < 9; r++) {
+      for (let c = 0; c < 9; c++) {
+        const cell = document.createElement('input');
+        cell.type = 'text';
+        cell.maxLength = 1;
+        cell.value = userGrid[r][c] ? userGrid[r][c] : '';
+        cell.style.width = '32px';
+        cell.style.height = '32px';
+        cell.style.textAlign = 'center';
+        cell.style.fontSize = '1.1rem';
+        cell.style.border = '1.5px solid var(--border, #aaa)';
+        cell.style.background = puzzle[r][c] ? 'var(--bg-secondary, #eee)' : 'var(--bg-primary, #fff)';
+        cell.disabled = !!puzzle[r][c];
+        cell.dataset.row = r;
+        cell.dataset.col = c;
+        cell.addEventListener('input', (e) => {
+          const val = e.target.value.replace(/[^1-9]/g, '');
+          e.target.value = val;
+          userGrid[r][c] = val ? parseInt(val) : 0;
+        });
+        grid.appendChild(cell);
+      }
+    }
+  }
+
+  function isValid(board, row, col, num) {
+    for (let x = 0; x < 9; x++) {
+      if (board[row][x] === num && x !== col) return false;
+      if (board[x][col] === num && x !== row) return false;
+    }
+    const startRow = Math.floor(row / 3) * 3;
+    const startCol = Math.floor(col / 3) * 3;
+    for (let i = 0; i < 3; i++) {
+      for (let j = 0; j < 3; j++) {
+        const r = startRow + i;
+        const c = startCol + j;
+        if (board[r][c] === num && (r !== row || c !== col)) return false;
+      }
+    }
+    return true;
+  }
+
+  function isSudokuComplete(board) {
+    for (let r = 0; r < 9; r++) {
+      for (let c = 0; c < 9; c++) {
+        const num = board[r][c];
+        if (!num || !isValid(board, r, c, num)) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+
+  checkBtn.onclick = () => {
+    if (isSudokuComplete(userGrid)) {
+      message.textContent = '🎉 Correct! Sudoku is solved!';
+    } else {
+      message.textContent = '❌ Not solved or incorrect. Please check your solution.';
+    }
+  };
+
+  resetBtn.onclick = () => {
+    userGrid = puzzle.map(row => row.slice());
+    renderGrid();
+    message.textContent = '';
+  };
+
+  renderGrid();
 }
 
 /* ============== Utility ============== */
@@ -549,7 +666,7 @@ function startConwayGame(container) {
   const gridSize = 40; // Increased grid size for more interesting patterns
   const cellSize = 12; // Adjusted cell size for better visibility
   let grid = Array(gridSize).fill().map(() => Array(gridSize).fill(0));
-  let animationFrameId = null;
+  window.conwayAnimationFrameId = null;
   let lastUpdate = 0;
   const updateInterval = 300; // Control animation speed (lower = faster)
 
@@ -688,7 +805,7 @@ function startConwayGame(container) {
     }
     drawGrid();
     drawCells();
-    animationFrameId = requestAnimationFrame(animate);
+    window.conwayAnimationFrameId = requestAnimationFrame(animate);
   }
 
   // Initialize with random pattern
@@ -697,7 +814,7 @@ function startConwayGame(container) {
   drawCells();
   
   // Start animation
-  animationFrameId = requestAnimationFrame(animate);
+  window.conwayAnimationFrameId = requestAnimationFrame(animate);
 
   // Handle window resize
   window.addEventListener('resize', () => {
@@ -709,8 +826,9 @@ function startConwayGame(container) {
 
   // Cleanup function to stop animation when needed
   return () => {
-    if (animationFrameId) {
-      cancelAnimationFrame(animationFrameId);
+    if (window.conwayAnimationFrameId) {
+      cancelAnimationFrame(window.conwayAnimationFrameId);
+      window.conwayAnimationFrameId = null;
     }
   };
 }
@@ -776,6 +894,12 @@ function showGameInfoModal(gameType) {
       instructions: 'Click on Totoro as soon as he appears in one of the holes. Try to score as many points as possible!',
       scoring: 'Your score increases by 1 for each Totoro you click. Higher is better!',
       tips: 'Keep your eyes on all holes and react quickly!'
+    },
+    sudoku: {
+      title: 'Sudoku Solver',
+      instructions: 'Fill in the empty cells so that each row, column, and 3x3 box contains the numbers 1 to 9. You can enter your own numbers or use the default puzzle. Click Solve to see the solution.',
+      scoring: 'This is a solver, not a competitive game. Try to solve it yourself before using the solver!',
+      tips: 'Use logic to eliminate possibilities. Try to fill in easy numbers first!'
     }
   };
 

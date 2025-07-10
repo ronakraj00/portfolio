@@ -494,3 +494,50 @@
 #gamesToggleTitle.section-title::after {
   display: none;
 }
+
+/* Sudoku Solver */
+#sudokuGrid {
+  margin: 18px 0 12px 0;
+  display: grid;
+  grid-template-columns: repeat(9, 32px);
+  grid-gap: 2px;
+  justify-content: center;
+}
+#sudokuGrid input[type="text"] {
+  width: 32px;
+  height: 32px;
+  text-align: center;
+  font-size: 1.1rem;
+  border: 1.5px solid var(--border, #aaa);
+  background: var(--bg-primary, #fff);
+  outline: none;
+  transition: border-color 0.2s;
+}
+#sudokuGrid input[type="text"]:disabled {
+  background: var(--bg-secondary, #eee);
+  color: var(--text-secondary, #888);
+  font-weight: bold;
+}
+#checkSudokuBtn, #resetSudokuBtn {
+  margin: 0 8px 12px 8px;
+  padding: 0.5rem 1.2rem;
+  border-radius: 6px;
+  border: 2px solid var(--border);
+  background: var(--hover, #4a90e2);
+  color: var(--text-primary, #fff);
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s, transform 0.2s;
+  box-shadow: none;
+  outline: none;
+}
+#checkSudokuBtn:hover, #resetSudokuBtn:hover {
+  background: var(--bg-primary, #357abd);
+  transform: translateY(-2px);
+}
+#checkSudokuBtn:active, #resetSudokuBtn:active {
+  background: var(--accent);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
