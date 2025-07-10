@@ -128,7 +128,7 @@ function startClickerGame(container) {
   let timeLeft = 10;
 
   container.innerHTML = `
-    <h3 class="game_rule">Click as many times as you can</h3>
+    <h3 class="game_rule">Click as many times as you can ${gameInfoIcon('clicker')}</h3>
     <p>Time Left: <span id="timeLeft">10</span>s</p>
     <p class="score">Score: <span id="clickScore">0</span></p>
     <button id="clickMeBtn">Click Me!</button>
@@ -165,7 +165,7 @@ function startMemoryGame(container) {
   gameCards = shuffleArray(gameCards);
 
   container.innerHTML = `
-    <h3 class="game_rule">Match all the pairs!</h3>
+    <h3 class="game_rule">Match all the pairs! ${gameInfoIcon('memory')}</h3>
     <div id="memoryGrid"></div>
     <p id="memoryMessage"></p>
   `;
@@ -248,7 +248,7 @@ function startGuessGame(container) {
   let attempts = 0;
 
   container.innerHTML = `
-    <h3 class="game_rule">Guess the Number (1-100)</h3>
+    <h3 class="game_rule">Guess the Number (1-100) ${gameInfoIcon('guess')}</h3>
     <input type="number" id="guessInput" min="1" max="100" placeholder="Enter your guess" />
     <button id="guessBtn">Guess</button>
     <p id="guessResult"></p>
@@ -291,7 +291,7 @@ function startGuessGame(container) {
 function startWhackGame(container) {
   let score = 0;
   container.innerHTML = `
-    <h3 class="game_rule">Find Totoro!</h3>
+    <h3 class="game_rule">Find Totoro! ${gameInfoIcon('whack')}</h3>
     <p class="score">Score: <span id="whackScore">0</span></p>
     <div id="whackGrid"></div>
   `;
@@ -691,5 +691,115 @@ window.addEventListener("DOMContentLoaded", () => {
   const conwayFooter = document.getElementById("conwayFooter");
   if (conwayFooter) {
     startConwayGame(conwayFooter);
+  }
+});
+
+function ensureGameInfoModal() {
+  if (document.getElementById('gameInfoModal')) return;
+  const modal = document.createElement('div');
+  modal.id = 'gameInfoModal';
+  modal.className = 'game-info-modal';
+  modal.innerHTML = `
+    <div class="game-info-modal-backdrop"></div>
+    <div class="game-info-modal-content">
+      <button class="game-info-modal-close" aria-label="Close">&times;</button>
+      <div class="game-info-modal-body"></div>
+    </div>
+  `;
+  document.body.appendChild(modal);
+}
+
+function showGameInfoModal(gameType) {
+  ensureGameInfoModal();
+  const modal = document.getElementById('gameInfoModal');
+  const body = modal.querySelector('.game-info-modal-body');
+  const closeBtn = modal.querySelector('.game-info-modal-close');
+  const backdrop = modal.querySelector('.game-info-modal-backdrop');
+
+  // Modal content for each game
+  const info = {
+    circle: {
+      title: 'Circle Reaction Game',
+      instructions: 'Click the circle as quickly as possible when it appears. Try to get the lowest average reaction time over 5 rounds.',
+      scoring: 'Your score is the average time (in seconds) it takes you to click the circle. Lower is better!',
+      tips: 'Stay focused and keep your mouse ready!'
+    },
+    clicker: {
+      title: 'Speed Clicker',
+      instructions: 'Click the button as many times as you can in 10 seconds.',
+      scoring: 'Your score is the total number of clicks. Higher is better!',
+      tips: 'Use multiple fingers or hands for maximum speed!'
+    },
+    memory: {
+      title: 'Memory Card Match',
+      instructions: 'Flip cards to find matching pairs. Match all pairs as quickly as possible.',
+      scoring: 'Your score is the time taken to match all pairs. Lower is better!',
+      tips: 'Try to remember the position of each card you flip.'
+    },
+    guess: {
+      title: 'Guess the Number',
+      instructions: 'Guess a number between 1 and 100. The game will tell you if your guess is too high or too low.',
+      scoring: 'Your score is higher if you guess the number in fewer attempts.',
+      tips: 'Use the feedback to narrow down your guesses!'
+    },
+    whack: {
+      title: 'Find Totoro!',
+      instructions: 'Click on Totoro as soon as he appears in one of the holes. Try to score as many points as possible!',
+      scoring: 'Your score increases by 1 for each Totoro you click. Higher is better!',
+      tips: 'Keep your eyes on all holes and react quickly!'
+    }
+  };
+
+  const game = info[gameType];
+  if (!game) return;
+
+  body.innerHTML = `
+    <h2>${game.title}</h2>
+    <div class="game-info-section">
+      <h3>Instructions</h3>
+      <p>${game.instructions}</p>
+    </div>
+    <div class="game-info-section">
+      <h3>Scoring</h3>
+      <p>${game.scoring}</p>
+    </div>
+    <div class="game-info-section">
+      <h3>Tips</h3>
+      <p>${game.tips}</p>
+    </div>
+  `;
+  modal.classList.add('active');
+  setTimeout(() => modal.classList.add('show'), 10);
+
+  function closeModal() {
+    modal.classList.remove('show');
+    setTimeout(() => modal.classList.remove('active'), 200);
+    document.removeEventListener('keydown', escListener);
+  }
+  function escListener(e) {
+    if (e.key === 'Escape') closeModal();
+  }
+  closeBtn.onclick = closeModal;
+  backdrop.onclick = closeModal;
+  document.addEventListener('keydown', escListener);
+}
+
+function gameInfoIcon(gameType) {
+  return `<span class="game-info-icon" title="Game Info" tabindex="0" role="button" aria-label="Show instructions" data-game-info="${gameType}">❓</span>`;
+}
+
+// Add event delegation for game info icons
+window.addEventListener('click', function(e) {
+  const icon = e.target.closest('.game-info-icon');
+  if (icon && icon.dataset.gameInfo) {
+    showGameInfoModal(icon.dataset.gameInfo);
+  }
+});
+window.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' || e.key === ' ') {
+    const active = document.activeElement;
+    if (active && active.classList.contains('game-info-icon')) {
+      showGameInfoModal(active.dataset.gameInfo);
+    }
   }
 });
