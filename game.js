@@ -275,7 +275,7 @@ function startGuessGame(container) {
       guessResult.textContent = `🎉 Correct! You guessed it in ${attempts} attempts!`;
       gameActive = false;
       guessBtn.disabled = true;
-      saveScore("guess", 100 - attempts + 1); // Higher score for fewer attempts
+      saveScore("guess", attempts); // Lower is better
     } else if (val < target) {
       guessResult.textContent = "Too low! Try again.";
     } else {
@@ -290,13 +290,17 @@ function startGuessGame(container) {
 
 function startWhackGame(container) {
   let score = 0;
+  let timeLeft = 30; // 30 seconds game duration
+  let whackTimer = null;
   container.innerHTML = `
     <h3 class="game_rule">Find Totoro! ${gameInfoIcon('whack')}</h3>
     <p class="score">Score: <span id="whackScore">0</span></p>
+    <p>Time Left: <span id="whackTime">30</span>s</p>
     <div id="whackGrid"></div>
   `;
 
   const grid = container.querySelector("#whackGrid");
+  const whackTime = container.querySelector("#whackTime");
   for (let i = 0; i < 9; i++) {
     const hole = document.createElement("div");
     hole.dataset.index = i;
@@ -331,10 +335,29 @@ function startWhackGame(container) {
       document.getElementById("whackScore").textContent = score;
       moleHole.classList.remove("active");
       moleHole.querySelector("img").style.display = "none";
-      saveScore("whack", score);
     };
     window.whackTimeout = setTimeout(showMole, Math.random() * 400 + 300);
   }
+
+  function endWhackGame() {
+    gameActive = false;
+    clearMoles();
+    if (window.whackTimeout) clearTimeout(window.whackTimeout);
+    if (whackTimer) clearInterval(whackTimer);
+    saveScore("whack", score);
+    const message = document.createElement("p");
+    message.textContent = `Game Over! Your score: ${score}`;
+    container.appendChild(message);
+  }
+
+  // Start the timer
+  whackTimer = setInterval(() => {
+    timeLeft--;
+    whackTime.textContent = timeLeft;
+    if (timeLeft <= 0) {
+      endWhackGame();
+    }
+  }, 1000);
 
   showMole();
 }
@@ -424,11 +447,17 @@ async function saveScore(game, score) {
     if (hofResponse.ok) {
       const highScores = await hofResponse.json();
       console.log('Current high scores:', highScores);
-      
-      // Check if this score would be in top 3
-      const isHighScore = highScores.length < 3 || score > highScores[highScores.length - 1].score;
+      // Determine if lower or higher is better
+      const lowerIsBetter = ["guess", "memory", "circle"].includes(game);
+      let isHighScore = false;
+      if (highScores.length < 3) {
+        isHighScore = true;
+      } else if (lowerIsBetter) {
+        isHighScore = score < highScores[highScores.length - 1].score;
+      } else {
+        isHighScore = score > highScores[highScores.length - 1].score;
+      }
       console.log('Is high score:', isHighScore);
-      
       if (isHighScore) {
         showGraffitiCelebration();
       }
