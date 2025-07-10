@@ -43,6 +43,16 @@ async function startGame(gameType) {
     startWhackGame(gameArea);
   } else if (gameType === "sudoku") {
     startSudokuGame(gameArea);
+  } else if (gameType === "rps") {
+    startRPSGame(gameArea);
+  } else if (gameType === "tictactoe") {
+    startTicTacToeGame(gameArea);
+  } else if (gameType === "2048") {
+    start2048Game(gameArea);
+  } else if (gameType === "wordle") {
+    startWordleGame(gameArea);
+  } else if (gameType === "simon") {
+    startSimonGame(gameArea);
   }
 }
 
@@ -258,7 +268,7 @@ function startGuessGame(container) {
   let attempts = 0;
 
   container.innerHTML = `
-    <h3 class="game_rule">Guess the Number (1-100) ${gameInfoIcon('guess')}</h3>
+    <h3 class="game_rule">Guess the Number (1-100)${gameInfoIcon('guess')}</h3>
     <input type="number" id="guessInput" min="1" max="100" placeholder="Enter your guess" />
     <button id="guessBtn">Guess</button>
     <p id="guessResult"></p>
@@ -477,6 +487,385 @@ function startSudokuGame(container) {
   };
 
   renderGrid();
+}
+
+/* ================= Rock, Paper, Scissors ================= */
+function startRPSGame(container) {
+  const choices = ["Rock", "Paper", "Scissors"];
+  let userScore = 0, compScore = 0;
+  container.innerHTML = `
+    <h3 class="game_rule">Rock, Paper, Scissors! ${gameInfoIcon('rps')}</h3>
+    <div id="rpsChoices">
+      <button data-choice="Rock">🪨 Rock</button>
+      <button data-choice="Paper">📄 Paper</button>
+      <button data-choice="Scissors">✂️ Scissors</button>
+    </div>
+    <p id="rpsResult"></p>
+    <p class="score">You: <span id="rpsUserScore">0</span> | Computer: <span id="rpsCompScore">0</span></p>
+  `;
+  const result = container.querySelector('#rpsResult');
+  const userScoreSpan = container.querySelector('#rpsUserScore');
+  const compScoreSpan = container.querySelector('#rpsCompScore');
+  container.querySelectorAll('#rpsChoices button').forEach(btn => {
+    btn.onclick = () => {
+      if (!gameActive) return;
+      const user = btn.dataset.choice;
+      const comp = choices[Math.floor(Math.random() * 3)];
+      let msg = `You chose ${user}, Computer chose ${comp}. `;
+      if (user === comp) {
+        msg += "It's a tie!";
+      } else if (
+        (user === "Rock" && comp === "Scissors") ||
+        (user === "Paper" && comp === "Rock") ||
+        (user === "Scissors" && comp === "Paper")
+      ) {
+        msg += "You win!";
+        userScore++;
+      } else {
+        msg += "Computer wins!";
+        compScore++;
+      }
+      userScoreSpan.textContent = userScore;
+      compScoreSpan.textContent = compScore;
+      result.textContent = msg;
+      if (userScore === 5 || compScore === 5) {
+        gameActive = false;
+        result.textContent += userScore === 5 ? " 🎉 You won the match!" : " 😢 Computer won the match!";
+        saveScore("rps", userScore === 5 ? 1 : 0); // 1 for win, 0 for loss
+      }
+    };
+  });
+}
+
+/* ================= Tic-Tac-Toe ================= */
+function startTicTacToeGame(container) {
+  let board = Array(9).fill("");
+  let current = "X";
+  let gameOver = false;
+  container.innerHTML = `
+    <h3 class="game_rule">Tic-Tac-Toe ${gameInfoIcon('tictactoe')}</h3>
+    <div id="tttBoard" style="display:grid;grid-template-columns:repeat(3,48px);gap:4px;margin:12px 0;"></div>
+    <p id="tttMsg"></p>
+  `;
+  const tttBoard = container.querySelector('#tttBoard');
+  const tttMsg = container.querySelector('#tttMsg');
+  function render() {
+    tttBoard.innerHTML = '';
+    board.forEach((cell, i) => {
+      const btn = document.createElement('button');
+      btn.textContent = cell;
+      btn.style.height = btn.style.width = '48px';
+      btn.style.fontSize = '1.5rem';
+      btn.disabled = !!cell || gameOver;
+      btn.onclick = () => move(i);
+      tttBoard.appendChild(btn);
+    });
+  }
+  function move(i) {
+    if (board[i] || gameOver) return;
+    board[i] = current;
+    if (checkWin(current)) {
+      tttMsg.textContent = `${current} wins!`;
+      gameOver = true;
+      saveScore("tictactoe", current === "X" ? 1 : 0);
+    } else if (board.every(Boolean)) {
+      tttMsg.textContent = "It's a tie!";
+      gameOver = true;
+      saveScore("tictactoe", 0.5);
+    } else {
+      current = current === "X" ? "O" : "X";
+      if (current === "O") aiMove();
+    }
+    render();
+  }
+  function aiMove() {
+    // Simple AI: pick random empty
+    const empty = board.map((v, i) => v ? null : i).filter(v => v !== null);
+    if (empty.length) move(empty[Math.floor(Math.random() * empty.length)]);
+  }
+  function checkWin(p) {
+    const wins = [
+      [0,1,2],[3,4,5],[6,7,8],
+      [0,3,6],[1,4,7],[2,5,8],
+      [0,4,8],[2,4,6]
+    ];
+    return wins.some(line => line.every(i => board[i] === p));
+  }
+  render();
+}
+
+/* ================= 2048 ================= */
+function start2048Game(container) {
+  const size = 4;
+  let board = Array(size).fill().map(() => Array(size).fill(0));
+  let score = 0;
+  container.innerHTML = `
+    <h3 class="game_rule">2048 ${gameInfoIcon('2048')}</h3>
+    <div id="g2048Board" style="display:grid;grid-template-columns:repeat(4,48px);gap:4px;margin:12px 0;"></div>
+    <p id="g2048Score">Score: 0</p>
+    <p id="g2048Msg"></p>
+  `;
+  const g2048Board = container.querySelector('#g2048Board');
+  const g2048Score = container.querySelector('#g2048Score');
+  const g2048Msg = container.querySelector('#g2048Msg');
+  function addTile() {
+    const empty = [];
+    for (let r = 0; r < size; r++) for (let c = 0; c < size; c++) if (!board[r][c]) empty.push([r, c]);
+    if (empty.length) {
+      const [r, c] = empty[Math.floor(Math.random() * empty.length)];
+      board[r][c] = Math.random() < 0.9 ? 2 : 4;
+    }
+  }
+  function render() {
+    g2048Board.innerHTML = '';
+    for (let r = 0; r < size; r++) for (let c = 0; c < size; c++) {
+      const cell = document.createElement('div');
+      cell.textContent = board[r][c] ? board[r][c] : '';
+      cell.style.height = cell.style.width = '48px';
+      cell.style.fontSize = '1.2rem';
+      cell.style.background = board[r][c] ? '#f0e5d6' : '#eee';
+      cell.style.display = 'flex';
+      cell.style.alignItems = 'center';
+      cell.style.justifyContent = 'center';
+      cell.style.borderRadius = '6px';
+      g2048Board.appendChild(cell);
+    }
+    g2048Score.textContent = `Score: ${score}`;
+  }
+  function move(dir) {
+    let moved = false;
+    function slide(row) {
+      let arr = row.filter(x => x);
+      for (let i = 0; i < arr.length - 1; i++) {
+        if (arr[i] === arr[i + 1]) {
+          arr[i] *= 2;
+          score += arr[i];
+          arr[i + 1] = 0;
+        }
+      }
+      arr = arr.filter(x => x);
+      while (arr.length < size) arr.push(0);
+      return arr;
+    }
+    if (dir === 'left') {
+      for (let r = 0; r < size; r++) {
+        const old = board[r].slice();
+        board[r] = slide(board[r]);
+        if (board[r].join() !== old.join()) moved = true;
+      }
+    } else if (dir === 'right') {
+      for (let r = 0; r < size; r++) {
+        const old = board[r].slice();
+        board[r] = slide(board[r].slice().reverse()).reverse();
+        if (board[r].join() !== old.join()) moved = true;
+      }
+    } else if (dir === 'up') {
+      for (let c = 0; c < size; c++) {
+        const col = board.map(row => row[c]);
+        const newCol = slide(col);
+        for (let r = 0; r < size; r++) {
+          if (board[r][c] !== newCol[r]) moved = true;
+          board[r][c] = newCol[r];
+        }
+      }
+    } else if (dir === 'down') {
+      for (let c = 0; c < size; c++) {
+        const col = board.map(row => row[c]);
+        const newCol = slide(col.reverse()).reverse();
+        for (let r = 0; r < size; r++) {
+          if (board[r][c] !== newCol[r]) moved = true;
+          board[r][c] = newCol[r];
+        }
+      }
+    }
+    if (moved) addTile();
+    render();
+    if (board.flat().includes(2048)) {
+      g2048Msg.textContent = '🎉 You made 2048!';
+      gameActive = false;
+      saveScore("2048", score);
+    } else if (!board.flat().includes(0) && !canMove()) {
+      g2048Msg.textContent = 'Game Over!';
+      gameActive = false;
+      saveScore("2048", score);
+    }
+  }
+  function canMove() {
+    for (let r = 0; r < size; r++) for (let c = 0; c < size; c++) {
+      if (!board[r][c]) return true;
+      if (c < size - 1 && board[r][c] === board[r][c + 1]) return true;
+      if (r < size - 1 && board[r][c] === board[r + 1][c]) return true;
+    }
+    return false;
+  }
+  addTile();
+  addTile();
+  render();
+  window.addEventListener('keydown', onKey);
+  function onKey(e) {
+    if (!gameActive) return;
+    if (['ArrowLeft','a','A'].includes(e.key)) move('left');
+    if (['ArrowRight','d','D'].includes(e.key)) move('right');
+    if (['ArrowUp','w','W'].includes(e.key)) move('up');
+    if (['ArrowDown','s','S'].includes(e.key)) move('down');
+  }
+  // Clean up event on game end
+  g2048Msg.addEventListener('DOMNodeRemoved', () => {
+    window.removeEventListener('keydown', onKey);
+  });
+}
+
+/* ================= Wordle Clone ================= */
+function startWordleGame(container) {
+  const words = ["apple","grape","peach","mango","lemon","berry","melon","plums","olive","guava"];
+  const answer = words[Math.floor(Math.random() * words.length)].toUpperCase();
+  let attempts = 0;
+  let maxAttempts = 6;
+  let guesses = [];
+  container.innerHTML = `
+    <h3 class="game_rule">Wordle Clone ${gameInfoIcon('wordle')}</h3>
+    <div id="wordleGrid"></div>
+    <input id="wordleInput" maxlength="5" style="text-transform:uppercase;width:120px;" placeholder="5-letter word" />
+    <button id="wordleBtn">Guess</button>
+    <p id="wordleMsg"></p>
+  `;
+  const grid = container.querySelector('#wordleGrid');
+  const input = container.querySelector('#wordleInput');
+  const btn = container.querySelector('#wordleBtn');
+  const msg = container.querySelector('#wordleMsg');
+  function render() {
+    grid.innerHTML = '';
+    guesses.forEach(g => {
+      const row = document.createElement('div');
+      row.style.display = 'flex';
+      for (let i = 0; i < 5; i++) {
+        const cell = document.createElement('div');
+        cell.textContent = g.word[i];
+        cell.style.width = cell.style.height = '32px';
+        cell.style.margin = '2px';
+        cell.style.textAlign = 'center';
+        cell.style.fontWeight = 'bold';
+        cell.style.fontSize = '1.1rem';
+        if (g.colors[i] === 'g') cell.style.background = '#6aaa64';
+        else if (g.colors[i] === 'y') cell.style.background = '#c9b458';
+        else cell.style.background = '#787c7e';
+        cell.style.color = '#fff';
+        row.appendChild(cell);
+      }
+      grid.appendChild(row);
+    });
+  }
+  btn.onclick = () => {
+    if (!gameActive) return;
+    const guess = input.value.toUpperCase();
+    if (guess.length !== 5 || !/^[A-Z]{5}$/.test(guess)) {
+      msg.textContent = 'Enter a valid 5-letter word!';
+      return;
+    }
+    attempts++;
+    let colors = Array(5).fill('b');
+    for (let i = 0; i < 5; i++) {
+      if (guess[i] === answer[i]) colors[i] = 'g';
+      else if (answer.includes(guess[i])) colors[i] = 'y';
+    }
+    guesses.push({word: guess, colors});
+    render();
+    if (guess === answer) {
+      msg.textContent = `🎉 Correct! You guessed it in ${attempts} tries!`;
+      gameActive = false;
+      saveScore("wordle", attempts);
+    } else if (attempts >= maxAttempts) {
+      msg.textContent = `Game Over! The word was ${answer}`;
+      gameActive = false;
+      saveScore("wordle", 0);
+    } else {
+      msg.textContent = '';
+    }
+    input.value = '';
+    input.focus();
+  };
+}
+
+/* ================= Simon Says ================= */
+function startSimonGame(container) {
+  const colors = ["red","green","blue","yellow"];
+  let sequence = [];
+  let userStep = 0;
+  let round = 0;
+  let strict = false;
+  container.innerHTML = `
+    <h3 class="game_rule">Simon Says ${gameInfoIcon('simon')}</h3>
+    <div id="simonBoard" style="display:grid;grid-template-columns:repeat(2,64px);gap:8px;margin:12px 0;"></div>
+    <button id="simonStartBtn">Start</button>
+    <label><input type="checkbox" id="simonStrict"> Strict Mode</label>
+    <p id="simonMsg"></p>
+  `;
+  const board = container.querySelector('#simonBoard');
+  const startBtn = container.querySelector('#simonStartBtn');
+  const strictBox = container.querySelector('#simonStrict');
+  const msg = container.querySelector('#simonMsg');
+  colors.forEach(color => {
+    const btn = document.createElement('button');
+    btn.style.background = color;
+    btn.style.height = btn.style.width = '64px';
+    btn.style.borderRadius = '12px';
+    btn.style.opacity = '0.7';
+    btn.style.fontSize = '1.2rem';
+    btn.dataset.color = color;
+    btn.onclick = () => userInput(color);
+    board.appendChild(btn);
+  });
+  function playSequence() {
+    let i = 0;
+    msg.textContent = `Round ${round}`;
+    function next() {
+      if (i >= sequence.length) return;
+      const color = sequence[i];
+      const btn = [...board.children].find(b => b.dataset.color === color);
+      btn.style.opacity = '1';
+      setTimeout(() => {
+        btn.style.opacity = '0.7';
+        i++;
+        setTimeout(next, 400);
+      }, 400);
+    }
+    next();
+  }
+  function userInput(color) {
+    if (!gameActive || !sequence.length) return;
+    if (color === sequence[userStep]) {
+      userStep++;
+      if (userStep === sequence.length) {
+        round++;
+        msg.textContent = `Good! Next round: ${round+1}`;
+        setTimeout(() => {
+          nextRound();
+        }, 800);
+      }
+    } else {
+      msg.textContent = strict ? 'Wrong! Game Over.' : 'Wrong! Try again.';
+      if (strict) {
+        gameActive = false;
+        saveScore("simon", round);
+      } else {
+        userStep = 0;
+        setTimeout(playSequence, 1000);
+      }
+    }
+  }
+  function nextRound() {
+    sequence.push(colors[Math.floor(Math.random() * 4)]);
+    userStep = 0;
+    playSequence();
+  }
+  startBtn.onclick = () => {
+    sequence = [];
+    userStep = 0;
+    round = 0;
+    strict = strictBox.checked;
+    gameActive = true;
+    nextRound();
+  };
 }
 
 /* ============== Utility ============== */
@@ -900,6 +1289,36 @@ function showGameInfoModal(gameType) {
       instructions: 'Fill in the empty cells so that each row, column, and 3x3 box contains the numbers 1 to 9. You can enter your own numbers or use the default puzzle. Click Solve to see the solution.',
       scoring: 'This is a solver, not a competitive game. Try to solve it yourself before using the solver!',
       tips: 'Use logic to eliminate possibilities. Try to fill in easy numbers first!'
+    },
+    rps: {
+      title: 'Rock, Paper, Scissors',
+      instructions: 'Choose Rock, Paper, or Scissors. First to 5 wins! Play against the computer.',
+      scoring: 'Win a match by reaching 5 points first.',
+      tips: 'Try to predict the computer’s next move!'
+    },
+    tictactoe: {
+      title: 'Tic-Tac-Toe',
+      instructions: 'Play as X against the computer (O). Get three in a row to win.',
+      scoring: 'Win = 1, Tie = 0.5, Loss = 0.',
+      tips: 'Block your opponent and look for winning moves!'
+    },
+    '2048': {
+      title: '2048',
+      instructions: 'Use arrow keys (or WASD) to slide tiles. Combine like numbers to reach 2048.',
+      scoring: 'Your score increases as you combine tiles. Try to reach 2048!',
+      tips: 'Keep your highest tiles in a corner for best results.'
+    },
+    wordle: {
+      title: 'Wordle Clone',
+      instructions: 'Guess the 5-letter word in 6 tries. Green = correct letter & position, Yellow = correct letter, wrong position, Gray = not in word.',
+      scoring: 'Fewer guesses is better!',
+      tips: 'Start with a word with common letters. Use feedback to narrow down.'
+    },
+    simon: {
+      title: 'Simon Says',
+      instructions: 'Repeat the color sequence. Each round adds a new color. Strict mode ends the game on a mistake.',
+      scoring: 'Score = number of rounds completed.',
+      tips: 'Focus and try to remember the sequence!'
     }
   };
 
