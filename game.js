@@ -1073,12 +1073,12 @@ window.addEventListener("DOMContentLoaded", () => {
 /* ================= Conway's Game of Life ================= */
 
 function startConwayGame(container) {
-  const gridSize = 40; // Increased grid size for more interesting patterns
+  const gridSize = 200; // Increased grid size for more interesting patterns
   const cellSize = 12; // Adjusted cell size for better visibility
   let grid = Array(gridSize).fill().map(() => Array(gridSize).fill(0));
   window.conwayAnimationFrameId = null;
   let lastUpdate = 0;
-  const updateInterval = 300; // Control animation speed (lower = faster)
+  const updateInterval = 600; // Control animation speed (lower = faster)
 
   // Create canvas
   const canvas = document.getElementById('conwayCanvas');
