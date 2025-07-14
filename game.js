@@ -623,11 +623,18 @@ function start2048Game(container) {
       cell.textContent = board[r][c] ? board[r][c] : '';
       cell.style.height = cell.style.width = '48px';
       cell.style.fontSize = '1.2rem';
-      cell.style.background = board[r][c] ? '#f0e5d6' : '#eee';
+      // Remove hardcoded background, use class for theming
+      // cell.style.background = board[r][c] ? '#f0e5d6' : '#eee';
       cell.style.display = 'flex';
       cell.style.alignItems = 'center';
       cell.style.justifyContent = 'center';
       cell.style.borderRadius = '6px';
+      cell.classList.add('g2048-tile');
+      if (board[r][c]) {
+        cell.classList.add(`tile-${board[r][c]}`);
+      } else {
+        cell.classList.add('tile-empty');
+      }
       g2048Board.appendChild(cell);
     }
     g2048Score.textContent = `Score: ${score}`;
@@ -809,7 +816,7 @@ function startSimonGame(container) {
     btn.style.background = color;
     btn.style.height = btn.style.width = '64px';
     btn.style.borderRadius = '12px';
-    btn.style.opacity = '0.7';
+    btn.style.opacity = '0.5';
     btn.style.fontSize = '1.2rem';
     btn.dataset.color = color;
     btn.onclick = () => userInput(color);

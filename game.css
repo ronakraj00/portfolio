@@ -225,16 +225,16 @@
   padding: 0.6rem 1rem;
   border-radius: 10px;
   border: 1.5px solid var(--border, #ccc);
-  width: 110px;
+  width: 220px;
   text-align: center;
   margin-right: 0.5rem;
   transition: border-color 0.3s ease;
+  background: var(--bg-primary);
 }
 
 #guessInput:focus {
   outline: none;
   border-color: var(--accent, #4a90e2);
-  box-shadow: 0 0 8px var(--accent, #4a90e2);
 }
 
 #guessBtn {
@@ -541,3 +541,306 @@
   border-color: var(--accent);
   transform: translateY(-2px);
 }
+
+/* ================= Rock, Paper, Scissors ================= */
+#rpsChoices {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin: 12px 0;
+}
+#rpsChoices button {
+  background: var(--hover, #4a90e2);
+  color: var(--text-primary, #fff);
+  border: 2px solid var(--border, #aaa);
+  border-radius: 16px;
+  padding: 0.6rem 1.2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  outline: none;
+}
+#rpsChoices button:hover:not(:disabled) {
+  background: var(--bg-primary, #357abd);
+  transform: translateY(-2px);
+}
+#rpsChoices button:active {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ================= Tic-Tac-Toe ================= */
+#tttBoard {
+  display: grid;
+  grid-template-columns: repeat(3, 48px);
+  gap: 4px;
+  justify-content: center;
+  margin: 12px 0;
+}
+#tttBoard button {
+  width: 48px;
+  height: 48px;
+  font-size: 1.5rem;
+  background: var(--bg-primary, #fff);
+  color: var(--text-primary, #222);
+  border: 2px solid var(--border, #aaa);
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  outline: none;
+}
+#tttBoard button:disabled {
+  background: var(--bg-secondary, #eee);
+  color: var(--text-secondary, #888);
+  cursor: not-allowed;
+}
+#tttMsg {
+  text-align: center;
+  font-weight: 600;
+  color: var(--accent, #4a90e2);
+  margin-top: 8px;
+}
+
+/* ================= 2048 ================= */
+#g2048Board {
+  display: grid;
+  grid-template-columns: repeat(4, 48px);
+  gap: 4px;
+  justify-content: center;
+  margin: 12px 0;
+}
+#g2048Board div {
+  width: 48px;
+  height: 48px;
+  font-size: 1.2rem;
+  background: var(--bg-primary, #fff);
+  color: var(--text-primary, #222);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  border: 2px solid var(--border, #aaa);
+  font-weight: 700;
+  transition: background 0.2s, color 0.2s;
+}
+#g2048Score {
+  text-align: center;
+  font-weight: 600;
+  color: var(--accent, #4a90e2);
+  margin: 8px 0;
+}
+#g2048Msg {
+  text-align: center;
+  font-weight: 600;
+  color: var(--accent, #e67e22);
+  margin: 8px 0;
+}
+
+/* 2048 tile theming */
+.g2048-tile {
+  background: var(--bg-primary, #fff);
+  color: var(--text-primary, #222);
+  border: 2px solid var(--border, #aaa);
+  font-weight: 700;
+  transition: background 0.2s, color 0.2s;
+}
+.tile-empty {
+  background: var(--bg-secondary, #eee);
+  color: var(--text-secondary, #bbb);
+}
+.tile-2 {
+  background: #f8f5f2;
+  color: #222;
+}
+.tile-4 {
+  background: #f2e8cb;
+  color: #222;
+}
+.tile-8 {
+  background: #f9d29b;
+  color: #fff;
+}
+.tile-16 {
+  background: #f9b97a;
+  color: #fff;
+}
+.tile-32 {
+  background: #f97c5f;
+  color: #fff;
+}
+.tile-64 {
+  background: #f75c3c;
+  color: #fff;
+}
+.tile-128 {
+  background: #edd073;
+  color: #fff;
+}
+.tile-256 {
+  background: #edcc62;
+  color: #fff;
+}
+.tile-512 {
+  background: #edc850;
+  color: #fff;
+}
+.tile-1024 {
+  background: #edc53f;
+  color: #fff;
+}
+.tile-2048 {
+  background: var(--accent, #edc22e);
+  color: #fff;
+}
+
+/* ================= Wordle Clone ================= */
+#wordleGrid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px 0;
+}
+#wordleGrid > div {
+  display: flex;
+}
+#wordleGrid > div > div {
+  width: 32px;
+  height: 32px;
+  margin: 2px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+  border-radius: 6px;
+  border: 2px solid var(--border, #aaa);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-primary, #fff);
+  color: var(--text-primary, #222);
+  transition: background 0.2s, color 0.2s;
+}
+/* Wordle color states */
+#wordleGrid > div > div.wordle-correct {
+  background: var(--accent, #6aaa64);
+  color: #fff;
+}
+#wordleGrid > div > div.wordle-present {
+  background: #c9b458;
+  color: #fff;
+}
+#wordleGrid > div > div.wordle-absent {
+  background: #787c7e;
+  color: #fff;
+}
+#wordleInput {
+  text-transform: uppercase;
+  width: 220px !important;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: 2px solid var(--border, #aaa);
+  font-size: 1rem;
+  margin: 0 8px 8px 0;
+  background: var(--bg-primary, #fff);
+  color: var(--text-primary, #222);
+  outline: none;
+  transition: border-color 0.2s;
+}
+#wordleInput:focus {
+  border-color: var(--accent, #4a90e2);
+}
+#wordleBtn {
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
+  border: 2px solid var(--border, #aaa);
+  background: var(--hover, #4a90e2);
+  color: var(--text-primary, #fff);
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s, transform 0.2s;
+  outline: none;
+}
+#wordleBtn:hover:not(:disabled) {
+  background: var(--bg-primary, #357abd);
+  transform: translateY(-2px);
+}
+#wordleBtn:active {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+#wordleMsg {
+  text-align: center;
+  font-weight: 600;
+  color: var(--accent, #e67e22);
+  margin: 8px 0;
+}
+
+/* ================= Simon Says ================= */
+#simonBoard {
+  display: grid;
+  grid-template-columns: repeat(2, 64px);
+  gap: 8px;
+  justify-content: center;
+  margin: 12px 0;
+}
+#simonBoard button {
+  height: 64px;
+  width: 64px;
+  border-radius: 12px;
+  opacity: 0.7;
+  font-size: 1.2rem;
+  border: 2px solid var(--border, #aaa);
+  cursor: pointer;
+  transition: opacity 0.2s, background 0.2s;
+  outline: none;
+}
+
+#simonBoard button:active{
+  opacity: 1 !important;
+}
+
+#simonBoard button[data-color="red"] {
+  background: #e74c3c;
+}
+#simonBoard button[data-color="green"] {
+  background: #27ae60;
+}
+#simonBoard button[data-color="blue"] {
+  background: #2980b9;
+}
+#simonBoard button[data-color="yellow"] {
+  background: #f1c40f;
+}
+#simonBoard button:active, #simonBoard button.active {
+  opacity: 1;
+}
+#simonStartBtn {
+  margin: 8px 0;
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
+  border: 2px solid var(--border, #aaa);
+  background: var(--hover, #4a90e2);
+  color: var(--text-primary, #fff);
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s, transform 0.2s;
+  outline: none;
+}
+#simonStartBtn:hover:not(:disabled) {
+  background: var(--bg-primary, #357abd);
+  transform: translateY(-2px);
+}
+#simonStartBtn:active {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+#simonMsg {
+  text-align: center;
+  font-weight: 600;
+  color: var(--accent, #e67e22);
+  margin: 8px 0;
+}
+
