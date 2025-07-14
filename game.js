@@ -531,7 +531,7 @@ function startRPSGame(container) {
       if (userScore === 5 || compScore === 5) {
         gameActive = false;
         result.textContent += userScore === 5 ? " 🎉 You won the match!" : " 😢 Computer won the match!";
-        saveScore("rps", userScore === 5 ? 1 : 0); // 1 for win, 0 for loss
+        saveScore("rps", userScore); // Save number of matches won
       }
     };
   });
@@ -599,6 +599,7 @@ function start2048Game(container) {
   const size = 4;
   let board = Array(size).fill().map(() => Array(size).fill(0));
   let score = 0;
+  let bestScore = 0;
   container.innerHTML = `
     <h3 class="game_rule">2048 ${gameInfoIcon('2048')}</h3>
     <div id="g2048Board" style="display:grid;grid-template-columns:repeat(4,48px);gap:4px;margin:12px 0;"></div>
@@ -647,6 +648,7 @@ function start2048Game(container) {
         if (arr[i] === arr[i + 1]) {
           arr[i] *= 2;
           score += arr[i];
+          if (score > bestScore) bestScore = score;
           arr[i + 1] = 0;
         }
       }
@@ -690,11 +692,11 @@ function start2048Game(container) {
     if (board.flat().includes(2048)) {
       g2048Msg.textContent = '🎉 You made 2048!';
       gameActive = false;
-      saveScore("2048", score);
+      saveScore("2048", bestScore);
     } else if (!board.flat().includes(0) && !canMove()) {
       g2048Msg.textContent = 'Game Over!';
       gameActive = false;
-      saveScore("2048", score);
+      saveScore("2048", bestScore);
     }
   }
   function canMove() {
@@ -716,10 +718,17 @@ function start2048Game(container) {
     if (['ArrowUp','w','W'].includes(e.key)) move('up');
     if (['ArrowDown','s','S'].includes(e.key)) move('down');
   }
-  // Clean up event on game end
-  g2048Msg.addEventListener('DOMNodeRemoved', () => {
+  // Remove deprecated DOMNodeRemoved event. Clean up keydown listener when game ends.
+  function end2048Game() {
     window.removeEventListener('keydown', onKey);
-  });
+  }
+  // Patch: call end2048Game when game ends
+  const oldSaveScore = saveScore;
+  function patchedSaveScore(game, score) {
+    if (game === "2048") end2048Game();
+    return oldSaveScore(game, score);
+  }
+  window.saveScore = patchedSaveScore;
 }
 
 /* ================= Wordle Clone ================= */
@@ -784,7 +793,7 @@ function startWordleGame(container) {
     } else if (attempts >= maxAttempts) {
       msg.textContent = `Game Over! The word was ${answer}`;
       gameActive = false;
-      saveScore("wordle", 0);
+      saveScore("wordle", -1); // Use -1 for loss
     } else {
       msg.textContent = '';
     }
@@ -866,6 +875,7 @@ function startSimonGame(container) {
     playSequence();
   }
   startBtn.onclick = () => {
+    if (round > 0) saveScore("simon", round); // Save previous round if restarting
     sequence = [];
     userStep = 0;
     round = 0;
@@ -873,6 +883,10 @@ function startSimonGame(container) {
     gameActive = true;
     nextRound();
   };
+  // Save score if user leaves or closes the game
+  window.addEventListener('beforeunload', () => {
+    if (round > 0) saveScore("simon", round);
+  });
 }
 
 /* ============== Utility ============== */
@@ -1028,9 +1042,9 @@ function updateHallOfFame(game) {
     });
 }
 
-// ====== On page load, update all Hall of Fame lists ======
+// --- Update Hall of Fame to include all games ---
 window.addEventListener("DOMContentLoaded", () => {
-  ["memory", "whack", "circle", "clicker", "guess"].forEach(updateHallOfFame);
+  ["memory", "whack", "circle", "clicker", "guess", "rps", "tictactoe", "2048", "wordle", "simon"].forEach(updateHallOfFame);
 
   // Add toggle functionality for games section
   const gamesToggleTitle = document.getElementById("gamesToggleTitle");
