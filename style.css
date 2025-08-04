@@ -983,6 +983,7 @@ body {
 
 /* Graffiti Celebration Styles */
 .graffiti-celebration {
+  visibility: hidden;
   position: fixed;
   top: 50%;
   left: 50%;
