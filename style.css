@@ -386,7 +386,17 @@ body {
   font-size: 0.8rem !important;
 }
 
-.about-section,.links-section{
+.codecompanywise-section > .section-title {
+  border: 1px solid var(--border) !important;
+  width: fit-content;
+  font-size: 1rem !important;
+  font-weight: 300 !important;
+  padding: 0.5rem 1rem !important;
+  background: var(--bg-primary);
+  font-size: 0.8rem !important;
+}
+
+.about-section,.links-section,.codecompanywise-section{
   /* color: var(--accent); */
   border: 1px solid var(--border);
   padding: 14px;
@@ -396,6 +406,10 @@ body {
 }
 
 .links-section{
+  margin-top: 40px;
+}
+
+.codecompanywise-section{
   margin-top: 40px;
 }
 
