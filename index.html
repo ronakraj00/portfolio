@@ -1019,23 +1019,38 @@
       });
     </script>
     <script>
-      // Loading functionality
-      window.addEventListener('load', function() {
-        // Ensure all resources are loaded
+      // Loading functionality - show content immediately for better UX
+      function hideLoading() {
         const loadingOverlay = document.querySelector('.loading-overlay');
         const mainContent = document.querySelector('.main-content');
         
-        // Add a small delay to ensure smooth transition
-        setTimeout(() => {
+        if (loadingOverlay && mainContent) {
           loadingOverlay.classList.add('fade-out');
           mainContent.classList.add('show');
           
           // Remove the loading overlay from DOM after animation
           setTimeout(() => {
-            loadingOverlay.remove();
+            if (loadingOverlay.parentNode) {
+              loadingOverlay.remove();
+            }
           }, 500);
-        }, 500);
+        }
+      }
+
+      // Hide loading as soon as DOM is ready
+      document.addEventListener('DOMContentLoaded', function() {
+        // Small delay to ensure smooth transition
+        setTimeout(() => {
+          hideLoading();
+        }, 100);
       });
+
+      // Fallback: hide loading after 1 second maximum
+      setTimeout(() => {
+        if (document.querySelector('.loading-overlay')) {
+          hideLoading();
+        }
+      }, 1000);
     </script>
     <script>
       // Emoji animation
