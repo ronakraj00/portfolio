@@ -131,6 +131,16 @@
           content: "🧠";
         }
       }
+
+      .about-summary {
+        border: 1px solid var(--border, #333);
+        border-radius: 10px;
+        padding: 1.1em 1.5em;
+        margin-bottom: 1.7em;
+        font-size: 1.08em;
+        line-height: 1.6;
+        transition: background 0.3s, color 0.3s;
+      }
     </style>
   </head>
   <body data-theme="light">
@@ -241,6 +251,15 @@
             👨‍💻 About Me <span class="hof-toggle-icon">▼</span>
           </h2>
           <div class="hof-content-collapsed" id="aboutMeContent">
+            <!-- Themed summary -->
+            <div class="about-summary" style="color: var(--text-primary); background-color: var(--background);">
+              Hi! I'm <b>Ronak Raj</b>, an IT student at NIT Kurukshetra. I love
+              building web apps, exploring new tech, and solving real-world
+              problems. My interests include Software Development, and Machine Learning.<br />
+              <span style="color: var(--accent); font-weight: 500"
+                >Thanks for visiting my portfolio!</span
+              >
+            </div>
             <section class="section">
               <h2 class="section-title">Core Skills</h2>
               <div class="skills-grid">
