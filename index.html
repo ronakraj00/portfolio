@@ -18,11 +18,11 @@
     <script src="stars.js"></script>
     <script>
       function showToast(message) {
-        const toast = document.getElementById('toast');
+        const toast = document.getElementById("toast");
         toast.textContent = message;
-        toast.classList.add('show');
+        toast.classList.add("show");
         setTimeout(() => {
-          toast.classList.remove('show');
+          toast.classList.remove("show");
         }, 2000);
       }
 
@@ -30,21 +30,24 @@
         // Check if it's a desktop device (not mobile)
         if (window.innerWidth > 768) {
           event.preventDefault();
-          const email = 'contactronakraj@gmail.com';
-          navigator.clipboard.writeText(email).then(() => {
-            showToast('Email copied to clipboard!');
-          }).catch(err => {
-            console.error('Failed to copy email: ', err);
-            showToast('Failed to copy email');
-          });
+          const email = "contactronakraj@gmail.com";
+          navigator.clipboard
+            .writeText(email)
+            .then(() => {
+              showToast("Email copied to clipboard!");
+            })
+            .catch((err) => {
+              console.error("Failed to copy email: ", err);
+              showToast("Failed to copy email");
+            });
         }
       }
 
       // Add event listener when DOM is loaded
-      document.addEventListener('DOMContentLoaded', function() {
+      document.addEventListener("DOMContentLoaded", function () {
         const emailLink = document.querySelector('a[href^="mailto:"]');
         if (emailLink) {
-          emailLink.addEventListener('click', handleEmailClick);
+          emailLink.addEventListener("click", handleEmailClick);
         }
       });
     </script>
@@ -96,8 +99,12 @@
       }
 
       @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
       }
 
       .main-content {
@@ -115,10 +122,12 @@
       }
 
       @keyframes emojiChange {
-        0%, 50% {
+        0%,
+        50% {
           content: "❤️";
         }
-        50.1%, 100% {
+        50.1%,
+        100% {
           content: "🧠";
         }
       }
@@ -147,7 +156,9 @@
           </div>
           <div class="theme-option" onclick="setTheme('sunrise')">Sunrise</div>
           <div class="theme-option" onclick="setTheme('sunset')">Sunset</div>
-          <div class="theme-option" onclick="setTheme('twilight')">Twilight</div>
+          <div class="theme-option" onclick="setTheme('twilight')">
+            Twilight
+          </div>
         </div>
       </div>
 
@@ -158,7 +169,7 @@
               <div class="profile-images-container" id="imageContainer">
                 <div
                   class="profile-image-slide"
-                  style="background-image: url('profile_me_picture_2.jpg')"
+                  style="background-image: url('image_temp.jpg')"
                 ></div>
                 <div
                   class="profile-image-slide"
@@ -205,7 +216,11 @@
               <i class="fab fa-linkedin"></i>
               LinkedIn
             </a>
-            <a target="_blank" href="resume_ronak_raj.html" class="contact-link">
+            <a
+              target="_blank"
+              href="resume_ronak_raj.html"
+              class="contact-link"
+            >
               <i class="fas fa-globe"></i>
               Resume
             </a>
@@ -355,7 +370,7 @@
                 </div>
               </div>
             </section>
-            
+
             <section class="section">
               <h2 class="section-title">Languages</h2>
               <div class="languages">
@@ -374,8 +389,13 @@
 
         <!-- Interesting Links Section -->
         <div class="links-section">
-          <h2 class="section-title hof-toggle-title" style="border: none" onclick="toggleSection('interestingLinksContent', this)">
-            🔍 Interesting Things I Found on Internet <span class="hof-toggle-icon">▼</span>
+          <h2
+            class="section-title hof-toggle-title"
+            style="border: none"
+            onclick="toggleSection('interestingLinksContent', this)"
+          >
+            🔍 Interesting Things I Found on Internet
+            <span class="hof-toggle-icon">▼</span>
           </h2>
           <div class="hof-content-collapsed" id="interestingLinksContent">
             <section class="section">
@@ -388,21 +408,41 @@
 
         <!-- Projects Section -->
         <div class="codecompanywise-section">
-          <h2 class="section-title hof-toggle-title" style="border: none" onclick="toggleSection('codeCompanyWiseContent', this)">
+          <h2
+            class="section-title hof-toggle-title"
+            style="border: none"
+            onclick="toggleSection('codeCompanyWiseContent', this)"
+          >
             🚀 Projects <span class="hof-toggle-icon">▼</span>
           </h2>
           <div class="hof-content-collapsed" id="codeCompanyWiseContent">
             <section class="section">
               <!-- CodeCompanyWise Project -->
               <div class="project-item">
+                <img
+                  src="https://api.microlink.io/?url=https://ronakraj00.github.io/CodeCompanyWise/&screenshot=true&meta=false&embed=screenshot.url"
+                  alt="CodeCompanyWise Screenshot"
+                  class="project-screenshot"
+                  style="
+                    width: 100%;
+                    max-width: 350px;
+                    border-radius: 10px;
+                    margin-bottom: 10px;
+                  "
+                />
                 <div class="project-title">CodeCompanyWise</div>
-                <div class="project-subtitle">Built a fully responsive platform to browse and track progress for solving company-specific LeetCode problems.</div>
+                <div class="project-subtitle">
+                  Built a fully responsive platform to browse and track progress
+                  for solving company-specific LeetCode problems.
+                </div>
                 <ul class="project-details">
                   <li>
-                    Consumed RESTful APIs to get questions data from github, used LocalStorage for saving user progress.
+                    Consumed RESTful APIs to get questions data from github,
+                    used LocalStorage for saving user progress.
                   </li>
                   <li>
-                    Gained 700+ Active Users and Ranked on Google search using only HTML, CSS, and JavaScript.
+                    Gained 700+ Active Users and Ranked on Google search using
+                    only HTML, CSS, and JavaScript.
                   </li>
                 </ul>
                 <div class="project-tech">
@@ -433,17 +473,36 @@
 
               <!-- CyberWatch Project -->
               <div class="project-item">
-                <div class="project-title">CyberWatch - Cybercrime Reporting Dashboard</div>
-                <div class="project-subtitle">Smart India Hackathon Project | Created a cybercrime dashboard using React and Express.js.</div>
+                <img
+                  src="https://api.microlink.io/?url=https://github.com/ronakraj00/team2&screenshot=true&meta=false&embed=screenshot.url"
+                  alt="CyberWatch Screenshot"
+                  class="project-screenshot"
+                  style="
+                    width: 100%;
+                    max-width: 350px;
+                    border-radius: 10px;
+                    margin-bottom: 10px;
+                  "
+                />
+                <div class="project-title">
+                  CyberWatch - Cybercrime Reporting Dashboard
+                </div>
+                <div class="project-subtitle">
+                  Smart India Hackathon Project | Created a cybercrime dashboard
+                  using React and Express.js.
+                </div>
                 <ul class="project-details">
                   <li>
-                    Collected and Stored Data from users related to their cybercrime experience.
+                    Collected and Stored Data from users related to their
+                    cybercrime experience.
                   </li>
                   <li>
-                    Built and consumed RESTful APIs to visualize security incident analytics.
+                    Built and consumed RESTful APIs to visualize security
+                    incident analytics.
                   </li>
                   <li>
-                    Collaborated in a competitive hackathon setting, gaining team development experience.
+                    Collaborated in a competitive hackathon setting, gaining
+                    team development experience.
                   </li>
                 </ul>
                 <div class="project-tech">
@@ -456,7 +515,7 @@
                 <div class="project-links">
                   <a
                     target="_blank"
-                    href="#"
+                    href="https://github.com/ronakraj00/team2"
                     class="project-link"
                   >
                     <i class="fas fa-external-link-alt"></i>Project Demo
@@ -466,14 +525,30 @@
 
               <!-- Inventory Management System -->
               <div class="project-item">
+                <img
+                  src="https://api.microlink.io/?url=https://inventory-s4gf.onrender.com/collection&screenshot=true&meta=false&embed=screenshot.url"
+                  alt="Inventory Management System Screenshot"
+                  class="project-screenshot"
+                  style="
+                    width: 100%;
+                    max-width: 350px;
+                    border-radius: 10px;
+                    margin-bottom: 10px;
+                  "
+                />
                 <div class="project-title">Inventory Management System</div>
-                <div class="project-subtitle">Developed a comprehensive web application for managing item collections with images.</div>
+                <div class="project-subtitle">
+                  Developed a comprehensive web application for managing item
+                  collections with images.
+                </div>
                 <ul class="project-details">
                   <li>
-                    Implemented MVC architecture using Express.js backend and MongoDB.
+                    Implemented MVC architecture using Express.js backend and
+                    MongoDB.
                   </li>
                   <li>
-                    Designed responsive UI using Pug and integrated Passport.js for authentication.
+                    Designed responsive UI using Pug and integrated Passport.js
+                    for authentication.
                   </li>
                 </ul>
                 <div class="project-tech">
@@ -487,7 +562,7 @@
                 <div class="project-links">
                   <a
                     target="_blank"
-                    href="#"
+                    href="https://inventory-s4gf.onrender.com/collection"
                     class="project-link"
                   >
                     <i class="fas fa-external-link-alt"></i>Project Demo
@@ -497,17 +572,37 @@
 
               <!-- CAPTCHA Breaking Project -->
               <div class="project-item">
-                <div class="project-title">Breaking a CAPTCHA System using CNN</div>
-                <div class="project-subtitle">Semester Project For Deep Learning</div>
+                <img
+                  src="https://api.microlink.io/?url=https://github.com/ronakraj00/captcha-breaker&screenshot=true&meta=false&embed=screenshot.url"
+                  alt="Breaking a CAPTCHA System Screenshot"
+                  class="project-screenshot"
+                  style="
+                    width: 100%;
+                    max-width: 350px;
+                    border-radius: 10px;
+                    margin-bottom: 10px;
+                  "
+                />
+                <div class="project-title">
+                  Breaking a CAPTCHA System using CNN
+                </div>
+                <div class="project-subtitle">
+                  Semester Project For Deep Learning
+                </div>
                 <ul class="project-details">
                   <li>
-                    Automated the generation and labeling of 10,000+ CAPTCHA images from a WordPress plugin to create a supervised ML dataset.
+                    Automated the generation and labeling of 10,000+ CAPTCHA
+                    images from a WordPress plugin to create a supervised ML
+                    dataset.
                   </li>
                   <li>
-                    Developed an OpenCV-based preprocessing pipeline to segment overlapping characters, with logic to split merged blobs.
+                    Developed an OpenCV-based preprocessing pipeline to segment
+                    overlapping characters, with logic to split merged blobs.
                   </li>
                   <li>
-                    Designed and trained a LeNet-style CNN in Keras/TensorFlow achieving 100% character recognition accuracy after 10 epochs.
+                    Designed and trained a LeNet-style CNN in Keras/TensorFlow
+                    achieving 100% character recognition accuracy after 10
+                    epochs.
                   </li>
                 </ul>
                 <div class="project-tech">
@@ -520,11 +615,7 @@
                   <span class="tech-tag">Computer Vision</span>
                 </div>
                 <div class="project-links">
-                  <a
-                    target="_blank"
-                    href="#"
-                    class="project-link"
-                  >
+                  <a target="_blank" href="#" class="project-link">
                     <i class="fas fa-external-link-alt"></i>Project Demo
                   </a>
                 </div>
@@ -534,7 +625,10 @@
         </div>
 
         <section id="gamesSection" class="section">
-          <h2 id="gamesToggleTitle" class="section-title games-toggle-title games-collapsed">
+          <h2
+            id="gamesToggleTitle"
+            class="section-title games-toggle-title games-collapsed"
+          >
             🎮 Mini Games
             <span id="gamesToggleIcon" class="games-toggle-icon">▼</span>
           </h2>
@@ -627,9 +721,24 @@
       <footer id="conwayFooter">
         <canvas id="conwayCanvas"></canvas>
         <div class="footer-content">
-          <p>Designed and Developed with <span id="emoji-animation">❤️</span> by Ronak</p>
-          
-          <p class="conway-credit">Background: <a style="color: var(--text-secondary); list-style: none; text-decoration: none;" href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" target="_blank">Conway's Game of Life ↗</a></p>
+          <p>
+            Designed and Developed with <span id="emoji-animation">❤️</span> by
+            Ronak
+          </p>
+
+          <p class="conway-credit">
+            Background:
+            <a
+              style="
+                color: var(--text-secondary);
+                list-style: none;
+                text-decoration: none;
+              "
+              href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life"
+              target="_blank"
+              >Conway's Game of Life ↗</a
+            >
+          </p>
         </div>
       </footer>
 
@@ -660,7 +769,7 @@
         document.body.setAttribute("data-theme", theme);
         const themeColorMeta = document.getElementById("themeColorMeta");
         const colorSchemeMeta = document.getElementById("colorSchemeMeta");
-        
+
         // Set theme color based on the selected theme
         const themeColors = {
           light: "#ffffff",
@@ -673,11 +782,14 @@
           cyberpunk: "#0d0221",
           sunrise: "#fff3e0",
           sunset: "#ffe0e0",
-          twilight: "#2c2c54"
+          twilight: "#2c2c54",
         };
-        
+
         themeColorMeta.setAttribute("content", themeColors[theme] || "#ffffff");
-        colorSchemeMeta.setAttribute("content", theme === "light" ? "light" : "dark");
+        colorSchemeMeta.setAttribute(
+          "content",
+          theme === "light" ? "light" : "dark"
+        );
         localStorage.setItem("selectedTheme", theme);
         document.getElementById("themeDropdown").classList.remove("show");
       }
@@ -709,7 +821,7 @@
       window.addEventListener("DOMContentLoaded", () => {
         const savedTheme = localStorage.getItem("selectedTheme") || "dark";
         document.body.setAttribute("data-theme", savedTheme);
-        
+
         // Set initial theme color based on saved theme
         const themeColors = {
           light: "#ffffff",
@@ -722,13 +834,19 @@
           cyberpunk: "#0d0221",
           sunrise: "#fff3e0",
           sunset: "#ffe0e0",
-          twilight: "#2c2c54"
+          twilight: "#2c2c54",
         };
-        
+
         const themeColorMeta = document.getElementById("themeColorMeta");
         const colorSchemeMeta = document.getElementById("colorSchemeMeta");
-        themeColorMeta.setAttribute("content", themeColors[savedTheme] || "#0a0a0a");
-        colorSchemeMeta.setAttribute("content", savedTheme === "light" ? "light" : "dark");
+        themeColorMeta.setAttribute(
+          "content",
+          themeColors[savedTheme] || "#0a0a0a"
+        );
+        colorSchemeMeta.setAttribute(
+          "content",
+          savedTheme === "light" ? "light" : "dark"
+        );
       });
     </script>
 
@@ -777,13 +895,13 @@
         );
         const aboutIcon = aboutTitle.querySelector(".hof-toggle-icon");
         const aboutContent = document.getElementById("aboutMeContent");
-        
+
         if (aboutTitle && aboutIcon && aboutContent) {
           // Always start collapsed
           aboutContent.classList.add("hof-content-collapsed");
           aboutIcon.textContent = "▼";
           aboutTitle.classList.add("hof-collapsed");
-          
+
           aboutTitle.onclick = function () {
             if (aboutContent.classList.contains("hof-content-collapsed")) {
               aboutContent.classList.remove("hof-content-collapsed");
@@ -974,22 +1092,24 @@
     <script>
       function toggleSection(contentId, element) {
         const content = document.getElementById(contentId);
-        const icon = element.querySelector('.hof-toggle-icon');
-        
+        const icon = element.querySelector(".hof-toggle-icon");
+
         if (content) {
-          content.classList.toggle('hof-content-collapsed');
-          icon.textContent = content.classList.contains('hof-content-collapsed') ? '▼' : '▲';
+          content.classList.toggle("hof-content-collapsed");
+          icon.textContent = content.classList.contains("hof-content-collapsed")
+            ? "▼"
+            : "▲";
         }
       }
 
       // Function to populate links
       function populateLinks() {
-        const linksGrid = document.getElementById('linksGrid');
+        const linksGrid = document.getElementById("linksGrid");
         if (!linksGrid) return;
 
-        interestingLinks.forEach(link => {
-          const linkCard = document.createElement('div');
-          linkCard.className = 'link-card';
+        interestingLinks.forEach((link) => {
+          const linkCard = document.createElement("div");
+          linkCard.className = "link-card";
           linkCard.innerHTML = `
               <a class="link-link" href="${link.url}" target="_blank" class="link-url">${link.title} →</a>
           `;
@@ -998,28 +1118,32 @@
       }
 
       // Initialize all sections
-      document.addEventListener('DOMContentLoaded', function() {
+      document.addEventListener("DOMContentLoaded", function () {
         // Initialize About Me section
-        const aboutMeTitle = document.querySelector('.hof-toggle-title');
+        const aboutMeTitle = document.querySelector(".hof-toggle-title");
         if (aboutMeTitle) {
-          aboutMeTitle.onclick = function() {
-            toggleSection('aboutMeContent', this);
+          aboutMeTitle.onclick = function () {
+            toggleSection("aboutMeContent", this);
           };
         }
-        
+
         // Initialize Interesting Links section
-        const interestingLinksTitle = document.querySelector('.hof-toggle-title:nth-of-type(2)');
+        const interestingLinksTitle = document.querySelector(
+          ".hof-toggle-title:nth-of-type(2)"
+        );
         if (interestingLinksTitle) {
-          interestingLinksTitle.onclick = function() {
-            toggleSection('interestingLinksContent', this);
+          interestingLinksTitle.onclick = function () {
+            toggleSection("interestingLinksContent", this);
           };
         }
 
         // Initialize Projects section
-        const projectsTitle = document.querySelector('.codecompanywise-section .hof-toggle-title');
+        const projectsTitle = document.querySelector(
+          ".codecompanywise-section .hof-toggle-title"
+        );
         if (projectsTitle) {
-          projectsTitle.onclick = function() {
-            toggleSection('codeCompanyWiseContent', this);
+          projectsTitle.onclick = function () {
+            toggleSection("codeCompanyWiseContent", this);
           };
         }
 
@@ -1030,13 +1154,13 @@
     <script>
       // Loading functionality - show content immediately for better UX
       function hideLoading() {
-        const loadingOverlay = document.querySelector('.loading-overlay');
-        const mainContent = document.querySelector('.main-content');
-        
+        const loadingOverlay = document.querySelector(".loading-overlay");
+        const mainContent = document.querySelector(".main-content");
+
         if (loadingOverlay && mainContent) {
-          loadingOverlay.classList.add('fade-out');
-          mainContent.classList.add('show');
-          
+          loadingOverlay.classList.add("fade-out");
+          mainContent.classList.add("show");
+
           // Remove the loading overlay from DOM after animation
           setTimeout(() => {
             if (loadingOverlay.parentNode) {
@@ -1047,7 +1171,7 @@
       }
 
       // Hide loading as soon as DOM is ready
-      document.addEventListener('DOMContentLoaded', function() {
+      document.addEventListener("DOMContentLoaded", function () {
         // Small delay to ensure smooth transition
         setTimeout(() => {
           hideLoading();
@@ -1056,18 +1180,18 @@
 
       // Fallback: hide loading after 1 second maximum
       setTimeout(() => {
-        if (document.querySelector('.loading-overlay')) {
+        if (document.querySelector(".loading-overlay")) {
           hideLoading();
         }
       }, 1000);
     </script>
     <script>
       // Emoji animation
-      const emojiElement = document.getElementById('emoji-animation');
+      const emojiElement = document.getElementById("emoji-animation");
       let isHeart = true;
-      
+
       setInterval(() => {
-        emojiElement.textContent = isHeart ? '🧠' : '❤️';
+        emojiElement.textContent = isHeart ? "🧠" : "❤️";
         isHeart = !isHeart;
       }, 2000);
     </script>
