@@ -141,6 +141,133 @@
         line-height: 1.6;
         transition: background 0.3s, color 0.3s;
       }
+      .newsletter-section {
+        background: var(--background-secondary, #f6f6f6);
+        color: var(--text-primary, #222);
+        border: 2.5px solid var(--border, #333);
+        border-radius: 12px;
+        padding: 1.5em 1.5em 1.2em 1.5em;
+        margin: 1.2em 0 1.2em 0;
+        /* box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.07); */
+        transition: background 0.3s, color 0.3s, border-color 0.3s;
+        max-width: 440px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: left;
+        font-family: inherit;
+      }
+      [data-theme="dark"] .newsletter-section,
+      [data-theme="future"] .newsletter-section,
+      [data-theme="cyberpunk"] .newsletter-section,
+      [data-theme="twilight"] .newsletter-section {
+        background: var(--background-secondary, #181818);
+        color: var(--text-primary, #fff);
+        border-color: var(--border, #444);
+      }
+      .newsletter-section .newsletter-title {
+        font-size: 1.18em;
+        font-weight: 600;
+        margin-bottom: 0.7em;
+        color: inherit;
+        line-height: 1.4;
+      }
+      .newsletter-section .newsletter-title a {
+        color: var(--accent, #6c63ff);
+        text-decoration: underline;
+        font-weight: 500;
+      }
+      .newsletter-section form {
+        margin-bottom: 1.1em;
+        display: flex;
+        flex-direction: column;
+        gap: 0.7em;
+      }
+      .newsletter-section input[type="email"] {
+        border: 2px solid var(--border, #333);
+        border-radius: 7px;
+        padding: 0.7em 1em;
+        font-size: 1em;
+        background: var(--background, #fff);
+        color: var(--text-primary, #222);
+        outline: none;
+        transition: border-color 0.2s, background 0.3s, color 0.3s;
+        width: 100%;
+        margin-bottom: 0.2em;
+        box-sizing: border-box;
+      }
+      [data-theme="dark"] .newsletter-section input[type="email"],
+      [data-theme="future"] .newsletter-section input[type="email"],
+      [data-theme="cyberpunk"] .newsletter-section input[type="email"],
+      [data-theme="twilight"] .newsletter-section input[type="email"] {
+        background: var(--background, #111);
+        color: var(--text-primary, #fff);
+        border-color: var(--border, #444);
+      }
+      .newsletter-section input[type="email"]:focus {
+        border-color: var(--accent, #6c63ff);
+        background: var(--background-secondary, #f6f6f6);
+        color: inherit;
+      }
+      [data-theme="dark"] .newsletter-section input[type="email"]:focus,
+      [data-theme="future"] .newsletter-section input[type="email"]:focus,
+      [data-theme="cyberpunk"] .newsletter-section input[type="email"]:focus,
+      [data-theme="twilight"] .newsletter-section input[type="email"]:focus {
+        background: var(--background-secondary, #181818);
+        color: var(--text-primary, #fff);
+      }
+      .newsletter-section .subscribe-btn {
+        border: none;
+        border-radius: 7px;
+        background: var(--accent, #6c63ff);
+        color: #fff;
+        font-weight: 600;
+        padding: 0.7em 0;
+        font-size: 1.08em;
+        cursor: pointer;
+        transition: background 0.2s, color 0.2s;
+        width: 100%;
+        box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.07);
+        letter-spacing: 0.02em;
+      }
+      .newsletter-section .subscribe-btn:hover,
+      .newsletter-section .subscribe-btn:focus {
+        background: #5548c8;
+        color: #fff;
+      }
+      .newsletter-section ul {
+        margin-top: 1.1em;
+        margin-bottom: 0;
+        padding-left: 1.1em;
+        font-size: 1.03em;
+        color: var(--text-secondary, #555);
+        list-style: disc;
+      }
+      [data-theme="dark"] .newsletter-section ul,
+      [data-theme="future"] .newsletter-section ul,
+      [data-theme="cyberpunk"] .newsletter-section ul,
+      [data-theme="twilight"] .newsletter-section ul {
+        color: var(--text-secondary, #bdbdbd);
+      }
+      .newsletter-section ul li {
+        margin-bottom: 0.5em;
+        line-height: 1.6;
+        font-family: "Fira Mono", "Consolas", "Menlo", monospace;
+        font-size: 1em;
+        letter-spacing: 0.01em;
+      }
+      .newsletter-section ul li strong {
+        color: var(--accent, #6c63ff);
+        font-weight: 500;
+      }
+      @media (max-width: 600px) {
+        .newsletter-section {
+          padding: 1em 0.5em 1em 0.5em;
+          max-width: 98vw;
+        }
+        .newsletter-section form {
+          gap: 0.5em;
+        }
+      }
     </style>
   </head>
   <body data-theme="light">
@@ -252,10 +379,17 @@
           </h2>
           <div class="hof-content-collapsed" id="aboutMeContent">
             <!-- Themed summary -->
-            <div class="about-summary" style="color: var(--text-primary); background-color: var(--background);">
+            <div
+              class="about-summary"
+              style="
+                color: var(--text-primary);
+                background-color: var(--background);
+              "
+            >
               Hi! I'm <b>Ronak Raj</b>, an IT student at NIT Kurukshetra. I love
               building web apps, exploring new tech, and solving real-world
-              problems. My interests include Software Development, and Machine Learning.<br />
+              problems. My interests include Software Development, and Machine
+              Learning.<br />
               <span style="color: var(--accent); font-weight: 500"
                 >Thanks for visiting my portfolio!</span
               >
@@ -405,6 +539,55 @@
             </section>
           </div>
         </div>
+
+        <!-- Hall of Fame Section (now newsletter) -->
+        <section
+          style="margin-top: 34px"
+          id="hallOfFameSection"
+          class="hall-of-fame-section"
+        >
+          <h2
+            id="hofToggleTitle"
+            class="section-title hof-toggle-title hof-collapsed"
+          >
+            📬 Newsletter
+            <span id="hofToggleIcon" class="hof-toggle-icon">▼</span>
+          </h2>
+          <div id="hallOfFameContent" class="hof-content-collapsed">
+            <div class="newsletter-section">
+              <div class="newsletter-title">
+                Subscribe for FREE daily
+                <a
+                  href="https://ronakraj00.github.io/CodeCompanyWise/"
+                  target="_blank"
+                  >FAANG coding problems</a
+                >
+                right in your inbox
+              </div>
+              <form id="newsletterForm">
+                <input
+                  id="newsletterEmail"
+                  type="email"
+                  name="email"
+                  placeholder="Enter your email"
+                  required
+                />
+                <button type="submit" class="subscribe-btn newsletter-btn">Subscribe</button>
+              </form>
+              <div id="newsletterMessage" style="margin-top:0.7em; min-height:1.5em; font-size:1.05em;"></div>
+              <ul>
+                <li>
+                  Get handpicked coding questions asked in FAANG &amp; top tech
+                  interviews
+                </li>
+                <li>📬Delivered daily, Solve daily</li>
+                <li>🧠Stay consistent and boost your interview prep</li>
+                <li>💡Solutions and hints included</li>
+                <li>😊<strong>1000+ users</strong> have already subscribed</li>
+              </ul>
+            </div>
+          </div>
+        </section>
 
         <!-- Interesting Links Section -->
         <div class="links-section">
@@ -1214,5 +1397,7 @@
         isHeart = !isHeart;
       }, 2000);
     </script>
+    <script src="newsletter.js"></script>
   </body>
+</html>
 </html>
