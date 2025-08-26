@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     try {
       const res = await fetch(
-        "https://ccw-backend.onrender.com/api/newsletter/subscribe",
+        "https://ccw-backend-ue48.onrender.com/api/newsletter/subscribe",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

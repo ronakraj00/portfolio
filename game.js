@@ -1005,7 +1005,7 @@ window._hofAnySuccess = false;
 function updateHallOfFame(game) {
   const ul = document.getElementById(`hof-list-${game}`);
   if (!ul) return;
-  const hofSection = document.querySelector(".hall-of-fame-section");
+  const hofSection = document.querySelector(".hall-of-fame-section.hallx1");
   fetch(`https://portfolio-api-dwyy.onrender.com/api/hall-of-fame/${game}`)
     .then((res) => {
       if (!res.ok) throw new Error("No response");
