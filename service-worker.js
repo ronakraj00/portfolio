@@ -21,6 +21,7 @@ const ASSETS_TO_CACHE = [
   "/css-pattern-by-magicpattern_bw.png",
   "/fluid.js",
   "/newsletter-simulation.js",
+  "/projects-simulation.js",
   "/games-simulation.js",
   "/links.js",
   "/resume_ronak_raj.html",
