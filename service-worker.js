@@ -1,32 +1,24 @@
-const CACHE_NAME = "portfolio-cache-v2";
+const CACHE_NAME = "portfolio-cache-v3";
 const ASSETS_TO_CACHE = [
-  "/",
-  "/index.html",
-  "/style.css",
-  "/game.css",
-  "/game.js",
-  "/icon.png",
-  "/manifest.json",
-  "/profile_me_picture_2.jpg",
-  "/image.png",
-  "/image2.png",
-  "/image3.png",
-  "/image5.png",
-  "/image6.png",
-  "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css",
-  "/css-pattern-by-magicpattern.png",
-  "/css-pattern-by-magicpattern_box.png",
-  "/css-pattern-by-magicpattern_lines.png",
-  "/css-pattern-by-magicpattern_diagonal.png",
-  "/css-pattern-by-magicpattern_bw.png",
-  "/fluid.js",
-  "/newsletter-simulation.js",
-  "/projects-simulation.js",
-  "/games-simulation.js",
-  "/links.js",
-  "/resume_ronak_raj.html",
-  "/service-worker.js",
-  "/stars.js",
+  "./index.html",
+  "./style.css",
+  "./game.css",
+  "./game.js",
+  "./icon.png",
+  "./manifest.json",
+  "./image.png",
+  "./image2.png",
+  "./image3.png",
+  "./image5.png",
+  "./image6.png",
+  "./fluid.js",
+  "./newsletter-simulation.js",
+  "./projects-simulation.js",
+  "./games-simulation.js",
+  "./links.js",
+  "./resume_ronak_raj.html",
+  "./service-worker.js",
+  "./stars.js",
 ];
 
 // Install event: cache all assets
@@ -56,23 +48,14 @@ self.addEventListener("activate", (event) => {
 // Fetch event: serve from cache, fall back to network, fallback to offline page if needed
 self.addEventListener("fetch", (event) => {
   if (event.request.mode === "navigate") {
-    // For navigation requests, always serve index.html from cache
     event.respondWith(
       caches
-        .match("/index.html")
-        .then((response) => response || fetch(event.request))
+        .match("./index.html")
+        .then((cached) => cached || fetch(event.request))
     );
     return;
   }
   event.respondWith(
-    caches.match(event.request).then((response) => {
-      return (
-        response ||
-        fetch(event.request).then((fetchRes) => {
-          // Optionally cache new requests here if needed
-          return fetchRes;
-        })
-      );
-    })
+    caches.match(event.request).then((cached) => cached || fetch(event.request))
   );
 });
