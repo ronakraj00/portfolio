@@ -414,8 +414,8 @@ ProjectsSimulation.prototype.spawnLabel = function () {
   const y = Math.random() * (cssH * 0.7) + cssH * 0.15;
   const vx = (Math.random() - 0.5) * 0.2;
   const vy = -0.2 - Math.random() * 0.2;
-  const life = 2600 + Math.random() * 1400; // ms
-  const fontSize = 11 + Math.random() * 5;
+  const life = 1000 + Math.random() * 1400; // ms
+  const fontSize = 7 + Math.random() * 5;
   const padX = 8,
     padY = 5;
   this.labels.push({
